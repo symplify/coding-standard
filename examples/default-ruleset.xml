@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<ruleset name="Symotion">
+	<description>The Symotion coding standard.</description>
+
+	<!-- Classes -->
+	<rule ref="SymotionCodingStandard.Classes.ClassDeclaration" />
+	<rule ref="SymotionCodingStandard.Classes.OneClassPerFileApartExceptions" />
+
+	<!-- Commenting -->
+	<rule ref="SymotionCodingStandard.Commenting.BlockPropertyComment" />
+	<rule ref="SymotionCodingStandard.Commenting.ComponentFactoryComment" />
+
+	<!-- Control Structures -->
+	<rule ref="SymotionCodingStandard.ControlStructures.NewClass" />
+	<rule ref="SymotionCodingStandard.ControlStructures.SwitchDeclaration" />
+	<rule ref="SymotionCodingStandard.ControlStructures.YodaCondition" />
+	<rule ref="SymotionCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
+
+	<!-- Debug -->
+	<rule ref="SymotionCodingStandard.Debug.DebugFunctionCall" />
+
+	<!-- Namespace -->
+	<rule ref="SymotionCodingStandard.Namespaces.NamespaceDeclaration" />
+	<rule ref="SymotionCodingStandard.Namespaces.UseDeclaration">
+		<properties>
+			<property name="blankLinesAfterUseStatement" value="2" />
+		</properties>
+	</rule>
+	<rule ref="SymotionCodingStandard.Namespaces.UseInAlphabeticalOrder" />
+
+	<!-- Naming -->
+	<rule ref="SymotionCodingStandard.Naming.Bool">
+		<properties>
+			<property name="preferedName" value="bool" />
+		</properties>
+	</rule>
+
+	<!-- Php -->
+	<rule ref="SymotionCodingStandard.Php.ShortArraySyntax" />
+
+	<!-- Scope -->
+	<rule ref="SymotionCodingStandard.Scope.MethodScope" />
+
+	<!--Whitespace -->
+	<rule ref="SymotionCodingStandard.Whitespace.ConcatOperator" />
+	<rule ref="SymotionCodingStandard.Whitespace.ExclamationMark" />
+	<rule ref="SymotionCodingStandard.Whitespace.IfElseTryCatchFinally" />
+	<rule ref="SymotionCodingStandard.Whitespace.InBetweenMethodSpacing">
+		<properties>
+			<property name="blankLinesBetweenMethods" value="2" />
+		</properties>
+	</rule>
+	<rule ref="SymotionCodingStandard.Whitespace.InBetweenExceptionSpacing">
+		<properties>
+			<property name="blankLinesBetweenExceptions" value="2" />
+		</properties>
+	</rule>
+	<rule ref="SymotionCodingStandard.Whitespace.OperatorSpacing" />
+	<rule ref="SymotionCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
+		<properties>
+			<property name="blankLinesInBetween" value="2" />
+		</properties>
+	</rule>
+</ruleset>
