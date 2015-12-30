@@ -26,6 +26,7 @@
 	</rule>
 	<rule ref="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"><severity>0</severity></rule>
 	<rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
+	<rule ref="PSR2.ControlStructures.SwitchDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
 	<rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
@@ -89,8 +90,7 @@
 	<rule ref="Squiz.PHP.NonExecutableCode"/>
 
 	<!-- WhiteSpace -->
-	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
-	<rule ref="Squiz.WhiteSpace.MemberVarSpacing"/>
+	<rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
 	<rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
 	<rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
 	<rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>

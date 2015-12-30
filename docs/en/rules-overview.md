@@ -10,23 +10,10 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 - [4 Debug](#4-debug) 
 - [5 Namespaces](#5-namespaces) 
 - [6 Naming](#6-naming) 
-- [7 PHP](#7-php) 
-- [8 Scope](#8-scope) 
-- [9 WhiteSpace](#9-whitespace) 
 
 ---
 
 ## 1 Classes
-
-### ClassDeclarationSniff
-
-- Opening brace for the class should be followed by 0 empty line
-- Closing brace for the class should be preceded by 0 empty line
-
-Covered by:
-
-- php-cs-fixer - no_blank_lines_after_class_opening [symfony]
-- php-cs-fixer - braces [psr-2]
 
 ### FinalInterfaceSniff
 
@@ -254,36 +241,6 @@ $someClass = new SomeNamespace\SomeClass($keyHandler);
 ```php
 $someClass = new SomeNamespace\SomeClass();
 ```
-
-### SwitchDeclarationSniff
-
-*Correct*
-
-```php
-$suit = 'case';
-
-switch ($suit) {
-	case 1:
-		echo 'ok';
-		break;
-	default:
-		echo 'not ok';
-		break;
-}
-```
-
-*Wrong*
-
-```php
-$suit = 'case';
-
-switch ($suit) {
-case 1:
-	echo 'ok';
-	break;
-}
-```
-
 
 ### WeakTypeComparisonWithExplanationSniff
 
