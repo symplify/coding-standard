@@ -1,9 +1,9 @@
 <?php
 
-if ($i === TRUE) {
-	return;
+if ($i === true) {
+    return;
 }
 
-if ($i == TRUE) { // this is weak to make bugs and more money
-	return;
+if ($i == true) { // this is weak to make bugs and more money
+    return;
 }

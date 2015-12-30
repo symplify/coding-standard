@@ -2,7 +2,7 @@
 
 /**
  * This file is part of Symplify
- * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
+ * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
  */
 
 namespace SymplifyCodingStandard\Sniffs\Commenting;
@@ -11,81 +11,77 @@ use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 use SymplifyCodingStandard\Helper\Commenting\MethodDocBlock;
 
-
 /**
  * Rules:
  * - Getters should have @return tag (except for {@inheritdoc}).
  */
 final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 {
+    /**
+     * @var string[]
+     */
+    private $getterMethodPrefixes = ['get', 'is', 'has', 'will', 'should'];
 
-	/**
-	 * @var string[]
-	 */
-	private $getterMethodPrefixes = ['get', 'is', 'has', 'will', 'should'];
+    /**
+     * {@inheritdoc}
+     */
+    public function register()
+    {
+        return [T_FUNCTION];
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function process(PHP_CodeSniffer_File $file, $position)
+    {
+        $methodName = $file->getDeclarationName($position);
+        $isGetterMethod = $this->guessIsGetterMethod($methodName);
+        if ($isGetterMethod === false) {
+            return;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function register()
-	{
-		return [T_FUNCTION];
-	}
+        if (MethodDocBlock::hasMethodDocBlock($file, $position) === false) {
+            $file->addError('Getters should have docblock.', $position);
 
+            return;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function process(PHP_CodeSniffer_File $file, $position)
-	{
-		$methodName = $file->getDeclarationName($position);
-		$isGetterMethod = $this->guessIsGetterMethod($methodName);
-		if ($isGetterMethod === FALSE) {
-			return;
-		}
+        $commentString = MethodDocBlock::getMethodDocBlock($file, $position);
 
-		if (MethodDocBlock::hasMethodDocBlock($file, $position) === FALSE) {
-			$file->addError('Getters should have docblock.', $position);
-			return;
-		}
+        if (strpos($commentString, '{@inheritdoc}') !== false) {
+            return;
+        }
 
-		$commentString = MethodDocBlock::getMethodDocBlock($file, $position);
+        if (strpos($commentString, '@return') !== false) {
+            return;
+        }
 
-		if (strpos($commentString, '{@inheritdoc}') !== FALSE) {
-			return;
-		}
+        $file->addError('Getters should have @return tag (except {@inheritdoc}).', $position);
+    }
 
-		if (strpos($commentString, '@return') !== FALSE) {
-			return;
-		}
+    /**
+     * @param string $methodName
+     *
+     * @return bool
+     */
+    private function guessIsGetterMethod($methodName)
+    {
+        foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
+            if (strpos($methodName, $getterMethodPrefix) === 0) {
+                if (strlen($methodName) === strlen($getterMethodPrefix)) {
+                    return true;
+                }
 
-		$file->addError('Getters should have @return tag (except {@inheritdoc}).', $position);
-	}
+                $endPosition = strlen($getterMethodPrefix);
+                $firstLetterAfterGetterPrefix = $methodName[$endPosition];
 
+                if (ctype_upper($firstLetterAfterGetterPrefix)) {
+                    return true;
+                }
+            }
+        }
 
-	/**
-	 * @param string $methodName
-	 * @return bool
-	 */
-	private function guessIsGetterMethod($methodName)
-	{
-		foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
-			if (strpos($methodName, $getterMethodPrefix) === 0) {
-				if (strlen($methodName) === strlen($getterMethodPrefix)) {
-					return TRUE;
-				}
-
-				$endPosition = strlen($getterMethodPrefix);
-				$firstLetterAfterGetterPrefix = $methodName[$endPosition];
-
-				if (ctype_upper($firstLetterAfterGetterPrefix)) {
-					return TRUE;
-				}
-			}
-		}
-
-		return FALSE;
-	}
-
+        return false;
+    }
 }

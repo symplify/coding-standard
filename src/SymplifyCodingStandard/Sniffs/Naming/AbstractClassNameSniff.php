@@ -2,7 +2,7 @@
 
 /**
  * This file is part of Symplify
- * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
+ * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
  */
 
 namespace SymplifyCodingStandard\Sniffs\Naming;
@@ -10,75 +10,69 @@ namespace SymplifyCodingStandard\Sniffs\Naming;
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
-
 /**
  * Rules:
- * - Abstract class should have prefix "Abstract"
+ * - Abstract class should have prefix "Abstract".
  */
 final class AbstractClassNameSniff implements PHP_CodeSniffer_Sniff
 {
+    /**
+     * @var PHP_CodeSniffer_File
+     */
+    private $file;
 
-	/**
-	 * @var PHP_CodeSniffer_File
-	 */
-	private $file;
+    /**
+     * @var int
+     */
+    private $position;
 
-	/**
-	 * @var int
-	 */
-	private $position;
+    /**
+     * {@inheritdoc}
+     */
+    public function register()
+    {
+        return [T_CLASS];
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function process(PHP_CodeSniffer_File $file, $position)
+    {
+        $this->file = $file;
+        $this->position = $position;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function register()
-	{
-		return [T_CLASS];
-	}
+        if (!$this->isClassAbstract()) {
+            return;
+        }
 
+        if (strpos($this->getClassName(), 'Abstract') === 0) {
+            return;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function process(PHP_CodeSniffer_File $file, $position)
-	{
-		$this->file = $file;
-		$this->position = $position;
+        $file->addError('Abstract class should have prefix "Abstract".', $position);
+    }
 
-		if ( ! $this->isClassAbstract()) {
-			return;
-		}
+    /**
+     * @return bool
+     */
+    private function isClassAbstract()
+    {
+        $classProperties = $this->file->getClassProperties($this->position);
 
-		if (strpos($this->getClassName(), 'Abstract') === 0) {
-			return;
-		}
+        return $classProperties['is_abstract'];
+    }
 
-		$file->addError('Abstract class should have prefix "Abstract".', $position);
-	}
+    /**
+     * @return string|false
+     */
+    private function getClassName()
+    {
+        $namePosition = $this->file->findNext(T_STRING, $this->position);
+        if (!$namePosition) {
+            return false;
+        }
 
-
-	/**
-	 * @return bool
-	 */
-	private function isClassAbstract()
-	{
-		$classProperties = $this->file->getClassProperties($this->position);
-		return $classProperties['is_abstract'];
-	}
-
-
-	/**
-	 * @return string|FALSE
-	 */
-	private function getClassName()
-	{
-		$namePosition = $this->file->findNext(T_STRING, $this->position);
-		if ( ! $namePosition) {
-			return FALSE;
-		}
-
-		return $this->file->getTokens()[$namePosition]['content'];
-	}
-
+        return $this->file->getTokens()[$namePosition]['content'];
+    }
 }

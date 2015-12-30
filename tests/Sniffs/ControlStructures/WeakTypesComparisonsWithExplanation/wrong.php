@@ -1,9 +1,9 @@
 <?php
 
-if ($i == TRUE) {
-	return;
+if ($i == true) {
+    return;
 }
 
 if ($i != $y) {
-	return;
+    return;
 }
