@@ -40,6 +40,5 @@
 
 	<!--Whitespace -->
 	<rule ref="SymotionCodingStandard.Whitespace.ConcatOperator" />
-	<rule ref="SymotionCodingStandard.Whitespace.ExclamationMark" />
 	<rule ref="SymotionCodingStandard.Whitespace.OperatorSpacing" />
 </ruleset>
