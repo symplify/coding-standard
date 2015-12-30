@@ -25,7 +25,12 @@
 			<property name="indent" value="1"/>
 		</properties>
 	</rule>
-	<rule ref="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"><severity>0</severity></rule>
+	<rule ref="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace">
+		<severity>0</severity>
+	</rule>
+	<rule ref="PEAR.ControlStructures.MultiLineCondition.Alignment">
+		<severity>0</severity>
+	</rule>
 	<rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
 	<rule ref="PSR2.ControlStructures.SwitchDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
@@ -48,7 +53,9 @@
 
 	<!-- Formatting -->
 	<rule ref="Generic.Formatting.DisallowMultipleStatements"/>
-	<rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine"><severity>0</severity></rule>
+	<rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine">
+		<severity>0</severity>
+	</rule>
 	<rule ref="Generic.Formatting.SpaceAfterCast"/>
 
 	<!-- Functions -->

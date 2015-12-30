@@ -106,7 +106,7 @@ final class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @return int|null
+     * @return int|false
      */
     private function getUseStatementIncorrectOrderPosition(array $uses)
     {
@@ -126,7 +126,7 @@ final class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
             }
         }
 
-        return;
+        return false;
     }
 
     /**
