@@ -625,23 +625,3 @@ interface SomeInterface
 
 }
 ```
-
-
-## 9 WhiteSpace
- 
-
-### ConcatOperatorSniff
-
-- ConcatOperator (.) should be surrounded by spaces
-
-*Correct*
-
-```php
-$s = 'Ze' . 'n';
-```
-
-*Wrong*
-
-```php
-$s = 'Ze'.'n';
-```

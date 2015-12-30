@@ -34,7 +34,4 @@
 
 	<!-- Scope -->
 	<rule ref="SymotionCodingStandard.Scope.MethodScope" />
-
-	<!--Whitespace -->
-	<rule ref="SymotionCodingStandard.Whitespace.ConcatOperator" />
 </ruleset>
