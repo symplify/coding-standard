@@ -665,26 +665,3 @@ $s = 'Ze' . 'n';
 ```php
 $s = 'Ze'.'n';
 ```
-
-
-### DocBlockSniff
-
-- DocBlock lines should start with space (except first one)
-
-*Correct*
-
-```php
-/**
- * Counts feelings.
- */
-public function ...
-```
-
-*Wrong*
-
-```php
-/**
-* Counts feelings.
-*/
-public function ...
-```
