@@ -6,7 +6,7 @@
 [![Downloads](https://img.shields.io/packagist/dt/symotion/coding-standard.svg?style=flat-square)](https://packagist.org/packages/symotion/coding-standard)
 [![Latest stable](https://img.shields.io/packagist/v/symotion/coding-standard.svg?style=flat-square)](https://packagist.org/packages/symotion/coding-standard)
 
-Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) preferring tabs and based on [PSR-2](http://www.php-fig.org/psr/psr-2/) and Symfony ](http://symfony.com/doc/current/contributing/code/standards.html).
+Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) based on [PSR-2](http://www.php-fig.org/psr/psr-2/) and [Symfony coding standard](http://symfony.com/doc/current/contributing/code/standards.html).
 
 **Check [rules overview](docs/en/symotion-rules-overview.md) for examples.**
 
