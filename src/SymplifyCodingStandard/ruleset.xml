@@ -25,7 +25,13 @@
 			<property name="indent" value="1"/>
 		</properties>
 	</rule>
-	<rule ref="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"><severity>0</severity></rule>
+	<rule ref="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace">
+		<severity>0</severity>
+	</rule>
+	<rule ref="PEAR.ControlStructures.MultiLineCondition.Alignment">
+		<severity>0</severity>
+	</rule>
+	<rule ref="PSR2.ControlStructures.ControlStructureSpacing"/>
 	<rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
 	<rule ref="PSR2.ControlStructures.SwitchDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
@@ -48,7 +54,9 @@
 
 	<!-- Formatting -->
 	<rule ref="Generic.Formatting.DisallowMultipleStatements"/>
-	<rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine"><severity>0</severity></rule>
+	<rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine">
+		<severity>0</severity>
+	</rule>
 	<rule ref="Generic.Formatting.SpaceAfterCast"/>
 
 	<!-- Functions -->
@@ -79,13 +87,16 @@
 		</properties>
 	</rule>
 
+	<!-- Namespace -->
+	<rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
+	<rule ref="PSR2.Namespaces.UseDeclaration"/>
+
 	<!-- NamingConventions -->
 	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
 	<rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
 
 	<!-- PHP -->
 	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
-	<rule ref="Generic.PHP.UpperCaseConstant"/>
 	<rule ref="MySource.PHP.EvalObjectFactory"/>
 	<rule ref="MySource.PHP.GetRequestData"/>
 	<rule ref="Squiz.PHP.NonExecutableCode"/>

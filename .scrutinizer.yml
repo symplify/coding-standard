@@ -2,15 +2,30 @@ before_commands:
     - "composer install --prefer-source"
 
 tools:
-    external_code_coverage:
-        timeout: 900
-    sensiolabs_security_checker: true
     php_code_coverage:
         enabled: true
-    php_analyzer:
+        test_command: "vendor/bin/phpunit"
+    php_code_sniffer:
+        enabled: true
         config:
-            verify_php_doc_comments:
-                suggest_more_specific_types: false
+            standard: "PSR2"
+        filter:
+            paths: ["src/*", "test/*"]
+    php_cs_fixer:
+        enabled: true
+        config:
+            level: "all"
+        filter:
+            paths: ["src/*", "test/*"]
+    php_mess_detector:
+        enabled: true
+        filter:
+            paths: ["src/*"]
+    php_analyzer:
+        enabled: true
+        filter:
+            paths: ["src/*", "test/*"]
+    sensiolabs_security_checker: true
 
 checks:
     php:
