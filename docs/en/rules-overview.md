@@ -102,6 +102,7 @@ class SomeClass
 ```
 
 
+
 ### VarPropertyCommentSniff
 
 - Property should have docblock comment (except for {@inheritdoc}).
@@ -281,32 +282,6 @@ case 1:
 	echo 'ok';
 	break;
 }
-```
-
-
-### YodaConditionSniff
-
-- Yoda condition should not be used; switch expression order
-
-*Correct*
-
-```php
-if ($i === TRUE) {
-	return;
-}
-
-$go = $decide === TRUE ?: FALSE;
-```
-
-
-*Wrong*
-
-```php
-if (TRUE === $i) {
-	return;
-}
-
-$go = TRUE === $decide ?: FALSE;
 ```
 
 

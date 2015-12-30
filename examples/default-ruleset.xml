@@ -11,7 +11,6 @@
 	<!-- Control Structures -->
 	<rule ref="SymotionCodingStandard.ControlStructures.NewClass" />
 	<rule ref="SymotionCodingStandard.ControlStructures.SwitchDeclaration" />
-	<rule ref="SymotionCodingStandard.ControlStructures.YodaCondition" />
 	<rule ref="SymotionCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
 	<!-- Debug -->
