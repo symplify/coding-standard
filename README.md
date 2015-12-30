@@ -8,7 +8,7 @@
 
 Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) based on [PSR-2](http://www.php-fig.org/psr/psr-2/) and [Symfony coding standard](http://symfony.com/doc/current/contributing/code/standards.html).
 
-**Check [rules overview](docs/en/symotion-rules-overview.md) for examples.**
+**Check [rules overview](docs/en/rules-overview.md) for examples.**
 
 
 ## Install
