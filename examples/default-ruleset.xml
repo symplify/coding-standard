@@ -31,7 +31,4 @@
 			<property name="preferedName" value="bool" />
 		</properties>
 	</rule>
-
-	<!-- Scope -->
-	<rule ref="SymotionCodingStandard.Scope.MethodScope" />
 </ruleset>
