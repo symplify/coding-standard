@@ -13,9 +13,10 @@ final class WeakTypesComparisonsWithExplanationSniffTest extends PHPUnit_Framewo
     public function testDetection()
     {
         $codeSnifferRunner = new CodeSnifferRunner(
-                'SymplifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation'
+            'SymplifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation'
         );
-        $this->assertSame(2, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/wrong.php'));
-        $this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/correct.php'));
+
+        $this->assertSame(2, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/wrong.php.inc'));
+        $this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/correct.php.inc'));
     }
 }

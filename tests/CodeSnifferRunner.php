@@ -87,6 +87,6 @@ final class CodeSnifferRunner
             return $parts[0];
         }
 
-        return;
+        return false;
     }
 }
