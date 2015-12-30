@@ -11,7 +11,7 @@ tools:
             standard: "PSR2"
         filter:
             paths: ["src/*", "test/*"]
-   php_cs_fixer:
+    php_cs_fixer:
         enabled: true
         config:
             level: "all"
