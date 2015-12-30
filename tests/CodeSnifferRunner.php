@@ -1,10 +1,10 @@
 <?php
 
-namespace Symotion\CodingStandard\Tests;
+namespace Symplify\CodingStandard\Tests;
 
 use PHP_CodeSniffer;
-use Symotion\CodingStandard\Tests\Exception\FileNotFoundException;
-use Symotion\CodingStandard\Tests\Exception\StandardRulesetNotFoundException;
+use Symplify\CodingStandard\Tests\Exception\FileNotFoundException;
+use Symplify\CodingStandard\Tests\Exception\StandardRulesetNotFoundException;
 
 
 final class CodeSnifferRunner
@@ -19,7 +19,7 @@ final class CodeSnifferRunner
 	 * @var string[]
 	 */
 	private $standardRulesets = [
-		'SymotionCodingStandard' => __DIR__ . '/../src/SymotionCodingStandard/ruleset.xml'
+		'SymplifyCodingStandard' => __DIR__ . '/../src/SymplifyCodingStandard/ruleset.xml'
 	];
 
 

@@ -1,64 +1,28 @@
 <?xml version="1.0" ?>
-<ruleset name="Symotion">
-	<description>The Symotion coding standard.</description>
+<ruleset name="Symplify">
+	<description>The Symplify coding standard.</description>
 
 	<!-- Classes -->
-	<rule ref="SymotionCodingStandard.Classes.ClassDeclaration" />
-	<rule ref="SymotionCodingStandard.Classes.OneClassPerFileApartExceptions" />
+	<rule ref="SymplifyCodingStandard.Classes.FinalInterface" />
 
 	<!-- Commenting -->
-	<rule ref="SymotionCodingStandard.Commenting.BlockPropertyComment" />
-	<rule ref="SymotionCodingStandard.Commenting.ComponentFactoryComment" />
+	<rule ref="SymplifyCodingStandard.Commenting.BlockPropertyComment" />
+	<rule ref="SymplifyCodingStandard.Commenting.MethodComment" />
+	<rule ref="SymplifyCodingStandard.Commenting.MethodCommentReturnTag" />
+	<rule ref="SymplifyCodingStandard.Commenting.VarPropertyComment" />
 
 	<!-- Control Structures -->
-	<rule ref="SymotionCodingStandard.ControlStructures.NewClass" />
-	<rule ref="SymotionCodingStandard.ControlStructures.SwitchDeclaration" />
-	<rule ref="SymotionCodingStandard.ControlStructures.YodaCondition" />
-	<rule ref="SymotionCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
+	<rule ref="SymplifyCodingStandard.ControlStructures.ControlSignatures" />
+	<rule ref="SymplifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
 	<!-- Debug -->
-	<rule ref="SymotionCodingStandard.Debug.DebugFunctionCall" />
+	<rule ref="SymplifyCodingStandard.Debug.DebugFunctionCall" />
 
 	<!-- Namespace -->
-	<rule ref="SymotionCodingStandard.Namespaces.NamespaceDeclaration" />
-	<rule ref="SymotionCodingStandard.Namespaces.UseDeclaration">
-		<properties>
-			<property name="blankLinesAfterUseStatement" value="2" />
-		</properties>
-	</rule>
-	<rule ref="SymotionCodingStandard.Namespaces.UseInAlphabeticalOrder" />
+	<rule ref="SymplifyCodingStandard.Namespaces.ClassNamesWithoutPreSlash" />
+	<rule ref="SymplifyCodingStandard.Namespaces.UseInAlphabeticalOrder" />
 
 	<!-- Naming -->
-	<rule ref="SymotionCodingStandard.Naming.Bool">
-		<properties>
-			<property name="preferedName" value="bool" />
-		</properties>
-	</rule>
-
-	<!-- Php -->
-	<rule ref="SymotionCodingStandard.Php.ShortArraySyntax" />
-
-	<!-- Scope -->
-	<rule ref="SymotionCodingStandard.Scope.MethodScope" />
-
-	<!--Whitespace -->
-	<rule ref="SymotionCodingStandard.Whitespace.ConcatOperator" />
-	<rule ref="SymotionCodingStandard.Whitespace.ExclamationMark" />
-	<rule ref="SymotionCodingStandard.Whitespace.IfElseTryCatchFinally" />
-	<rule ref="SymotionCodingStandard.Whitespace.InBetweenMethodSpacing">
-		<properties>
-			<property name="blankLinesBetweenMethods" value="2" />
-		</properties>
-	</rule>
-	<rule ref="SymotionCodingStandard.Whitespace.InBetweenExceptionSpacing">
-		<properties>
-			<property name="blankLinesBetweenExceptions" value="2" />
-		</properties>
-	</rule>
-	<rule ref="SymotionCodingStandard.Whitespace.OperatorSpacing" />
-	<rule ref="SymotionCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
-		<properties>
-			<property name="blankLinesInBetween" value="2" />
-		</properties>
-	</rule>
+	<rule ref="SymplifyCodingStandard.Naming.AbstractClassName"/>
+	<rule ref="SymplifyCodingStandard.Naming.InterfaceName"/>
 </ruleset>
