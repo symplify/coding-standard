@@ -18,38 +18,15 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 
 ## 1 Classes
 
-
 ### ClassDeclarationSniff
 
-- Opening brace for the class should be followed by 1 empty line
-- Closing brace for the class should be preceded by 1 empty line
+- Opening brace for the class should be followed by 0 empty line
+- Closing brace for the class should be preceded by 0 empty line
 
-*Correct*
+Covered by:
 
-```php
-class SomeClass
-{
-
-	public function run()
-	{
-
-	}
-
-}
-```
-
-*Wrong*
-
-```php
-class SomeClass
-{
-	public function run()
-	{
-
-	}
-}
-```
-
+- php-cs-fixer - no_blank_lines_after_class_opening [symfony]
+- php-cs-fixer - braces [psr-2]
 
 ### FinalInterfaceSniff
 
