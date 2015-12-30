@@ -3,24 +3,23 @@
 	<description>The Symotion coding standard.</description>
 
 	<!-- Classes -->
-	<rule ref="SymotionCodingStandard.Classes.OneClassPerFileApartExceptions" />
+	<rule ref="SymotionCodingStandard.Classes.FinalInterface" />
 
 	<!-- Commenting -->
 	<rule ref="SymotionCodingStandard.Commenting.BlockPropertyComment" />
+	<rule ref="SymotionCodingStandard.Commenting.MethodComment" />
+	<rule ref="SymotionCodingStandard.Commenting.MethodCommentReturnTag" />
+	<rule ref="SymotionCodingStandard.Commenting.VarPropertyComment" />
 
 	<!-- Control Structures -->
+	<rule ref="SymotionCodingStandard.ControlStructures.ControlSignatures" />
 	<rule ref="SymotionCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
 	<!-- Debug -->
 	<rule ref="SymotionCodingStandard.Debug.DebugFunctionCall" />
 
 	<!-- Namespace -->
-	<rule ref="SymotionCodingStandard.Namespaces.NamespaceDeclaration" />
-	<rule ref="SymotionCodingStandard.Namespaces.UseDeclaration">
-		<properties>
-			<property name="blankLinesAfterUseStatement" value="2" />
-		</properties>
-	</rule>
+	<rule ref="SymotionCodingStandard.Namespaces.ClassNamesWithoutPreSlash" />
 	<rule ref="SymotionCodingStandard.Namespaces.UseInAlphabeticalOrder" />
 
 	<!-- Naming -->
