@@ -10,6 +10,9 @@
 		"squizlabs/php_codesniffer": "^2.5",
 		"fabpot/php-cs-fixer": "^1.11"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.1"
+	},
 	"autoload": {
 		"psr-4": {
 			"Symplify\\CodingStandard\\": "src"

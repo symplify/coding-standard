@@ -7,20 +7,12 @@ php:
   - 7.0
   - hhvm
 
-env:
-  global:
-    - PHPCS_FLAGS="--ignore=wrong,correct"
-
 install:
-  - composer create-project --prefer-source --dev --no-interaction zenify/ci vendor/ci @dev
-  - . vendor/ci/travis/coverage-init.sh
   - composer install --prefer-source
 
 before_script:
-  - . vendor/ci/travis/static-analysis.sh
+  - if [ "$TRAVIS_PHP_VERSION" = "5.6" ]; then vendor/bin/phpcs src -p --standard=src/SymplifyCodingStandard/ruleset.xml --extensions=php; fi
+  - if [ "$TRAVIS_PHP_VERSION" = "5.6" ]; then vendor/bin/phpcs tests -p --standard=src/SymplifyCodingStandard/ruleset.xml --extensions=php; fi
 
 script:
-  - phpunit $PHPUNIT_FLAGS
-
-after_script:
-  - . vendor/ci/travis/coverage-send.sh
+  - vendor/bin/phpunit
