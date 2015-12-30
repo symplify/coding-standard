@@ -41,11 +41,5 @@
 	<!--Whitespace -->
 	<rule ref="SymotionCodingStandard.Whitespace.ConcatOperator" />
 	<rule ref="SymotionCodingStandard.Whitespace.ExclamationMark" />
-	<rule ref="SymotionCodingStandard.Whitespace.IfElseTryCatchFinally" />
 	<rule ref="SymotionCodingStandard.Whitespace.OperatorSpacing" />
-	<rule ref="SymotionCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
-		<properties>
-			<property name="blankLinesInBetween" value="2" />
-		</properties>
-	</rule>
 </ruleset>

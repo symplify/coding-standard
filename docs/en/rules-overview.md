@@ -711,34 +711,6 @@ if (!$s) {
 ```
 
 
-### IfElseTryCatchFinallySniff
-
-- Else/elseif/catch/finally statement should be preceded by 1 empty line
-
-*Correct*
-
-```php
-if ($i === 1) {
-	return $i;
-
-} else {
-	return $i * 2;
-}
-```
-
-*Wrong*
-
-```php
-try (1 === 2) {
-	return 3;
-} catch (2 === 3) {
-	return 4;
-} finally (2 === 3) {
-	return 4;
-}
-```
-
-
 ### OperatorSpacingSniff
 
 - Operator should be surrounded by spaces or on new line
