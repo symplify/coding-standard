@@ -4,16 +4,16 @@ Rules uses default numeric parameters (some can be changed to match your needs).
 
 **TOC:**
 
-- [1 Classes](#1-classes)
-- [2 Commenting](#2-commenting)
-- [3 Control Structures](#3-control-structures) 
-- [4 Debug](#4-debug) 
-- [5 Namespaces](#5-namespaces) 
-- [6 Naming](#6-naming) 
+- [Classes](#classes)
+- [Commenting](#commenting)
+- [Control Structures](#control-structures) 
+- [Debug](#debug) 
+- [Namespaces](#namespaces) 
+- [Naming](#naming) 
 
 ---
 
-## 1 Classes
+## Classes
 
 ### FinalInterfaceSniff
 
@@ -55,7 +55,7 @@ class SomeClass implements SomeInterface
 ```
 
 
-## 2 Commenting
+## Commenting
 
 
 ### BlockPropertyCommentSniff
@@ -222,25 +222,8 @@ class SomeClass
 ```
 
 
-## 3 Control Structures
+## Control Structures
 
-
-### NewClassSniff
- 
-- New class statement should not have empty parentheses
-
-*Correct*
-
-```php
-$someClass = new SomeNamespace\SomeClass;
-$someClass = new SomeNamespace\SomeClass($keyHandler);
-```
-
-*Wrong*
-
-```php
-$someClass = new SomeNamespace\SomeClass();
-```
 
 ### WeakTypeComparisonWithExplanationSniff
 
@@ -267,7 +250,7 @@ if ($i == TRUE) {
 ```
 
 
-## 4 Debug
+## Debug
 
 
 ### DebugFunctionCallSniff
@@ -281,7 +264,7 @@ dump('It works');
 ```
 
 
-## 5 Namespaces
+## Namespaces
 
 
 ### NamespaceDeclarationSniff
@@ -398,7 +381,7 @@ use B;
 ```
 
 
-## 6 Naming
+## Naming
 
 
 ### BoolSniff

@@ -9,7 +9,6 @@
 	<rule ref="SymotionCodingStandard.Commenting.BlockPropertyComment" />
 
 	<!-- Control Structures -->
-	<rule ref="SymotionCodingStandard.ControlStructures.NewClass" />
 	<rule ref="SymotionCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
 	<!-- Debug -->

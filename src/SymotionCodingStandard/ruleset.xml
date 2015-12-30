@@ -7,6 +7,7 @@
 
 	<!-- Classes -->
 	<rule ref="Generic.Classes.DuplicateClassName"/>
+	<rule ref="PSR2.Classes.ClassDeclaration"/>
 	<rule ref="PSR2.Classes.PropertyDeclaration"/>
 	<rule ref="Squiz.Classes.ValidClassName"/>
 	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
