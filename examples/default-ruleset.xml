@@ -7,7 +7,6 @@
 
 	<!-- Commenting -->
 	<rule ref="SymotionCodingStandard.Commenting.BlockPropertyComment" />
-	<rule ref="SymotionCodingStandard.Commenting.ComponentFactoryComment" />
 
 	<!-- Control Structures -->
 	<rule ref="SymotionCodingStandard.ControlStructures.NewClass" />
