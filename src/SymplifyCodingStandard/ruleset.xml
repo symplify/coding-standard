@@ -7,8 +7,6 @@
 
 	<!-- Classes -->
 	<rule ref="Generic.Classes.DuplicateClassName"/>
-	<rule ref="PSR2.Classes.ClassDeclaration"/>
-	<rule ref="PSR2.Classes.PropertyDeclaration"/>
 	<rule ref="Squiz.Classes.ValidClassName"/>
 	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
 
@@ -31,9 +29,6 @@
 	<rule ref="PEAR.ControlStructures.MultiLineCondition.Alignment">
 		<severity>0</severity>
 	</rule>
-	<rule ref="PSR2.ControlStructures.ControlStructureSpacing"/>
-	<rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
-	<rule ref="PSR2.ControlStructures.SwitchDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
 	<rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
@@ -49,7 +44,6 @@
 	</rule>
 	<rule ref="Generic.Files.OneClassPerFile"/>
 	<rule ref="Generic.Files.OneInterfacePerFile"/>
-	<rule ref="PSR2.Files.EndFileNewline"/>
 	<rule ref="Zend.Files.ClosingTag"/>
 
 	<!-- Formatting -->
@@ -75,9 +69,6 @@
 	</rule>
 	<rule ref="Squiz.Functions.LowercaseFunctionKeywords"/>
 
-	<!-- Methods -->
-	<rule ref="PSR2.Methods.MethodDeclaration"/>
-
 	<!-- Metrics -->
 	<rule ref="Generic.Metrics.CyclomaticComplexity"/>
 	<rule ref="Generic.Metrics.NestingLevel">
@@ -86,10 +77,6 @@
 			<property name="absoluteNestingLevel" value="6"/>
 		</properties>
 	</rule>
-
-	<!-- Namespace -->
-	<rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
-	<rule ref="PSR2.Namespaces.UseDeclaration"/>
 
 	<!-- NamingConventions -->
 	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>

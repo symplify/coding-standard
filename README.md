@@ -19,10 +19,11 @@ $ composer require symplify/coding-standard --dev
 
 ## Usage
 
-If you want to check your `/src/` directory, just run these 2 commands:
+If you want to check your `/src` directory, just run these 3 commands:
 
 ```sh
 $ vendor/bin/phpcs src --standard=vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml -p -s --colors
+$ vendor/bin/phpcs src --standard=PSR2 -p -s --colors
 $ vendor/bin/php-cs-fixer fix src --dry-run --diff -v --level=symfony
 ```
 
