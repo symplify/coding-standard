@@ -267,6 +267,25 @@ dump('It works');
 ## Namespaces
 
 
+### ClassNamesWithoutPreSlashSniff
+
+- Class name after new/instanceof should not start with slash
+
+*Correct*
+
+```php
+use File;
+
+$file = new File;
+```
+
+*Wrong*
+
+```php
+return new \File;
+```
+
+
 ### UseInAlphabeticalOrderSniff
  
 -  Use statements should be in alphabetical order
