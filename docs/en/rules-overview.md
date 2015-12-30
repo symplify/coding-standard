@@ -570,26 +570,6 @@ class SomeClass
 ```
 
 
-## 7 PHP
-
-
-### ShortArraySyntaxSniff
-
-- Short array syntax should be used, instead of traditional one.
-
-*Correct*
-
-```php
-private $settings = [];
-```
-
-*Wrong*
-
-```php
-private $settings = array();
-```
-
-
 ## 8 Scope
 
 

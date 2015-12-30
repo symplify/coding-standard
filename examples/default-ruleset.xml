@@ -32,9 +32,6 @@
 		</properties>
 	</rule>
 
-	<!-- Php -->
-	<rule ref="SymotionCodingStandard.Php.ShortArraySyntax" />
-
 	<!-- Scope -->
 	<rule ref="SymotionCodingStandard.Scope.MethodScope" />
 
