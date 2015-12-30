@@ -24,8 +24,6 @@
 
 	<!-- Naming -->
 	<rule ref="SymotionCodingStandard.Naming.AbstractClassName"/>
-	<rule ref="SymotionCodingStandard.Naming.Bool"/>
 	<rule ref="SymotionCodingStandard.Naming.InheritDoc"/>
-	<rule ref="SymotionCodingStandard.Naming.Int"/>
 	<rule ref="SymotionCodingStandard.Naming.InterfaceName"/>
 </ruleset>
