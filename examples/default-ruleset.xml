@@ -3,7 +3,6 @@
 	<description>The Symotion coding standard.</description>
 
 	<!-- Classes -->
-	<rule ref="SymotionCodingStandard.Classes.ClassDeclaration" />
 	<rule ref="SymotionCodingStandard.Classes.OneClassPerFileApartExceptions" />
 
 	<!-- Commenting -->
