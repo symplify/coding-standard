@@ -102,34 +102,6 @@ class SomeClass
 ```
 
 
-### ComponentFactoryCommentSniff
-
-- CreateComponent* method should have a doc comment
-- CreateComponent* method should have a return tag
-- Return tag should contain type
- 
-*Correct*
-
-```php
-/**
- * @return DisplayComponent
- */
-protected function createComponentDisplay()
-{
-	$this->displayComponentFactory->create();
-}
-```
-
-*Wrong*
-
-```php
-protected function createComponentDisplay()
-{
-	$this->displayComponentFactory->create();
-}
-```
-
-
 ### VarPropertyCommentSniff
 
 - Property should have docblock comment (except for {@inheritdoc}).
