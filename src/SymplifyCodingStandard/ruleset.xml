@@ -85,7 +85,6 @@
 
 	<!-- PHP -->
 	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
-	<rule ref="Generic.PHP.UpperCaseConstant"/>
 	<rule ref="MySource.PHP.EvalObjectFactory"/>
 	<rule ref="MySource.PHP.GetRequestData"/>
 	<rule ref="Squiz.PHP.NonExecutableCode"/>
