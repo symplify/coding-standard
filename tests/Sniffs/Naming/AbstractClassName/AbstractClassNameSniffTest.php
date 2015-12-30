@@ -1,20 +1,20 @@
 <?php
 
-namespace Symotion\CodingStandard\Tests\Sniffs\Naming\AbstractClassName;
+namespace Symplify\CodingStandard\Tests\Sniffs\Naming\AbstractClassName;
 
 use PHPUnit_Framework_TestCase;
-use Symotion\CodingStandard\Tests\CodeSnifferRunner;
+use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers SymotionCodingStandard\Sniffs\Naming\AbstractClassNameSniff
+ * @covers SymplifyCodingStandard\Sniffs\Naming\AbstractClassNameSniff
  */
 final class AbstractClassNameSniffTest extends PHPUnit_Framework_TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('SymotionCodingStandard.Naming.AbstractClassName');
+		$codeSnifferRunner = new CodeSnifferRunner('SymplifyCodingStandard.Naming.AbstractClassName');
 
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct.php'));
 		$this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/correct2.php'));

@@ -1,15 +1,15 @@
 <?php
 
 /**
- * This file is part of Symotion
+ * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace SymotionCodingStandard\Sniffs\Commenting;
+namespace SymplifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
-use SymotionCodingStandard\Helper\Commenting\MethodDocBlock;
+use SymplifyCodingStandard\Helper\Commenting\MethodDocBlock;
 
 
 /**

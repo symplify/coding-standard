@@ -1,5 +1,5 @@
 {
-	"name": "symotion/coding-standard",
+	"name": "symplify/coding-standard",
 	"description": "Set of rules for PHP_CodeSniffer preferring tabs and based on Nette coding standard.",
 	"license": "MIT",
 	"authors": [
@@ -12,12 +12,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Symotion\\CodingStandard\\": "src"
+			"Symplify\\CodingStandard\\": "src"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Symotion\\CodingStandard\\Tests\\": "tests"
+			"Symplify\\CodingStandard\\Tests\\": "tests"
 		}
 	}
 }

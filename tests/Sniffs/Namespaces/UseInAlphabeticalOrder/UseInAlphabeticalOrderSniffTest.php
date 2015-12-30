@@ -1,20 +1,20 @@
 <?php
 
-namespace SymotionTests\MikulasCodeSniffs\Sniffs\Namespaces\UseInAlphabeticalOrder;
+namespace SymplifyTests\MikulasCodeSniffs\Sniffs\Namespaces\UseInAlphabeticalOrder;
 
 use PHPUnit_Framework_TestCase;
-use Symotion\CodingStandard\Tests\CodeSnifferRunner;
+use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers SymotionCodingStandard\Sniffs\Namespaces\UseInAlphabeticalOrderSniff
+ * @covers SymplifyCodingStandard\Sniffs\Namespaces\UseInAlphabeticalOrderSniff
  */
 final class UseInAlphabeticalOrderSniffTest extends PHPUnit_Framework_TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('SymotionCodingStandard.Namespaces.UseInAlphabeticalOrder');
+		$codeSnifferRunner = new CodeSnifferRunner('SymplifyCodingStandard.Namespaces.UseInAlphabeticalOrder');
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

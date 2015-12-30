@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of Symotion
+ * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace SymotionCodingStandard\Helper\Commenting;
+namespace SymplifyCodingStandard\Helper\Commenting;
 
 use PHP_CodeSniffer_File;
 

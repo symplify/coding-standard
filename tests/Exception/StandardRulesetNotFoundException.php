@@ -1,6 +1,6 @@
 <?php
 
-namespace Symotion\CodingStandard\Tests\Exception;
+namespace Symplify\CodingStandard\Tests\Exception;
 
 use Exception;
 

@@ -1,20 +1,20 @@
 <?php
 
-namespace Symotion\CodingStandard\Tests\Sniffs\Commenting\VarPropertyComment;
+namespace Symplify\CodingStandard\Tests\Sniffs\Commenting\VarPropertyComment;
 
 use PHPUnit_Framework_TestCase;
-use Symotion\CodingStandard\Tests\CodeSnifferRunner;
+use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
 
 /**
- * @covers SymotionCodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
+ * @covers SymplifyCodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
  */
 final class VarPropertyCommentSniffTest extends PHPUnit_Framework_TestCase
 {
 
 	public function testDetection()
 	{
-		$codeSnifferRunner = new CodeSnifferRunner('SymotionCodingStandard.Commenting.VarPropertyComment');
+		$codeSnifferRunner = new CodeSnifferRunner('SymplifyCodingStandard.Commenting.VarPropertyComment');
 
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong.php'));
 		$this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__ . '/wrong2.php'));

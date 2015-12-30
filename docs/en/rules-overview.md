@@ -1,4 +1,4 @@
-# Symotion Rules Overview
+# Symplify Rules Overview
 
 Rules uses default numeric parameters (some can be changed to match your needs).
 

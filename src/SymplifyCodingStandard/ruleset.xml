@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
-<ruleset name="Symotion">
-	<descrition>Symotion selection from default sniffs</descrition>
+<ruleset name="Symplify">
+	<descrition>Symplify selection from default sniffs</descrition>
 
 	<!-- Array -->
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>

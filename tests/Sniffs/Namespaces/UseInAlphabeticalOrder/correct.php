@@ -4,9 +4,9 @@ use A;
 use B;
 use D;
 use PHPUnit_Framework_TestCase;
-use Symotion\DoctrineQueryStats\Analytics\DataCollector;
-use Symotion\DoctrineQueryStats\Tracy\Panel;
-use SymotionTests\ContainerFactory;
+use Symplify\DoctrineQueryStats\Analytics\DataCollector;
+use Symplify\DoctrineQueryStats\Tracy\Panel;
+use SymplifyTests\ContainerFactory;
 use X;
 
 class Presenter

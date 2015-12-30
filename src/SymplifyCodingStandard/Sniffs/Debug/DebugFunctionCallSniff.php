@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of Symotion
+ * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz)
  */
 
-namespace SymotionCodingStandard\Sniffs\Debug;
+namespace SymplifyCodingStandard\Sniffs\Debug;
 
 use Generic_Sniffs_PHP_ForbiddenFunctionsSniff;
 
