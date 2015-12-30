@@ -42,16 +42,6 @@
 	<rule ref="SymotionCodingStandard.Whitespace.ConcatOperator" />
 	<rule ref="SymotionCodingStandard.Whitespace.ExclamationMark" />
 	<rule ref="SymotionCodingStandard.Whitespace.IfElseTryCatchFinally" />
-	<rule ref="SymotionCodingStandard.Whitespace.InBetweenMethodSpacing">
-		<properties>
-			<property name="blankLinesBetweenMethods" value="2" />
-		</properties>
-	</rule>
-	<rule ref="SymotionCodingStandard.Whitespace.InBetweenExceptionSpacing">
-		<properties>
-			<property name="blankLinesBetweenExceptions" value="2" />
-		</properties>
-	</rule>
 	<rule ref="SymotionCodingStandard.Whitespace.OperatorSpacing" />
 	<rule ref="SymotionCodingStandard.Whitespace.PropertiesMethodsMutualSpacing">
 		<properties>
