@@ -31,6 +31,7 @@
 	<rule ref="PEAR.ControlStructures.MultiLineCondition.Alignment">
 		<severity>0</severity>
 	</rule>
+	<rule ref="PSR2.ControlStructures.ControlStructureSpacing"/>
 	<rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
 	<rule ref="PSR2.ControlStructures.SwitchDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
@@ -85,6 +86,10 @@
 			<property name="absoluteNestingLevel" value="6"/>
 		</properties>
 	</rule>
+
+	<!-- Namespace -->
+	<rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
+	<rule ref="PSR2.Namespaces.UseDeclaration"/>
 
 	<!-- NamingConventions -->
 	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
