@@ -7,8 +7,8 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 use Symfony\Component\Process\Process;
+use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 
 final class SymplifyRunner implements RunnerInterface
 {

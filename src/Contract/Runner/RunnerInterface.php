@@ -7,7 +7,6 @@
 
 namespace Symplify\CodingStandard\Contract\Runner;
 
-
 interface RunnerInterface
 {
     /**

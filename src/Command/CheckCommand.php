@@ -38,7 +38,12 @@ final class CheckCommand extends Command
     {
         $this->setName('check');
         $this->setDefinition([
-            new InputArgument('paths', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'The path(s) to be checked', null)
+            new InputArgument(
+                'paths',
+                InputArgument::REQUIRED | InputArgument::IS_ARRAY,
+                'The path(s) to be checked',
+                null
+            )
         ]);
         $this->setDescription('Check coding standard in particular directory');
         $this->setHelp(<<<EOF
