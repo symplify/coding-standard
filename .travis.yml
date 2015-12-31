@@ -18,9 +18,11 @@ matrix:
 install:
   - composer install --prefer-source
 
+before_script:
+  - bin/symplify-cs check src tests
+
 script:
   - vendor/bin/phpunit $PHPUNIT_FLAGS
 
 after_script:
   - if [[ "$PHPUNIT_FLAGS" != "" ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
-
