@@ -67,13 +67,13 @@ EOF
             foreach ($input->getArgument('paths') as $path) {
                 $this->executeRunnerForDirectory($path);
             }
-            return 1;
+            return 0;
 
         } catch (Exception $exception) {
             $output->writeln(
                 sprintf('<error>%s</error>', $exception->getMessage())
             );
-            return 0;
+            return 1;
         }
     }
 
