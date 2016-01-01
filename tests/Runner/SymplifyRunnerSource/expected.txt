@@ -1,7 +1,7 @@
 [31mE[0m
 
 
-[1mFILE: %stests/Runner/SymplifyRunnerSource/SomeClass.php[0m
+[1mFILE: %stests/Runner/SymplifyRunnerSource/SomeClass.php.inc[0m
 ----------------------------------------------------------------------
 [1mFOUND 1 ERROR AFFECTING 1 LINE[0m
 ----------------------------------------------------------------------

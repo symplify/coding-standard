@@ -18,15 +18,29 @@ final class SymplifyRunner implements RunnerInterface
     private $output;
 
     /**
+     * @var string
+     */
+    private $extensions;
+
+    /**
+     * @param string $extensions
+     */
+    public function __construct($extensions = 'php')
+    {
+        $this->extensions = $extensions;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function runForDirectory($directory)
     {
         $process = new Process(
             sprintf(
-                'php vendor/bin/phpcs %s --standard=%s -p -s --colors --extensions=php',
+                'php vendor/bin/phpcs %s --standard=%s -p -s --colors --extensions=%s',
                 $directory,
-                $this->getRuleset()
+                $this->getRuleset(),
+                $this->extensions
             )
         );
         $process->run();

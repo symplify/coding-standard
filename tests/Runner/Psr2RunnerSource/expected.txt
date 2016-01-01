@@ -1,7 +1,7 @@
 [31mE[0m
 
 
-[1mFILE: %stests/Runner/Psr2RunnerSource/SomeClass.php[0m
+[1mFILE: %stests/Runner/Psr2RunnerSource/SomeClass.php.inc[0m
 ----------------------------------------------------------------------
 [1mFOUND 2 ERRORS AFFECTING 1 LINE[0m
 ----------------------------------------------------------------------

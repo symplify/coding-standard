@@ -18,14 +18,28 @@ final class Psr2Runner implements RunnerInterface
     private $output;
 
     /**
+     * @var string
+     */
+    private $extensions;
+
+    /**
+     * @param string $extensions
+     */
+    public function __construct($extensions = 'php')
+    {
+        $this->extensions = $extensions;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function runForDirectory($directory)
     {
         $process = new Process(
             sprintf(
-                'php vendor/bin/phpcs %s --standard=PSR2 -p -s --colors --extensions=php',
-                $directory
+                'php vendor/bin/phpcs %s --standard=PSR2 -p -s --colors --extensions=%s',
+                $directory,
+                $this->extensions
             )
         );
         $process->run();

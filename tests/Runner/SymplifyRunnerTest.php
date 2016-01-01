@@ -9,7 +9,7 @@ final class SymplifyRunnerTest extends PHPUnit_Framework_TestCase
 {
     public function testRunForDirectory()
     {
-        $runner = new SymplifyRunner();
+        $runner = new SymplifyRunner('inc');
         $output = $runner->runForDirectory(__DIR__.'/SymplifyRunnerSource');
 
         $this->assertStringMatchesFormat(
