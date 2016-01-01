@@ -20,8 +20,6 @@ final class Application extends BaseApplication
      */
     public function __construct()
     {
-        error_reporting(-1);
-
         parent::__construct('Symplify Coding Standard', null);
 
         $checkCommand = new CheckCommand();
