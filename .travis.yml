@@ -23,4 +23,4 @@ script:
 
 after_script:
   - if [[ "$PHPUNIT_FLAGS" != "" ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
-  - if [[ "$CHECK_CS" != "" ]]; bin/symplify-cs check src tests; fi
+  - if [[ "$CHECK_CS" != "" ]]; then bin/symplify-cs check src tests; fi
