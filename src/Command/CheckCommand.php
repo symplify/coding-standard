@@ -56,14 +56,14 @@ final class CheckCommand extends Command
             new InputArgument(
                 'paths',
                 InputArgument::REQUIRED | InputArgument::IS_ARRAY,
-                'The path(s) to be checked',
+                'The path(s)',
                 null
             ),
         ]);
         $this->setDescription('Check coding standard in particular directory');
         $this->setHelp(<<<EOF
 The <info>%command.name%</info> command checks coding standards
-to one or more directories:
+in one or more directories:
 
     <info>php %command.full_name% /path/to/dir</info>
     <info>php %command.full_name% /path/to/dir /path/to/another-dir</info>
@@ -82,7 +82,6 @@ EOF
             foreach ($input->getArgument('paths') as $path) {
                 $this->executeRunnerForDirectory($path);
             }
-
         } catch (Exception $exception) {
             $output->writeln(
                 sprintf('<error>%s</error>', $exception->getMessage())
@@ -104,7 +103,7 @@ EOF
             $this->output->writeln($processOutput);
 
             if ($runner->hasErrors()) {
-               $this->exitCode = self::EXIT_CODE_ERROR;
+                $this->exitCode = self::EXIT_CODE_ERROR;
             }
         }
     }
