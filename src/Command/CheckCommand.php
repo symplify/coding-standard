@@ -43,7 +43,7 @@ final class CheckCommand extends Command
                 InputArgument::REQUIRED | InputArgument::IS_ARRAY,
                 'The path(s) to be checked',
                 null
-            )
+            ),
         ]);
         $this->setDescription('Check coding standard in particular directory');
         $this->setHelp(<<<EOF
@@ -67,12 +67,13 @@ EOF
             foreach ($input->getArgument('paths') as $path) {
                 $this->executeRunnerForDirectory($path);
             }
-            return 0;
 
+            return 0;
         } catch (Exception $exception) {
             $output->writeln(
                 sprintf('<error>%s</error>', $exception->getMessage())
             );
+
             return 1;
         }
     }

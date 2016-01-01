@@ -37,6 +37,7 @@ final class SymplifyRunner implements RunnerInterface
         if (file_exists($path = 'src/SymplifyCodingStandard/ruleset.xml')) {
             return $path;
         }
+
         return 'vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml';
     }
 }

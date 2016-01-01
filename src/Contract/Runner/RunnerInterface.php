@@ -11,6 +11,7 @@ interface RunnerInterface
 {
     /**
      * @param string $directory
+     *
      * @return string
      */
     public function runForDirectory($directory);
