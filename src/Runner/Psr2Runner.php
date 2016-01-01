@@ -13,6 +13,11 @@ use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 final class Psr2Runner implements RunnerInterface
 {
     /**
+     * @var string
+     */
+    private $output;
+
+    /**
      * {@inheritdoc}
      */
     public function runForDirectory($directory)
@@ -25,6 +30,20 @@ final class Psr2Runner implements RunnerInterface
         );
         $process->run();
 
-        return $process->getOutput();
+        $this->output = $process->getOutput();
+
+        return $this->output;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasErrors()
+    {
+        if (strpos($this->output, 'ERROR') !== false) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -15,4 +15,9 @@ interface RunnerInterface
      * @return string
      */
     public function runForDirectory($directory);
+
+    /**
+     * @return bool
+     */
+    public function hasErrors();
 }

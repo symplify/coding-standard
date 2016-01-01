@@ -17,6 +17,16 @@ use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 final class CheckCommand extends Command
 {
     /**
+     * @var int
+     */
+    const EXIT_CODE_SUCCESS = 0;
+
+    /**
+     * @var int
+     */
+    const EXIT_CODE_ERROR = 1;
+
+    /**
      * @var RunnerInterface[]
      */
     private $runners = [];
@@ -25,6 +35,11 @@ final class CheckCommand extends Command
      * @var OutputInterface
      */
     private $output;
+
+    /**
+     * @var int
+     */
+    private $exitCode = self::EXIT_CODE_SUCCESS;
 
     public function addRunner(RunnerInterface $runner)
     {
@@ -68,14 +83,15 @@ EOF
                 $this->executeRunnerForDirectory($path);
             }
 
-            return 0;
         } catch (Exception $exception) {
             $output->writeln(
                 sprintf('<error>%s</error>', $exception->getMessage())
             );
 
-            return 1;
+            $this->exitCode = self::EXIT_CODE_ERROR;
         }
+
+        return $this->exitCode;
     }
 
     /**
@@ -86,6 +102,10 @@ EOF
         foreach ($this->runners as $runner) {
             $processOutput = $runner->runForDirectory($path);
             $this->output->writeln($processOutput);
+
+            if ($runner->hasErrors()) {
+               $this->exitCode = self::EXIT_CODE_ERROR;
+            }
         }
     }
 }

@@ -13,6 +13,11 @@ use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 final class SymplifyRunner implements RunnerInterface
 {
     /**
+     * @var string
+     */
+    private $output;
+
+    /**
      * {@inheritdoc}
      */
     public function runForDirectory($directory)
@@ -26,7 +31,9 @@ final class SymplifyRunner implements RunnerInterface
         );
         $process->run();
 
-        return $process->getOutput();
+        $this->output = $process->getOutput();
+
+        return $this->output;
     }
 
     /**
@@ -39,5 +46,17 @@ final class SymplifyRunner implements RunnerInterface
         }
 
         return 'vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasErrors()
+    {
+        if (strpos($this->output, 'ERROR') !== false) {
+            return true;
+        }
+
+        return false;
     }
 }
