@@ -1,11 +1,13 @@
+[31mE[0m
 
-+FILE: .../coding-standard/tests/Runner/SymplifyRunnerSource/SomeClass.php
-+----------------------------------------------------------------------
-+FOUND 1 ERROR AFFECTING 1 LINE
-+----------------------------------------------------------------------
-+ 3 | ERROR | Non-abstract class that implements interface should be
-+   |       | final. (SymplifyCodingStandard.Classes.FinalInterface)
-+----------------------------------------------------------------------
-+
-+Time: %dms; Memory: 4Mb
-+
+
+[1mFILE: %stests/Runner/SymplifyRunnerSource/SomeClass.php[0m
+----------------------------------------------------------------------
+[1mFOUND 1 ERROR AFFECTING 1 LINE[0m
+----------------------------------------------------------------------
+ 3 | [31mERROR[0m | [1mNon-abstract class that implements interface should be
+   |       | final.[0m (SymplifyCodingStandard.Classes.FinalInterface)
+----------------------------------------------------------------------
+
+Time: %dms; Memory: %fMb
+

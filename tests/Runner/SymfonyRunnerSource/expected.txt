@@ -15,4 +15,4 @@ Legend: ?-unknown, I-invalid file syntax, file ignored, .-no changes, F-fixed, E
 %s
       ---------- end diff ----------
 
-Checked all files in %f seconds, 4.000 MB memory used
+Checked all files in %f seconds, %f MB memory used

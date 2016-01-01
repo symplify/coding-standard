@@ -1,7 +1,7 @@
 [31mE[0m
 
 
-[1mFILE: ...tion/coding-standard/tests/Runner/Psr2RunnerSource/SomeClass.php[0m
+[1mFILE: %stests/Runner/Psr2RunnerSource/SomeClass.php[0m
 ----------------------------------------------------------------------
 [1mFOUND 2 ERRORS AFFECTING 1 LINE[0m
 ----------------------------------------------------------------------
@@ -15,5 +15,5 @@
 [1mPHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY[0m
 ----------------------------------------------------------------------
 
-Time: %dms; Memory: %dMb
+Time: %dms; Memory: %fMb
 
