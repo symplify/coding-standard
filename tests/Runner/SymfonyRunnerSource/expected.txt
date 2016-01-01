@@ -1,0 +1,18 @@
+F
+Legend: ?-unknown, I-invalid file syntax, file ignored, .-no changes, F-fixed, E-error
+   1) SomeClass.php (braces)
+      ---------- begin diff ----------
+      --- Original
+      +++ New
+      @@ @@
+       <?php
+%s
+      -class SomeClass {
+      +class SomeClass
+      +{
+       }
+%s
+%s
+      ---------- end diff ----------
+
+Checked all files in %f seconds, 4.000 MB memory used

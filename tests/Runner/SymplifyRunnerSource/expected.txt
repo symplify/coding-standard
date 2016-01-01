@@ -1,0 +1,11 @@
+
++FILE: .../coding-standard/tests/Runner/SymplifyRunnerSource/SomeClass.php
++----------------------------------------------------------------------
++FOUND 1 ERROR AFFECTING 1 LINE
++----------------------------------------------------------------------
++ 3 | ERROR | Non-abstract class that implements interface should be
++   |       | final. (SymplifyCodingStandard.Classes.FinalInterface)
++----------------------------------------------------------------------
++
++Time: %dms; Memory: 4Mb
++

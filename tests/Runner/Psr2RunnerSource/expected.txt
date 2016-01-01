@@ -1,0 +1,19 @@
+[31mE[0m
+
+
+[1mFILE: ...tion/coding-standard/tests/Runner/Psr2RunnerSource/SomeClass.php[0m
+----------------------------------------------------------------------
+[1mFOUND 2 ERRORS AFFECTING 1 LINE[0m
+----------------------------------------------------------------------
+ 3 | [31mERROR[0m | [ ] [1mEach class must be in a namespace of at least one level
+   |       |     (a top-level vendor name)[0m
+   |       |     (PSR1.Classes.ClassDeclaration.MissingNamespace)
+ 3 | [31mERROR[0m | [x] [1mOpening brace of a class must be on the line after the
+   |       |     definition[0m
+   |       |     (PSR2.Classes.ClassDeclaration.OpenBraceNewLine)
+----------------------------------------------------------------------
+[1mPHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY[0m
+----------------------------------------------------------------------
+
+Time: %dms; Memory: %dMb
+
