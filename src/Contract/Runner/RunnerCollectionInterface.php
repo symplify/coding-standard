@@ -7,17 +7,17 @@
 
 namespace Symplify\CodingStandard\Contract\Runner;
 
-interface RunnerInterface
+interface RunnerCollectionInterface
 {
-    /**
-     * @param string $directory
-     *
-     * @return string
-     */
-    public function runForDirectory($directory);
+    public function addRunner(RunnerInterface $runner);
 
     /**
-     * @return bool
+     * @return RunnerInterface[]
      */
-    public function hasErrors();
+    public function getRunners();
+
+    /**
+     * @return FixableRunnerInterface[]
+     */
+    public function getFixableRunners();
 }
