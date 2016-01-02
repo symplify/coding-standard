@@ -29,7 +29,7 @@ final class ApplicationTest extends PHPUnit_Framework_TestCase
 
     public function testRunnerCollection()
     {
-        $checkCommand =  $this->application->find('check');
+        $checkCommand = $this->application->find('check');
 
         /** @var RunnerCollectionInterface $runnerCollection */
         $runnerCollection = PHPUnit_Framework_Assert::getObjectAttribute($checkCommand, 'runnerCollection');
