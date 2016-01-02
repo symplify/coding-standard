@@ -82,7 +82,7 @@ EOF
 
         try {
             foreach ($input->getArgument('path') as $path) {
-                $this->executeRunnerForDirectory($path);
+                $this->executeRunnersForDirectory($path);
             }
             $output->writeln('<info>Check was finished!</info>');
         } catch (Exception $exception) {
@@ -99,7 +99,7 @@ EOF
     /**
      * @param string $directory
      */
-    private function executeRunnerForDirectory($directory)
+    private function executeRunnersForDirectory($directory)
     {
         foreach ($this->runnerCollection->getRunners() as $runner) {
             $processOutput = $runner->runForDirectory($directory);
