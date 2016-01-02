@@ -29,6 +29,7 @@
 	<rule ref="PEAR.ControlStructures.MultiLineCondition.Alignment">
 		<severity>0</severity>
 	</rule>
+	<rule ref="Squiz.ControlStructures.ControlSignature"/>
 	<rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
 	<rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
 	<rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>

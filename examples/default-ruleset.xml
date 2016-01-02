@@ -12,7 +12,6 @@
 	<rule ref="SymplifyCodingStandard.Commenting.VarPropertyComment" />
 
 	<!-- Control Structures -->
-	<rule ref="SymplifyCodingStandard.ControlStructures.ControlSignatures" />
 	<rule ref="SymplifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
 
 	<!-- Debug -->
