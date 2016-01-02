@@ -17,7 +17,7 @@ final class MethodDocBlock
      *
      * @return bool
      */
-    public static function hasMethodDocBlock(PHP_CodeSniffer_File $file, $position)
+    public function hasMethodDocBlock(PHP_CodeSniffer_File $file, $position)
     {
         $tokens = $file->getTokens();
         $currentToken = $tokens[$position];
@@ -41,9 +41,9 @@ final class MethodDocBlock
      *
      * @return string
      */
-    public static function getMethodDocBlock(PHP_CodeSniffer_File $file, $position)
+    public function getMethodDocBlock(PHP_CodeSniffer_File $file, $position)
     {
-        if (!self::hasMethodDocBlock($file, $position)) {
+        if (!$this->hasMethodDocBlock($file, $position)) {
             return '';
         }
 

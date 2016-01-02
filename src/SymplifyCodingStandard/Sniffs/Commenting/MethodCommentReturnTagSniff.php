@@ -41,13 +41,15 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        if (MethodDocBlock::hasMethodDocBlock($file, $position) === false) {
+        $methodDocBlockHelper = new MethodDocBlock();
+
+        if ($methodDocBlockHelper->hasMethodDocBlock($file, $position) === false) {
             $file->addError('Getters should have docblock.', $position);
 
             return;
         }
 
-        $commentString = MethodDocBlock::getMethodDocBlock($file, $position);
+        $commentString = $methodDocBlockHelper->getMethodDocBlock($file, $position);
 
         if (strpos($commentString, '{@inheritdoc}') !== false) {
             return;
