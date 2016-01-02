@@ -69,15 +69,14 @@ final class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     private function findAllUseStatements()
     {
         $uses = [];
         $next = $this->position;
-        while (true) {
+        while ($end = $this->file->findNext([T_SEMICOLON, T_OPEN_CURLY_BRACKET], $next)) {
             $content = '';
-            $end = $this->file->findNext([T_SEMICOLON, T_OPEN_CURLY_BRACKET], $next);
             $useTokens = array_slice($this->file->getTokens(), $next, $end - $next, true);
             $index = null;
             foreach ($useTokens as $index => $token) {
@@ -85,6 +84,7 @@ final class UseInAlphabeticalOrderSniff implements PHP_CodeSniffer_Sniff
                     $content .= $token['content'];
                 }
             }
+
             // Check for class scoping on use. Traits should be ordered independently.
             $scope = 0;
             if (!empty($token['conditions'])) {
