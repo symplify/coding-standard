@@ -15,6 +15,11 @@ final class SymfonyRunner implements RunnerInterface
     /**
      * @var string
      */
+    const CONTRIB_FIXERS = 'short_array_syntax,newline_after_open_tag,ordered_use,php_unit_construct,phpdoc_order';
+
+    /**
+     * @var string
+     */
     private $output;
 
     /**
@@ -24,8 +29,9 @@ final class SymfonyRunner implements RunnerInterface
     {
         $process = new Process(
             sprintf(
-                'php vendor/bin/php-cs-fixer fix %s --dry-run --diff -v --level=symfony --fixers=short_array_syntax',
-                $directory
+                'php vendor/bin/php-cs-fixer fix %s --dry-run --diff -v --level=symfony --fixers=%s',
+                $directory,
+                self::CONTRIB_FIXERS
             )
         );
         $process->run();
@@ -54,8 +60,9 @@ final class SymfonyRunner implements RunnerInterface
     {
         $process = new Process(
             sprintf(
-                'php vendor/bin/php-cs-fixer fix %s --diff -v --level=symfony',
-                $directory
+                'php vendor/bin/php-cs-fixer fix %s --diff -v --level=symfony --fixers=%s',
+                $directory,
+                self::CONTRIB_FIXERS
             )
         );
         $process->run();

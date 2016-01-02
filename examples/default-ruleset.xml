@@ -19,7 +19,6 @@
 
 	<!-- Namespace -->
 	<rule ref="SymplifyCodingStandard.Namespaces.ClassNamesWithoutPreSlash" />
-	<rule ref="SymplifyCodingStandard.Namespaces.UseInAlphabeticalOrder" />
 
 	<!-- Naming -->
 	<rule ref="SymplifyCodingStandard.Naming.AbstractClassName"/>
