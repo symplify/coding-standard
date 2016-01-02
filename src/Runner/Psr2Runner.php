@@ -8,9 +8,9 @@
 namespace Symplify\CodingStandard\Runner;
 
 use Symfony\Component\Process\Process;
-use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
+use Symplify\CodingStandard\Contract\Runner\FixableRunnerInterface;
 
-final class Psr2Runner implements RunnerInterface
+final class Psr2Runner implements FixableRunnerInterface
 {
     /**
      * @var string
@@ -59,5 +59,20 @@ final class Psr2Runner implements RunnerInterface
         }
 
         return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fixDirectory($directory)
+    {
+        $process = new Process(
+            sprintf(
+                'php vendor/bin/phpbf %s --standard=PSR2 --extensions=%s',
+                $directory,
+                $this->extensions
+            )
+        );
+        $process->run();
     }
 }

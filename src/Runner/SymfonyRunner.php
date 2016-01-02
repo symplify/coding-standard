@@ -8,9 +8,9 @@
 namespace Symplify\CodingStandard\Runner;
 
 use Symfony\Component\Process\Process;
-use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
+use Symplify\CodingStandard\Contract\Runner\FixableRunnerInterface;
 
-final class SymfonyRunner implements RunnerInterface
+final class SymfonyRunner implements FixableRunnerInterface
 {
     /**
      * @var string
@@ -45,5 +45,19 @@ final class SymfonyRunner implements RunnerInterface
         }
 
         return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fixDirectory($directory)
+    {
+        $process = new Process(
+            sprintf(
+                'php vendor/bin/php-cs-fixer fix %s --diff -v --level=symfony',
+                $directory
+            )
+        );
+        $process->run();
     }
 }
