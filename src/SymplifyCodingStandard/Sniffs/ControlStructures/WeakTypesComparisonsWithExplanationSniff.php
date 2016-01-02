@@ -20,7 +20,7 @@ use PHP_CodeSniffer_Sniff;
 final class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_Sniff
 {
     /**
-     * @var array
+     * @var string[]
      */
     private $weakToStrong = [
         T_IS_EQUAL => '===',
@@ -68,14 +68,10 @@ final class WeakTypesComparisonsWithExplanationSniff implements PHP_CodeSniffer_
     /**
      * @param $code
      *
-     * @return string|bool
+     * @return string
      */
     private function getStrongTypeToWeakType($code)
     {
-        if (isset($this->weakToStrong[$code])) {
-            return $this->weakToStrong[$code];
-        }
-
-        return false;
+        return $this->weakToStrong[$code];
     }
 }
