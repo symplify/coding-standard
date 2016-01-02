@@ -24,7 +24,7 @@ final class SymfonyRunner implements RunnerInterface
     {
         $process = new Process(
             sprintf(
-                'php vendor/bin/php-cs-fixer fix %s --dry-run --diff -v --level=symfony',
+                'php vendor/bin/php-cs-fixer fix %s --dry-run --diff -v --level=symfony --fixers=short_array_syntax',
                 $directory
             )
         );
