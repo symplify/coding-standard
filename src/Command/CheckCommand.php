@@ -12,7 +12,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
+use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 
 final class CheckCommand extends Command
 {
@@ -27,11 +27,6 @@ final class CheckCommand extends Command
     const EXIT_CODE_ERROR = 1;
 
     /**
-     * @var RunnerInterface[]
-     */
-    private $runners = [];
-
-    /**
      * @var OutputInterface
      */
     private $output;
@@ -41,9 +36,16 @@ final class CheckCommand extends Command
      */
     private $exitCode = self::EXIT_CODE_SUCCESS;
 
-    public function addRunner(RunnerInterface $runner)
+    /**
+     * @var RunnerCollectionInterface
+     */
+    private $runnerCollection;
+
+    public function __construct(RunnerCollectionInterface $runnerCollection)
     {
-        $this->runners[] = $runner;
+        $this->runnerCollection = $runnerCollection;
+
+        parent::__construct();
     }
 
     /**
@@ -54,7 +56,7 @@ final class CheckCommand extends Command
         $this->setName('check');
         $this->setDefinition([
             new InputArgument(
-                'paths',
+                'path',
                 InputArgument::REQUIRED | InputArgument::IS_ARRAY,
                 'The path(s)',
                 null
@@ -79,9 +81,10 @@ EOF
         $this->output = $output;
 
         try {
-            foreach ($input->getArgument('paths') as $path) {
+            foreach ($input->getArgument('path') as $path) {
                 $this->executeRunnerForDirectory($path);
             }
+            $output->writeln('<info>Check was finished!</info>');
         } catch (Exception $exception) {
             $output->writeln(
                 sprintf('<error>%s</error>', $exception->getMessage())
@@ -94,12 +97,12 @@ EOF
     }
 
     /**
-     * @param string $path
+     * @param string $directory
      */
-    private function executeRunnerForDirectory($path)
+    private function executeRunnerForDirectory($directory)
     {
-        foreach ($this->runners as $runner) {
-            $processOutput = $runner->runForDirectory($path);
+        foreach ($this->runnerCollection->getRunners() as $runner) {
+            $processOutput = $runner->runForDirectory($directory);
             $this->output->writeln($processOutput);
 
             if ($runner->hasErrors()) {

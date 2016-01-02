@@ -7,13 +7,32 @@
 
 namespace Symplify\CodingStandard\Command;
 
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 
 final class FixCommand extends Command
 {
+    /**
+     * @var OutputInterface
+     */
+    private $output;
+
+    /**
+     * @var RunnerCollectionInterface
+     */
+    private $runnerCollection;
+
+    public function __construct(RunnerCollectionInterface $runnerCollection)
+    {
+        $this->runnerCollection = $runnerCollection;
+
+        parent::__construct();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -22,7 +41,7 @@ final class FixCommand extends Command
         $this->setName('fix');
         $this->setDefinition([
             new InputArgument(
-                'paths',
+                'path',
                 InputArgument::REQUIRED | InputArgument::IS_ARRAY,
                 'The path(s)',
                 null
@@ -44,5 +63,31 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->output = $output;
+
+        try {
+            foreach ($input->getArgument('path') as $path) {
+                $this->executeFixersForDirectory($path);
+            }
+            $output->writeln('<info>Your code was fixed!</info>');
+
+            return 0;
+        } catch (Exception $exception) {
+            $output->writeln(
+                sprintf('<error>%s</error>', $exception->getMessage())
+            );
+
+            return 1;
+        }
+    }
+
+    /**
+     * @param string $directory
+     */
+    private function executeFixersForDirectory($directory)
+    {
+        foreach ($this->runnerCollection->getFixableRunners() as $fixableRunner) {
+            $fixableRunner->fixDirectory($directory);
+        }
     }
 }
