@@ -39,6 +39,22 @@ This command accepts multiple dirs as well.
 $ vendor/bin/symplify-cs check src tests
 ```
 
+## Fixing with ease
+
+You can either fix code with low level tools, like:
+
+```sh
+$ vendor/bin/phpcbf src --standard=vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml --colors
+$ vendor/bin/phpcbf src --standard=PSR2 --colors
+$ vendor/bin/php-cs-fixer fix src --diff -v --level=symfony
+```
+
+or again use bin file:
+
+```sh
+$ vendor/bin/symplify-cs fix src
+```
+
 That's all!
 
 
