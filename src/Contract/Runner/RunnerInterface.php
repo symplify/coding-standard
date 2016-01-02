@@ -17,6 +17,11 @@ interface RunnerInterface
     public function runForDirectory($directory);
 
     /**
+     * @param string $directory
+     */
+    public function fixDirectory($directory);
+
+    /**
      * @return bool
      */
     public function hasErrors();

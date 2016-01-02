@@ -10,6 +10,7 @@ namespace Symplify\CodingStandard\Console;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symplify\CodingStandard\Command\CheckCommand;
 use Symplify\CodingStandard\Command\FixCommand;
+use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 use Symplify\CodingStandard\Runner\Psr2Runner;
 use Symplify\CodingStandard\Runner\RunnerCollection;
 use Symplify\CodingStandard\Runner\SymfonyRunner;
@@ -24,12 +25,22 @@ final class Application extends BaseApplication
     {
         parent::__construct('Symplify Coding Standard', null);
 
+        $runnerCollection = $this->createAndFillRunnerCollection();
+
+        $this->add(new CheckCommand($runnerCollection));
+        $this->add(new FixCommand($runnerCollection));
+    }
+
+    /**
+     * @return RunnerCollectionInterface
+     */
+    private function createAndFillRunnerCollection()
+    {
         $runnerCollection = new RunnerCollection();
         $runnerCollection->addRunner(new SymplifyRunner());
         $runnerCollection->addRunner(new Psr2Runner());
         $runnerCollection->addRunner(new SymfonyRunner());
 
-        $this->add(new CheckCommand($runnerCollection));
-        $this->add(new FixCommand($runnerCollection));
+        return $runnerCollection;
     }
 }

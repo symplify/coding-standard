@@ -51,18 +51,6 @@ final class SymplifyRunner implements RunnerInterface
     }
 
     /**
-     * @return string
-     */
-    private function getRuleset()
-    {
-        if (file_exists($path = 'src/SymplifyCodingStandard/ruleset.xml')) {
-            return $path;
-        }
-
-        return 'vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml';
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function hasErrors()
@@ -72,5 +60,33 @@ final class SymplifyRunner implements RunnerInterface
         }
 
         return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fixDirectory($directory)
+    {
+        $process = new Process(
+            sprintf(
+                'php vendor/bin/phpcbf %s --standard=%s --extensions=%s',
+                $directory,
+                $this->getRuleset(),
+                $this->extensions
+            )
+        );
+        $process->run();
+    }
+
+    /**
+     * @return string
+     */
+    private function getRuleset()
+    {
+        if (file_exists($path = 'src/SymplifyCodingStandard/ruleset.xml')) {
+            return $path;
+        }
+
+        return 'vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml';
     }
 }

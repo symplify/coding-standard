@@ -8,9 +8,9 @@
 namespace Symplify\CodingStandard\Runner;
 
 use Symfony\Component\Process\Process;
-use Symplify\CodingStandard\Contract\Runner\FixableRunnerInterface;
+use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 
-final class SymfonyRunner implements FixableRunnerInterface
+final class SymfonyRunner implements RunnerInterface
 {
     /**
      * @var string

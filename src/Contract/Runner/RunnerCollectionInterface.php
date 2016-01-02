@@ -15,9 +15,4 @@ interface RunnerCollectionInterface
      * @return RunnerInterface[]
      */
     public function getRunners();
-
-    /**
-     * @return FixableRunnerInterface[]
-     */
-    public function getFixableRunners();
 }

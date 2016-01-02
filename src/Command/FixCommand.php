@@ -86,7 +86,7 @@ EOF
      */
     private function executeFixersForDirectory($directory)
     {
-        foreach ($this->runnerCollection->getFixableRunners() as $fixableRunner) {
+        foreach ($this->runnerCollection->getRunners() as $fixableRunner) {
             $fixableRunner->fixDirectory($directory);
         }
     }

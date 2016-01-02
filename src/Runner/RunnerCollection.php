@@ -7,7 +7,6 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symplify\CodingStandard\Contract\Runner\FixableRunnerInterface;
 use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 
@@ -32,15 +31,5 @@ final class RunnerCollection implements RunnerCollectionInterface
     public function getRunners()
     {
         return $this->runners;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getFixableRunners()
-    {
-        return array_filter($this->runners, function (RunnerInterface $runner) {
-            return $runner instanceof FixableRunnerInterface;
-        });
     }
 }
