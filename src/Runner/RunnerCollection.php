@@ -15,7 +15,7 @@ final class RunnerCollection implements RunnerCollectionInterface
     /**
      * @var RunnerInterface[]
      */
-    private $runners;
+    private $runners = [];
 
     /**
      * {@inheritdoc}
