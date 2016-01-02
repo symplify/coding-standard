@@ -27,7 +27,7 @@ $ vendor/bin/phpcs src --standard=PSR2 -p -s --colors
 $ vendor/bin/php-cs-fixer fix src --dry-run --diff -v --level=symfony
 ```
 
-or you can make use of bin file:
+or you can **make use of check command**:
 
 ```sh
 $ vendor/bin/symplify-cs check src
@@ -49,7 +49,7 @@ $ vendor/bin/phpcbf src --standard=PSR2 --colors
 $ vendor/bin/php-cs-fixer fix src --diff -v --level=symfony
 ```
 
-or again use bin file:
+or **again use single fix command**:
 
 ```sh
 $ vendor/bin/symplify-cs fix src
