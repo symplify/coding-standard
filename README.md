@@ -58,11 +58,6 @@ $ vendor/bin/symplify-cs fix src
 Not all violations can be fixed though, so I recommend running the check again and fix the rest manually.
 
 
-## PhpStorm Integration
-
-If you use PhpStorm, code sniffer can check your syntax as you write. [How to integrate?](docs/en/integration-to-php-storm.md)
-
-
 ## How to be both Lazy and Safe
 
 ### Composer hook
