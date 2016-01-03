@@ -37,6 +37,21 @@ final class CodeSnifferRunner
 
     /**
      * @param string $source
+     *
+     * @return string
+     */
+    public function getFixedContent($source)
+    {
+        $this->ensureFileExists($source);
+
+        $file = $this->codeSniffer->processFile($source);
+        $file->fixer->fixFile();
+
+        return $file->fixer->getContents();
+    }
+
+    /**
+     * @param string $source
      */
     private function ensureFileExists($source)
     {
