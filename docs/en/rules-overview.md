@@ -1,9 +1,6 @@
 # Symplify Rules Overview
 
-## Classes
-
-
-### FinalInterfaceSniff
+## FinalInterfaceSniff (Class)
 
 - Non-abstract class that implements interface should be final.
 - Except for Doctrine entities, they cannot be final.
@@ -22,10 +19,7 @@ final class SomeClass implements SomeInterface
 ```
 
 
-## Commenting
-
-
-### BlockPropertyCommentSniff
+## BlockPropertyCommentSniff (Commenting)
 
 - Block comment should be used instead of one liner
 
@@ -40,7 +34,7 @@ class SomeClass
 ```
 
 
-### VarPropertyCommentSniff
+## VarPropertyCommentSniff (Commenting)
 
 - Property should have docblock comment (except for {@inheritdoc}).
  
@@ -54,7 +48,7 @@ class SomeClass
 }
 ```
 
-### MethodCommentSniff
+## MethodCommentSniff (Commenting)
 
 - Method without parameter typehints should have docblock comment.
 
@@ -74,7 +68,7 @@ class SomeClass
 }
 ```
 
-### MethodCommentReturnTagSniff
+## MethodCommentReturnTagSniff (Commenting)
 
 - Getters should have @return tag (except for {@inheritdoc}).
 
@@ -92,10 +86,7 @@ class SomeClass
 ```
 
 
-## Control Structures
-
-
-### WeakTypeComparisonWithExplanationSniff
+## WeakTypeComparisonWithExplanationSniff (Control Structures)
 
 - Strong comparison should be used instead of weak one, or commented with its purpose
 
@@ -110,18 +101,12 @@ if ($i !== true) {
 ```
 
 
-## Debug
-
-
-### DebugFunctionCallSniff
+## DebugFunctionCallSniff (Debug)
 
 - Debug functions should not be left in the code
 
 
-## Namespaces
-
-
-### ClassNamesWithoutPreSlashSniff
+## ClassNamesWithoutPreSlashSniff (Namespaces)
 
 - Class name after new/instanceof should not start with slash
 
@@ -132,14 +117,11 @@ $file = new File;
 ```
 
 
-## Naming
-
-
-### AbstractClassNameSniff
+## AbstractClassNameSniff (Naming)
 
 - Abstract class should have prefix "Abstract"
 
 
-### InterfaceNameSniff
+## InterfaceNameSniff (Naming)
 
 - Interface should have suffix "Interface"

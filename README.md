@@ -6,9 +6,17 @@
 [![Downloads](https://img.shields.io/packagist/dt/symplify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/symplify/coding-standard)
 [![Latest stable](https://img.shields.io/packagist/v/symplify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/symplify/coding-standard)
 
-Set of rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) based on [PSR-2](http://www.php-fig.org/psr/psr-2/) and [Symfony coding standard](http://symfony.com/doc/current/contributing/code/standards.html).
+Set of coding standard rules for Symplify packages made of:
 
-**Check [rules overview](docs/en/rules-overview.md) for examples.**
+- [PSR-2](http://www.php-fig.org/psr/psr-2/) 
+- [Symfony coding standard](http://symfony.com/doc/current/contributing/code/standards.html)
+- and [few custom ones](docs/en/rules-overview.md)
+
+Using:
+
+- [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) 
+- [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+
 
 
 ## Install
@@ -27,7 +35,7 @@ $ vendor/bin/phpcs src --standard=PSR2 -p -s --colors
 $ vendor/bin/php-cs-fixer fix src --dry-run --diff -v --level=symfony
 ```
 
-or you can **make use of check command** (I recommend this):
+...just kidding. **Run this one instead**:
 
 ```sh
 $ vendor/bin/symplify-cs check src
@@ -39,23 +47,15 @@ This command accepts multiple dirs as well.
 $ vendor/bin/symplify-cs check src tests
 ```
 
-## Fixing with ease
+### Fixing with ease
 
-You can either fix code with low level tools, like:
-
-```sh
-$ vendor/bin/phpcbf src --standard=vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml --colors
-$ vendor/bin/phpcbf src --standard=PSR2 --colors
-$ vendor/bin/php-cs-fixer fix src --diff -v --level=symfony
-```
-
-or **again use single fix command** (again, recommended way):
+Are you lazy like me? Just fix them with:
 
 ```sh
 $ vendor/bin/symplify-cs fix src
 ```
 
-That's all!
+Not all violations can be fixed though, so I recommend running the check again and fix the rest manually.
 
 
 ## PhpStorm Integration
@@ -80,8 +80,6 @@ In case you don't want to use Php_CodeSniffer manually for every change in the c
 }
 ```
 
-**Every time you try to commit, Php_CodeSniffer will run on changed `.php` files only.**
+**Every time you try to commit, it will check changed `.php` files only.**
 
-This is much faster than checking whole project, running manually or wait for CI.
-
-*Pretty cool, huh?*
+It's much faster than checking whole project, running manually and/or wait for CI.
