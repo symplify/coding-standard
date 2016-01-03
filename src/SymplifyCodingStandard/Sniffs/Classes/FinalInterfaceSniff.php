@@ -96,15 +96,13 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
             return false;
         }
 
-        $seekPosition = $docCommentPosition;
-
-        do {
-            $docCommentTokenContent = $this->file->getTokens()[$docCommentPosition]['content'];
-            if (strpos($docCommentTokenContent, 'Entity') !== false) {
+        $tokens = $this->file->getTokens();
+        foreach ($tokens[$docCommentPosition]['comment_tags'] as $tagPosition) {
+            $tag = $tokens[$tagPosition]['content'];
+            if (strpos($tag, 'Entity') !== false) {
                 return true;
             }
-            ++$seekPosition;
-        } while ($docCommentPosition = $this->file->findNext(T_DOC_COMMENT_TAG, $seekPosition, $this->position));
+        }
 
         return false;
     }
