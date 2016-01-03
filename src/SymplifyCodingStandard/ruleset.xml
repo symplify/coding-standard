@@ -18,11 +18,7 @@
 
 	<!-- ControlStructures -->
 	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
-	<rule ref="PEAR.ControlStructures.MultiLineCondition">
-		<properties>
-			<property name="indent" value="1"/>
-		</properties>
-	</rule>
+	<rule ref="PEAR.ControlStructures.MultiLineCondition"/>
 	<rule ref="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace">
 		<severity>0</severity>
 	</rule>
@@ -63,11 +59,7 @@
 			<property name="equalsSpacing" value="1"/>
 		</properties>
 	</rule>
-	<rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
-		<properties>
-			<property name="indent" value="1"/>
-		</properties>
-	</rule>
+	<rule ref="Squiz.Functions.MultiLineFunctionDeclaration"/>
 	<rule ref="Squiz.Functions.LowercaseFunctionKeywords"/>
 
 	<!-- Metrics -->
