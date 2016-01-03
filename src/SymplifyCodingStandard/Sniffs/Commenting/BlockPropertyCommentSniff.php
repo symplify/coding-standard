@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
  */
@@ -91,8 +91,7 @@ final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
      */
     private function isVariableOrPropertyUse($position)
     {
-        $previous = $this->file->findPrevious(T_OPEN_CURLY_BRACKET, $position);
-        if ($previous) {
+        if ($previous = $this->file->findPrevious(T_OPEN_CURLY_BRACKET, $position - 1)) {
             $previous = $this->file->findPrevious(T_OPEN_CURLY_BRACKET, $previous - 1);
             if ($this->tokens[$previous]['code'] === T_OPEN_CURLY_BRACKET) { // used in method
                 return true;
