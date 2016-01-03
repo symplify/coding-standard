@@ -9,7 +9,7 @@ namespace SymplifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
-use SymplifyCodingStandard\Helper\Commenting\MethodDocBlock;
+use Symplify\CodingStandard\PhpCodeSniffer\Helper\Commenting\MethodDocBlock;
 
 /**
  * Rules:

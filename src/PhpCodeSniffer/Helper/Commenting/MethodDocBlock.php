@@ -5,7 +5,7 @@
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
  */
 
-namespace SymplifyCodingStandard\Helper\Commenting;
+namespace Symplify\CodingStandard\PhpCodeSniffer\Helper\Commenting;
 
 use PHP_CodeSniffer_File;
 
@@ -13,7 +13,7 @@ final class MethodDocBlock
 {
     /**
      * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param int $position
      *
      * @return bool
      */
@@ -37,7 +37,7 @@ final class MethodDocBlock
 
     /**
      * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
+     * @param int $position
      *
      * @return string
      */
