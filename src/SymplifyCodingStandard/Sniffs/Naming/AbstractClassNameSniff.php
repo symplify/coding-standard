@@ -50,7 +50,11 @@ final class AbstractClassNameSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        $file->addError('Abstract class should have prefix "Abstract".', $position);
+        $fix = $file->addFixableError('Abstract class should have prefix "Abstract".', $position);
+
+        if ($fix === true) {
+            $this->fix();
+        }
     }
 
     /**
@@ -74,5 +78,12 @@ final class AbstractClassNameSniff implements PHP_CodeSniffer_Sniff
         }
 
         return $this->file->getTokens()[$namePosition]['content'];
+    }
+
+    private function fix()
+    {
+        $this->file->fixer->beginChangeset();
+        $this->file->fixer->addContent($this->position + 1, 'Abstract');
+        $this->file->fixer->endChangeset();
     }
 }
