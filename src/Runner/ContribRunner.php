@@ -10,7 +10,7 @@ namespace Symplify\CodingStandard\Runner;
 use Symfony\Component\Process\Process;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 
-final class SymfonyRunner implements RunnerInterface
+final class ContribRunner implements RunnerInterface
 {
     /**
      * @var string
@@ -24,8 +24,9 @@ final class SymfonyRunner implements RunnerInterface
     {
         $process = new Process(
             sprintf(
-                'php vendor/bin/php-cs-fixer fix %s --dry-run --diff -v --level=symfony --fixers=-phpdoc_params',
-                $directory
+                'php vendor/bin/php-cs-fixer fix %s --dry-run --diff -v --fixers=%s',
+                $directory,
+                $this->getCustomFixers()
             )
         );
         $process->run();
@@ -54,10 +55,28 @@ final class SymfonyRunner implements RunnerInterface
     {
         $process = new Process(
             sprintf(
-                'php vendor/bin/php-cs-fixer fix %s --diff -v --level=symfony --fixers=-phpdoc_params',
-                $directory
+                'php vendor/bin/php-cs-fixer fix %s --diff -v --fixers=%s',
+                $directory,
+                $this->getCustomFixers()
             )
         );
         $process->run();
+    }
+
+    /**
+     * @return string
+     */
+    private function getCustomFixers()
+    {
+        $fixers = [
+            'short_array_syntax',
+            'newline_after_open_tag',
+            'ordered_use',
+            'php_unit_construct',
+            'phpdoc_order',
+            'strict',
+        ];
+
+        return implode(',', $fixers);
     }
 }
