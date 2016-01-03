@@ -86,21 +86,6 @@ class SomeClass
 ```
 
 
-## WeakTypeComparisonWithExplanationSniff (Control Structures)
-
-- Strong comparison should be used instead of weak one, or commented with its purpose
-
-```php
-if ($i == true) { // intentionally ==, failure proof
-	return;
-}
-
-if ($i !== true) {
-	return;
-}
-```
-
-
 ## DebugFunctionCallSniff (Debug)
 
 - Debug functions should not be left in the code

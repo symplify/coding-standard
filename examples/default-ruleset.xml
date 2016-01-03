@@ -11,9 +11,6 @@
 	<rule ref="SymplifyCodingStandard.Commenting.MethodCommentReturnTag" />
 	<rule ref="SymplifyCodingStandard.Commenting.VarPropertyComment" />
 
-	<!-- Control Structures -->
-	<rule ref="SymplifyCodingStandard.ControlStructures.WeakTypesComparisonsWithExplanation" />
-
 	<!-- Debug -->
 	<rule ref="SymplifyCodingStandard.Debug.DebugFunctionCall" />
 
