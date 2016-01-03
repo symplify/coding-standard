@@ -47,7 +47,11 @@ final class InterfaceNameSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        $file->addError('Interface should have suffix "Interface".', $position);
+        $fix = $file->addFixableError('Interface should have suffix "Interface".', $position);
+
+        if ($fix === true) {
+            $this->fix();
+        }
     }
 
     /**
@@ -55,11 +59,28 @@ final class InterfaceNameSniff implements PHP_CodeSniffer_Sniff
      */
     private function getInterfaceName()
     {
-        $namePosition = $this->file->findNext(T_STRING, $this->position);
+        $namePosition = $this->getInterfaceNamePosition();
         if (!$namePosition) {
             return false;
         }
 
         return $this->file->getTokens()[$namePosition]['content'];
+    }
+
+    /**
+     * @return bool|int
+     */
+    private function getInterfaceNamePosition()
+    {
+        return $this->file->findNext(T_STRING, $this->position);
+    }
+
+    private function fix()
+    {
+        $interfaceNamePosition = $this->getInterfaceNamePosition();
+
+        $this->file->fixer->beginChangeset();
+        $this->file->fixer->addContent($interfaceNamePosition, 'Interface');
+        $this->file->fixer->endChangeset();
     }
 }
