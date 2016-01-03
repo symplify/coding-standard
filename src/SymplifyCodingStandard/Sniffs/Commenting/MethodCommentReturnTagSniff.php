@@ -9,7 +9,6 @@ namespace SymplifyCodingStandard\Sniffs\Commenting;
 
 use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
-use Symplify\CodingStandard\PhpCodeSniffer\Helper\Commenting\MethodDocBlock;
 
 /**
  * Rules:
@@ -41,15 +40,13 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        $methodDocBlockHelper = new MethodDocBlock();
-
-        if ($methodDocBlockHelper->hasMethodDocBlock($file, $position) === false) {
+        if ($this->hasMethodDocBlock($file, $position) === false) {
             $file->addError('Getters should have docblock.', $position);
 
             return;
         }
 
-        $commentString = $methodDocBlockHelper->getMethodDocBlock($file, $position);
+        $commentString = $this->getMethodDocBlock($file, $position);
 
         if (strpos($commentString, '{@inheritdoc}') !== false) {
             return;
@@ -85,5 +82,47 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         }
 
         return false;
+    }
+
+    /**
+     * @param PHP_CodeSniffer_File $file
+     * @param int $position
+     *
+     * @return bool
+     */
+    private function hasMethodDocBlock(PHP_CodeSniffer_File $file, $position)
+    {
+        $tokens = $file->getTokens();
+        $currentToken = $tokens[$position];
+        $docBlockClosePosition = $file->findPrevious(T_DOC_COMMENT_CLOSE_TAG, $position);
+
+        if ($docBlockClosePosition === false) {
+            return false;
+        }
+
+        $docBlockCloseToken = $tokens[$docBlockClosePosition];
+        if ($docBlockCloseToken['line'] === ($currentToken['line'] - 1)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param PHP_CodeSniffer_File $file
+     * @param int $position
+     *
+     * @return string
+     */
+    private function getMethodDocBlock(PHP_CodeSniffer_File $file, $position)
+    {
+        if (!$this->hasMethodDocBlock($file, $position)) {
+            return '';
+        }
+
+        $commentStart = $file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $position - 1);
+        $commentEnd = $file->findPrevious(T_DOC_COMMENT_CLOSE_TAG, $position - 1);
+
+        return $file->getTokensAsString($commentStart, $commentEnd - $commentStart + 1);
     }
 }
