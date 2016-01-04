@@ -12,6 +12,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 
 final class CheckCommand extends Command
@@ -27,11 +28,6 @@ final class CheckCommand extends Command
     const EXIT_CODE_ERROR = 1;
 
     /**
-     * @var OutputInterface
-     */
-    private $output;
-
-    /**
      * @var int
      */
     private $exitCode = self::EXIT_CODE_SUCCESS;
@@ -40,6 +36,11 @@ final class CheckCommand extends Command
      * @var RunnerCollectionInterface
      */
     private $runnerCollection;
+
+    /**
+     * @var OutputInterface
+     */
+    private $io;
 
     public function __construct(RunnerCollectionInterface $runnerCollection)
     {
@@ -78,22 +79,27 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->output = $output;
+        $this->io = new SymfonyStyle($input, $output);
 
         try {
             foreach ($input->getArgument('path') as $path) {
                 $this->executeRunnersForDirectory($path);
             }
-            $output->writeln('<info>Check was finished!</info>');
+
+            if ($this->exitCode === self::EXIT_CODE_ERROR) {
+                $this->io->error('Some errors were found');
+
+                return 1;
+            } else {
+                $this->io->success('Check was finished with no errors');
+
+                return 0;
+            }
         } catch (Exception $exception) {
-            $output->writeln(
-                sprintf('<error>%s</error>', $exception->getMessage())
-            );
+            $this->io->error($exception->getMessage());
 
-            $this->exitCode = self::EXIT_CODE_ERROR;
+            return 1;
         }
-
-        return $this->exitCode;
     }
 
     /**
@@ -103,7 +109,7 @@ EOF
     {
         foreach ($this->runnerCollection->getRunners() as $runner) {
             $processOutput = $runner->runForDirectory($directory);
-            $this->output->writeln($processOutput);
+            $this->io->writeln($processOutput);
 
             if ($runner->hasErrors()) {
                 $this->exitCode = self::EXIT_CODE_ERROR;

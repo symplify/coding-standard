@@ -12,19 +12,20 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 
 final class FixCommand extends Command
 {
     /**
-     * @var OutputInterface
-     */
-    private $output;
-
-    /**
      * @var RunnerCollectionInterface
      */
     private $runnerCollection;
+
+    /**
+     * @var OutputInterface
+     */
+    private $io;
 
     public function __construct(RunnerCollectionInterface $runnerCollection)
     {
@@ -63,19 +64,17 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->output = $output;
+        $this->io = new SymfonyStyle($input, $output);
 
         try {
             foreach ($input->getArgument('path') as $path) {
                 $this->executeFixersForDirectory($path);
             }
-            $output->writeln('<info>Your code was fixed!</info>');
+            $this->io->success('Your code was successfully fixed!');
 
             return 0;
         } catch (Exception $exception) {
-            $output->writeln(
-                sprintf('<error>%s</error>', $exception->getMessage())
-            );
+            $this->io->error($exception->getMessage());
 
             return 1;
         }
@@ -89,7 +88,7 @@ EOF
         foreach ($this->runnerCollection->getRunners() as $fixableRunner) {
             $processOutput = $fixableRunner->fixDirectory($directory);
 
-            $this->output->writeln($processOutput);
+            $this->io->writeln($processOutput);
         }
     }
 }
