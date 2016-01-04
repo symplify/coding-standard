@@ -80,7 +80,6 @@ final class CheckCommand extends Command
             }
 
             return $this->outputCheckResult();
-
         } catch (Exception $exception) {
             $this->io->error($exception->getMessage());
 

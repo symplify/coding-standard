@@ -22,6 +22,16 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
     private $getterMethodPrefixes = ['get', 'is', 'has', 'will', 'should'];
 
     /**
+     * @var PHP_CodeSniffer_File
+     */
+    private $file;
+
+    /**
+     * @var int
+     */
+    private $position;
+
+    /**
      * {@inheritdoc}
      */
     public function register()
@@ -34,25 +44,21 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $file, $position)
     {
+        $this->file = $file;
+        $this->position = $position;
+
         $methodName = $file->getDeclarationName($position);
-        $isGetterMethod = $this->guessIsGetterMethod($methodName);
-        if ($isGetterMethod === false) {
+        if ($this->guessIsGetterMethod($methodName) === false) {
             return;
         }
 
-        if ($this->hasMethodDocBlock($file, $position) === false) {
+        if ($this->hasMethodComment() === false) {
             $file->addError('Getters should have docblock.', $position);
 
             return;
         }
 
-        $commentString = $this->getMethodDocBlock($file, $position);
-
-        if (strpos($commentString, '{@inheritdoc}') !== false) {
-            return;
-        }
-
-        if (strpos($commentString, '@return') !== false) {
+        if ($this->hasMethodCommentReturnOrInheritDoc()) {
             return;
         }
 
@@ -85,16 +91,46 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int $position
-     *
+     * @return string
+     */
+    private function getMethodComment()
+    {
+        if (!$this->hasMethodComment()) {
+            return '';
+        }
+
+        $commentStart = $this->file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $this->position - 1);
+        $commentEnd = $this->file->findPrevious(T_DOC_COMMENT_CLOSE_TAG, $this->position - 1);
+
+        return $this->file->getTokensAsString($commentStart, $commentEnd - $commentStart + 1);
+    }
+
+    /**
      * @return bool
      */
-    private function hasMethodDocBlock(PHP_CodeSniffer_File $file, $position)
+    private function hasMethodCommentReturnOrInheritDoc()
     {
-        $tokens = $file->getTokens();
-        $currentToken = $tokens[$position];
-        $docBlockClosePosition = $file->findPrevious(T_DOC_COMMENT_CLOSE_TAG, $position);
+        $comment = $this->getMethodComment();
+
+        if (strpos($comment, '{@inheritdoc}') !== false) {
+            return true;
+        }
+
+        if (strpos($comment, '@return') !== false) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    private function hasMethodComment()
+    {
+        $tokens = $this->file->getTokens();
+        $currentToken = $tokens[$this->position];
+        $docBlockClosePosition = $this->file->findPrevious(T_DOC_COMMENT_CLOSE_TAG, $this->position);
 
         if ($docBlockClosePosition === false) {
             return false;
@@ -106,23 +142,5 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         }
 
         return false;
-    }
-
-    /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int $position
-     *
-     * @return string
-     */
-    private function getMethodDocBlock(PHP_CodeSniffer_File $file, $position)
-    {
-        if (!$this->hasMethodDocBlock($file, $position)) {
-            return '';
-        }
-
-        $commentStart = $file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $position - 1);
-        $commentEnd = $file->findPrevious(T_DOC_COMMENT_CLOSE_TAG, $position - 1);
-
-        return $file->getTokensAsString($commentStart, $commentEnd - $commentStart + 1);
     }
 }
