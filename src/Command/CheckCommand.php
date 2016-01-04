@@ -8,62 +8,19 @@
 namespace Symplify\CodingStandard\Command;
 
 use Exception;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\StyleInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
-use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 
-final class CheckCommand extends Command
+final class CheckCommand extends AbstractCommand
 {
-    /**
-     * @var int
-     */
-    const EXIT_CODE_SUCCESS = 0;
-
-    /**
-     * @var int
-     */
-    const EXIT_CODE_ERROR = 1;
-
-    /**
-     * @var int
-     */
-    private $exitCode = self::EXIT_CODE_SUCCESS;
-
-    /**
-     * @var RunnerCollectionInterface
-     */
-    private $runnerCollection;
-
-    /**
-     * @var StyleInterface
-     */
-    private $io;
-
-    public function __construct(RunnerCollectionInterface $runnerCollection)
-    {
-        $this->runnerCollection = $runnerCollection;
-
-        parent::__construct();
-    }
-
     /**
      * {@inheritdoc}
      */
     protected function configure()
     {
+        parent::configure();
+
         $this->setName('check');
-        $this->setDefinition([
-            new InputArgument(
-                'path',
-                InputArgument::REQUIRED | InputArgument::IS_ARRAY,
-                'The path(s)',
-                null
-            ),
-        ]);
         $this->setDescription('Check coding standard in particular directory');
     }
 
@@ -72,8 +29,6 @@ final class CheckCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->io = new SymfonyStyle($input, $output);
-
         try {
             foreach ($input->getArgument('path') as $path) {
                 $this->executeRunnersForDirectory($path);
@@ -83,7 +38,7 @@ final class CheckCommand extends Command
         } catch (Exception $exception) {
             $this->io->error($exception->getMessage());
 
-            return 1;
+            return self::EXIT_CODE_ERROR;
         }
     }
 
@@ -109,12 +64,10 @@ final class CheckCommand extends Command
     {
         if ($this->exitCode === self::EXIT_CODE_ERROR) {
             $this->io->error('Some errors were found');
-
-            return 1;
+        } else {
+            $this->io->success('Check was finished with no errors!');
         }
 
-        $this->io->success('Check was finished with no errors!');
-
-        return 0;
+        return $this->exitCode;
     }
 }
