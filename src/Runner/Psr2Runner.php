@@ -7,8 +7,9 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
+use Symplify\CodingStandard\Process\PhpCbfProcessBuilder;
+use Symplify\CodingStandard\Process\PhpCsProcessBuilder;
 
 final class Psr2Runner implements RunnerInterface
 {
@@ -35,14 +36,9 @@ final class Psr2Runner implements RunnerInterface
      */
     public function runForDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/phpcs')
-            ->add($directory)
-            ->add('--standard=psr2')
-            ->add('--extensions='.$this->extensions)
-            ->add('--colors')
-            ->add('-p')
-            ->add('-s');
+        $builder = new PhpCsProcessBuilder($directory);
+        $builder->setExtensions($this->extensions);
+        $builder->setStandard('psr2');
 
         $process = $builder->getProcess();
         $process->run();
@@ -65,11 +61,9 @@ final class Psr2Runner implements RunnerInterface
      */
     public function fixDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/phpcbf')
-            ->add($directory)
-            ->add('--standard=psr2')
-            ->add('--extensions='.$this->extensions);
+        $builder = new PhpCbfProcessBuilder($directory);
+        $builder->setStandard('psr2');
+        $builder->setExtensions($this->extensions);
 
         $process = $builder->getProcess();
         $process->run();

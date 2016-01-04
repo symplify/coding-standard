@@ -7,8 +7,8 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
+use Symplify\CodingStandard\Process\PhpCsFixerProcessBuilder;
 
 final class ContribRunner implements RunnerInterface
 {
@@ -22,14 +22,9 @@ final class ContribRunner implements RunnerInterface
      */
     public function runForDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/php-cs-fixer')
-            ->add('fix')
-            ->add($directory)
-            ->add('--diff')
-            ->add('--fixers='.$this->getCustomFixers())
-            ->add('--dry-run')
-            ->add('--diff');
+        $builder = new PhpCsFixerProcessBuilder($directory);
+        $builder->setFixers($this->getCustomFixers());
+        $builder->enableDryRun();
 
         $process = $builder->getProcess();
         $process->run();
@@ -52,12 +47,8 @@ final class ContribRunner implements RunnerInterface
      */
     public function fixDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/php-cs-fixer')
-            ->add('fix')
-            ->add($directory)
-            ->add('--diff')
-            ->add('--fixers='.$this->getCustomFixers());
+        $builder = new PhpCsFixerProcessBuilder($directory);
+        $builder->setFixers($this->getCustomFixers());
 
         $process = $builder->getProcess();
         $process->run();

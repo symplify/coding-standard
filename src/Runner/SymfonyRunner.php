@@ -7,8 +7,8 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
+use Symplify\CodingStandard\Process\PhpCsFixerProcessBuilder;
 
 final class SymfonyRunner implements RunnerInterface
 {
@@ -22,14 +22,10 @@ final class SymfonyRunner implements RunnerInterface
      */
     public function runForDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/php-cs-fixer')
-            ->add('fix')
-            ->add($directory)
-            ->add('--level=symfony')
-            ->add('--fixers=-phpdoc_params')
-            ->add('--dry-run')
-            ->add('--diff');
+        $builder = new PhpCsFixerProcessBuilder($directory);
+        $builder->setLevel('symfony');
+        $builder->setFixers('-phpdoc_params');
+        $builder->enableDryRun();
 
         $process = $builder->getProcess();
         $process->run();
@@ -52,12 +48,9 @@ final class SymfonyRunner implements RunnerInterface
      */
     public function fixDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/php-cs-fixer')
-            ->add('fix')
-            ->add($directory)
-            ->add('--level=symfony')
-            ->add('--fixers=-phpdoc_params');
+        $builder = new PhpCsFixerProcessBuilder($directory);
+        $builder->setLevel('symfony');
+        $builder->setFixers('-phpdoc_params');
 
         $process = $builder->getProcess();
         $process->run();

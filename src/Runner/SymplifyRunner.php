@@ -7,8 +7,9 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
+use Symplify\CodingStandard\Process\PhpCbfProcessBuilder;
+use Symplify\CodingStandard\Process\PhpCsProcessBuilder;
 
 final class SymplifyRunner implements RunnerInterface
 {
@@ -35,14 +36,9 @@ final class SymplifyRunner implements RunnerInterface
      */
     public function runForDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/phpcs')
-            ->add($directory)
-            ->add('--standard='.$this->getRuleset())
-            ->add('--extensions='.$this->extensions)
-            ->add('--colors')
-            ->add('-p')
-            ->add('-s');
+        $builder = new PhpCsProcessBuilder($directory);
+        $builder->setExtensions($this->extensions);
+        $builder->setStandard($this->getRuleset());
 
         $process = $builder->getProcess();
         $process->run();
@@ -65,11 +61,9 @@ final class SymplifyRunner implements RunnerInterface
      */
     public function fixDirectory($directory)
     {
-        $builder = (new ProcessBuilder())
-            ->setPrefix('./vendor/bin/phpcbf')
-            ->add($directory)
-            ->add('--standard='.$this->getRuleset())
-            ->add('--extensions='.$this->extensions);
+        $builder = new PhpCbfProcessBuilder($directory);
+        $builder->setStandard($this->getRuleset());
+        $builder->setExtensions($this->extensions);
 
         $process = $builder->getProcess();
         $process->run();
