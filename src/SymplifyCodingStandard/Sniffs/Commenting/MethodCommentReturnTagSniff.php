@@ -47,8 +47,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         $this->file = $file;
         $this->position = $position;
 
-        $methodName = $file->getDeclarationName($position);
-        if ($this->guessIsGetterMethod($methodName) === false) {
+        if ($this->guessIsGetterMethod() === false) {
             return;
         }
 
@@ -66,12 +65,12 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param string $methodName
-     *
      * @return bool
      */
-    private function guessIsGetterMethod($methodName)
+    private function guessIsGetterMethod()
     {
+        $methodName = $this->file->getDeclarationName($this->position);
+
         foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
             if (strpos($methodName, $getterMethodPrefix) === 0) {
                 if (strlen($methodName) === strlen($getterMethodPrefix)) {
