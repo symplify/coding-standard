@@ -2,9 +2,6 @@
 <ruleset name="Symplify">
 	<descrition>Symplify selection from default sniffs</descrition>
 
-	<!-- Array -->
-	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
-
 	<!-- Classes -->
 	<rule ref="Generic.Classes.DuplicateClassName"/>
 	<rule ref="Squiz.Classes.ValidClassName"/>

@@ -7,33 +7,36 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 
 final class ContribRunner implements RunnerInterface
 {
     /**
-     * @var string
+     * @var bool
      */
-    private $output;
+    private $hasErrors = false;
 
     /**
      * {@inheritdoc}
      */
     public function runForDirectory($directory)
     {
-        $process = new Process(
-            sprintf(
-                'php vendor/bin/php-cs-fixer fix %s --dry-run --diff -v --fixers=%s',
-                $directory,
-                $this->getCustomFixers()
-            )
-        );
+        $builder = (new ProcessBuilder())
+            ->setPrefix('./vendor/bin/php-cs-fixer')
+            ->add('fix')
+            ->add($directory)
+            ->add('--diff')
+            ->add('--fixers='.$this->getCustomFixers())
+            ->add('--dry-run')
+            ->add('--diff');
+
+        $process = $builder->getProcess();
         $process->run();
 
-        $this->output = $process->getOutput();
+        $this->detectErrorsInOutput($process->getOutput());
 
-        return $this->output;
+        return $process->getOutput();
     }
 
     /**
@@ -41,11 +44,7 @@ final class ContribRunner implements RunnerInterface
      */
     public function hasErrors()
     {
-        if (strpos($this->output, 'end diff') !== false) {
-            return true;
-        }
-
-        return false;
+        return $this->hasErrors;
     }
 
     /**
@@ -53,14 +52,27 @@ final class ContribRunner implements RunnerInterface
      */
     public function fixDirectory($directory)
     {
-        $process = new Process(
-            sprintf(
-                'php vendor/bin/php-cs-fixer fix %s --diff -v --fixers=%s',
-                $directory,
-                $this->getCustomFixers()
-            )
-        );
+        $builder = (new ProcessBuilder())
+            ->setPrefix('./vendor/bin/php-cs-fixer')
+            ->add('fix')
+            ->add($directory)
+            ->add('--diff')
+            ->add('--fixers='.$this->getCustomFixers());
+
+        $process = $builder->getProcess();
         $process->run();
+
+        return $process->getOutput();
+    }
+
+    /**
+     * @param string $output
+     */
+    private function detectErrorsInOutput($output)
+    {
+        if (strpos($output, 'end diff') !== false) {
+            $this->hasErrors = true;
+        }
     }
 
     /**

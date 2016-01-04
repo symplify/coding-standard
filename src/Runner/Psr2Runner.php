@@ -7,7 +7,7 @@
 
 namespace Symplify\CodingStandard\Runner;
 
-use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 
 final class Psr2Runner implements RunnerInterface
@@ -15,12 +15,12 @@ final class Psr2Runner implements RunnerInterface
     /**
      * @var string
      */
-    private $output;
+    private $extensions;
 
     /**
-     * @var string
+     * @var bool
      */
-    private $extensions;
+    private $hasErrors = false;
 
     /**
      * @param string $extensions
@@ -35,18 +35,21 @@ final class Psr2Runner implements RunnerInterface
      */
     public function runForDirectory($directory)
     {
-        $process = new Process(
-            sprintf(
-                'php vendor/bin/phpcs %s --standard=PSR2 -p -s --colors --extensions=%s',
-                $directory,
-                $this->extensions
-            )
-        );
+        $builder = (new ProcessBuilder())
+            ->setPrefix('./vendor/bin/phpcs')
+            ->add($directory)
+            ->add('--standard=psr2')
+            ->add('--extensions='.$this->extensions)
+            ->add('--colors')
+            ->add('-p')
+            ->add('-s');
+
+        $process = $builder->getProcess();
         $process->run();
 
-        $this->output = $process->getOutput();
+        $this->detectErrorsInOutput($process->getOutput());
 
-        return $this->output;
+        return $process->getOutput();
     }
 
     /**
@@ -54,11 +57,7 @@ final class Psr2Runner implements RunnerInterface
      */
     public function hasErrors()
     {
-        if (strpos($this->output, 'ERROR') !== false) {
-            return true;
-        }
-
-        return false;
+        return $this->hasErrors;
     }
 
     /**
@@ -66,13 +65,25 @@ final class Psr2Runner implements RunnerInterface
      */
     public function fixDirectory($directory)
     {
-        $process = new Process(
-            sprintf(
-                'php vendor/bin/phpbf %s --standard=PSR2 --extensions=%s',
-                $directory,
-                $this->extensions
-            )
-        );
+        $builder = (new ProcessBuilder())
+            ->setPrefix('./vendor/bin/phpcbf')
+            ->add($directory)
+            ->add('--standard=psr2')
+            ->add('--extensions='.$this->extensions);
+
+        $process = $builder->getProcess();
         $process->run();
+
+        return $process->getOutput();
+    }
+
+    /**
+     * @param $output
+     */
+    private function detectErrorsInOutput($output)
+    {
+        if (strpos($output, 'ERROR') !== false) {
+            $this->hasErrors = true;
+        }
     }
 }

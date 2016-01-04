@@ -18,6 +18,8 @@ interface RunnerInterface
 
     /**
      * @param string $directory
+     *
+     * @return string
      */
     public function fixDirectory($directory);
 
