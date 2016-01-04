@@ -35,6 +35,6 @@ final class ApplicationTest extends PHPUnit_Framework_TestCase
         $runnerCollection = PHPUnit_Framework_Assert::getObjectAttribute($checkCommand, 'runnerCollection');
 
         $this->assertInstanceOf(RunnerCollectionInterface::class, $runnerCollection);
-        $this->assertCount(3, $runnerCollection->getRunners());
+        $this->assertCount(4, $runnerCollection->getRunners());
     }
 }
