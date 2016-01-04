@@ -46,15 +46,7 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
         $this->file = $file;
         $this->position = $position;
 
-        if ($this->implementsInterface() === false) {
-            return;
-        }
-
-        if ($this->isFinalOrAbstractClass()) {
-            return;
-        }
-
-        if ($this->isDoctrineEntity()) {
+        if ($this->shouldBeSkipped()) {
             return;
         }
 
@@ -66,6 +58,26 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
         if ($fix === true) {
             $this->fix();
         }
+    }
+
+    /**
+     * @return bool
+     */
+    private function shouldBeSkipped()
+    {
+        if ($this->implementsInterface() === false) {
+            return true;
+        }
+
+        if ($this->isFinalOrAbstractClass()) {
+            return true;
+        }
+
+        if ($this->isDoctrineEntity()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
