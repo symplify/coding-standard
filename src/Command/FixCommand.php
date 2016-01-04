@@ -49,14 +49,6 @@ final class FixCommand extends Command
             ),
         ]);
         $this->setDescription('Fix coding standard in particular directory');
-        $this->setHelp(<<<EOF
-The <info>%command.name%</info> command fix coding standards
-in one or more directories:
-
-    <info>php %command.full_name% /path/to/dir</info>
-    <info>php %command.full_name% /path/to/dir /path/to/another-dir</info>
-EOF
-        );
     }
 
     /**

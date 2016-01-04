@@ -12,6 +12,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\StyleInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 
@@ -38,7 +39,7 @@ final class CheckCommand extends Command
     private $runnerCollection;
 
     /**
-     * @var OutputInterface
+     * @var StyleInterface
      */
     private $io;
 
@@ -64,14 +65,6 @@ final class CheckCommand extends Command
             ),
         ]);
         $this->setDescription('Check coding standard in particular directory');
-        $this->setHelp(<<<EOF
-The <info>%command.name%</info> command checks coding standards
-in one or more directories:
-
-    <info>php %command.full_name% /path/to/dir</info>
-    <info>php %command.full_name% /path/to/dir /path/to/another-dir</info>
-EOF
-        );
     }
 
     /**
@@ -86,15 +79,8 @@ EOF
                 $this->executeRunnersForDirectory($path);
             }
 
-            if ($this->exitCode === self::EXIT_CODE_ERROR) {
-                $this->io->error('Some errors were found');
+            return $this->outputCheckResult();
 
-                return 1;
-            } else {
-                $this->io->success('Check was finished with no errors');
-
-                return 0;
-            }
         } catch (Exception $exception) {
             $this->io->error($exception->getMessage());
 
@@ -109,11 +95,27 @@ EOF
     {
         foreach ($this->runnerCollection->getRunners() as $runner) {
             $processOutput = $runner->runForDirectory($directory);
-            $this->io->writeln($processOutput);
+            $this->io->text($processOutput);
 
             if ($runner->hasErrors()) {
                 $this->exitCode = self::EXIT_CODE_ERROR;
             }
         }
+    }
+
+    /**
+     * @return int
+     */
+    private function outputCheckResult()
+    {
+        if ($this->exitCode === self::EXIT_CODE_ERROR) {
+            $this->io->error('Some errors were found');
+
+            return 1;
+        }
+
+        $this->io->success('Check was finished with no errors!');
+
+        return 0;
     }
 }
