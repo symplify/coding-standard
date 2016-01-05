@@ -12,9 +12,9 @@ use PHP_CodeSniffer_Sniff;
 
 /**
  * Rules:
- * - Getters should have @return tag (except for {@inheritdoc}).
+ * - Getters should have return type (except for {@inheritdoc}).
  */
-final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
+final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
 {
     /**
      * @var string[]

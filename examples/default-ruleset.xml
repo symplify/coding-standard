@@ -8,7 +8,7 @@
 	<!-- Commenting -->
 	<rule ref="SymplifyCodingStandard.Commenting.BlockPropertyComment" />
 	<rule ref="SymplifyCodingStandard.Commenting.MethodComment" />
-	<rule ref="SymplifyCodingStandard.Commenting.MethodCommentReturnTag" />
+	<rule ref="SymplifyCodingStandard.Commenting.MethodReturnType" />
 	<rule ref="SymplifyCodingStandard.Commenting.VarPropertyComment" />
 
 	<!-- Debug -->

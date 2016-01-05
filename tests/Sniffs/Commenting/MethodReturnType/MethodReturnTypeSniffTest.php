@@ -1,14 +1,14 @@
 <?php
 
-namespace Symplify\CodingStandard\Tests\Sniffs\Commenting\MethodCommentReturnTag;
+namespace Symplify\CodingStandard\Tests\Sniffs\Commenting\MethodReturnType;
 
 use PHPUnit_Framework_TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
 /**
- * @covers SymplifyCodingStandard\Sniffs\Commenting\MethodCommentReturnTagSniff
+ * @covers SymplifyCodingStandard\Sniffs\Commenting\MethodReturnTypeSniff
  */
-final class MethodCommentReturnTagSniffTest extends PHPUnit_Framework_TestCase
+final class MethodReturnTypeSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testDetection()
     {

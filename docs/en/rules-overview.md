@@ -68,9 +68,9 @@ class SomeClass
 }
 ```
 
-## MethodCommentReturnTagSniff (Commenting)
+## MethodReturnTypeSniff (Commenting)
 
-- Getters should have @return tag (except for {@inheritdoc}).
+- Getters should have return type (except for {@inheritdoc}).
 
 ```php
 class SomeClass
