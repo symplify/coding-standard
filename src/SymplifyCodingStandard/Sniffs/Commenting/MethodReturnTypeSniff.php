@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -54,23 +56,33 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         $file->addError('Getters should have @return tag (except {@inheritdoc}).', $position);
     }
 
+    private function shouldBeSkipped() : bool
+    {
+        if ($this->guessIsGetterMethod() === false) {
+            return true;
+        }
+
+        if ($this->hasPhp7ReturnType()) {
+            return true;
+        }
+
+        if ($this->hasMethodCommentReturnOrInheritDoc()) {
+            return true;
+        }
+
+        return false;
+    }
+
     private function guessIsGetterMethod() : bool
     {
         $methodName = $this->file->getDeclarationName($this->position);
 
-        foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
-            if (strpos($methodName, $getterMethodPrefix) === 0) {
-                if (strlen($methodName) === strlen($getterMethodPrefix)) {
-                    return true;
-                }
+        if ($this->isRawGetterName($methodName)) {
+            return true;
+        }
 
-                $endPosition = strlen($getterMethodPrefix);
-                $firstLetterAfterGetterPrefix = $methodName[$endPosition];
-
-                if (ctype_upper($firstLetterAfterGetterPrefix)) {
-                    return true;
-                }
-            }
+        if ($this->hasGetterNamePrefix($methodName)) {
+            return true;
         }
 
         return false;
@@ -137,18 +149,22 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    private function shouldBeSkipped() : bool
+    private function isRawGetterName(string $methodName) : bool
     {
-        if ($this->guessIsGetterMethod() === false) {
-            return true;
-        }
+        return in_array($methodName, $this->getterMethodPrefixes);
+    }
 
-        if ($this->hasPhp7ReturnType()) {
-            return true;
-        }
+    private function hasGetterNamePrefix(string $methodName) : bool
+    {
+        foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
+            if (strpos($methodName, $getterMethodPrefix) === 0) {
+                $endPosition = strlen($getterMethodPrefix);
+                $firstLetterAfterGetterPrefix = $methodName[$endPosition];
 
-        if ($this->hasMethodCommentReturnOrInheritDoc()) {
-            return true;
+                if (ctype_upper($firstLetterAfterGetterPrefix)) {
+                    return true;
+                }
+            }
         }
 
         return false;
