@@ -25,5 +25,6 @@ final class MethodCommentReturnTagSniffTest extends PHPUnit_Framework_TestCase
         $this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/correct5.php.inc'));
         $this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/correct6.php.inc'));
         $this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/correct7.php.inc'));
+        $this->assertSame(0, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/correct8.php.inc'));
     }
 }

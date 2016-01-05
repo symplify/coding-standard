@@ -51,23 +51,18 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        if ($this->hasMethodComment() === false) {
-            $file->addError('Getters should have docblock.', $position);
-
+        if ($this->hasPhp7ReturnType()) {
             return;
         }
 
-        if ($this->hasMethodCommentReturnOrInheritDoc()) {
+        if ($this->hasMethodComment() && $this->hasMethodCommentReturnOrInheritDoc()) {
             return;
         }
 
         $file->addError('Getters should have @return tag (except {@inheritdoc}).', $position);
     }
 
-    /**
-     * @return bool
-     */
-    private function guessIsGetterMethod()
+    private function guessIsGetterMethod() : bool
     {
         $methodName = $this->file->getDeclarationName($this->position);
 
@@ -89,10 +84,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return string
-     */
-    private function getMethodComment()
+    private function getMethodComment() : string
     {
         if (!$this->hasMethodComment()) {
             return '';
@@ -104,10 +96,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         return $this->file->getTokensAsString($commentStart, $commentEnd - $commentStart + 1);
     }
 
-    /**
-     * @return bool
-     */
-    private function hasMethodCommentReturnOrInheritDoc()
+    private function hasMethodCommentReturnOrInheritDoc() : bool
     {
         $comment = $this->getMethodComment();
 
@@ -122,10 +111,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return bool
-     */
-    private function hasMethodComment()
+    private function hasMethodComment() : bool
     {
         $tokens = $this->file->getTokens();
         $currentToken = $tokens[$this->position];
@@ -137,6 +123,22 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
 
         $docBlockCloseToken = $tokens[$docBlockClosePosition];
         if ($docBlockCloseToken['line'] === ($currentToken['line'] - 1)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function hasPhp7ReturnType() : bool
+    {
+        $tokens = $this->file->getTokens();
+        $colonPosition = $this->file->findNext(T_COLON, $this->position, null, false);
+
+        if ($tokens[$colonPosition]['code'] !== T_COLON) {
+            return false;
+        }
+
+        if ($tokens[$this->position]['line'] === $tokens[$colonPosition]['line']) {
             return true;
         }
 
