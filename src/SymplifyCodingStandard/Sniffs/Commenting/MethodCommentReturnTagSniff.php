@@ -47,15 +47,7 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         $this->file = $file;
         $this->position = $position;
 
-        if ($this->guessIsGetterMethod() === false) {
-            return;
-        }
-
-        if ($this->hasPhp7ReturnType()) {
-            return;
-        }
-
-        if ($this->hasMethodComment() && $this->hasMethodCommentReturnOrInheritDoc()) {
+        if ($this->shouldBeSkipped()) {
             return;
         }
 
@@ -139,6 +131,23 @@ final class MethodCommentReturnTagSniff implements PHP_CodeSniffer_Sniff
         }
 
         if ($tokens[$this->position]['line'] === $tokens[$colonPosition]['line']) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function shouldBeSkipped() : bool
+    {
+        if ($this->guessIsGetterMethod() === false) {
+            return true;
+        }
+
+        if ($this->hasPhp7ReturnType()) {
+            return true;
+        }
+
+        if ($this->hasMethodCommentReturnOrInheritDoc()) {
             return true;
         }
 
