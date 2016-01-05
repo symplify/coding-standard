@@ -12,7 +12,7 @@ final class MethodReturnTypeSniffTest extends PHPUnit_Framework_TestCase
 {
     public function testDetection()
     {
-        $codeSnifferRunner = new CodeSnifferRunner('SymplifyCodingStandard.Commenting.MethodCommentReturnTag');
+        $codeSnifferRunner = new CodeSnifferRunner('SymplifyCodingStandard.Commenting.MethodReturnType');
 
         $this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/wrong.php.inc'));
         $this->assertSame(1, $codeSnifferRunner->getErrorCountInFile(__DIR__.'/wrong2.php.inc'));
