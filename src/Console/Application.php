@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -32,10 +34,7 @@ final class Application extends BaseApplication
         $this->add(new FixCommand($runnerCollection));
     }
 
-    /**
-     * @return RunnerCollectionInterface
-     */
-    private function createAndFillRunnerCollection()
+    private function createAndFillRunnerCollection() : RunnerCollectionInterface
     {
         $runnerCollection = new RunnerCollection();
         $runnerCollection->addRunner(new SymplifyRunner());

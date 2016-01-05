@@ -1,5 +1,7 @@
 <?php
 
+declare (strict_types = 1);
+
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -26,7 +28,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * @param string $extensions
      */
-    public function __construct($extensions = 'php')
+    public function __construct(string $extensions = 'php')
     {
         $this->extensions = $extensions;
     }
@@ -34,7 +36,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory($directory)
+    public function runForDirectory(string $directory) : string
     {
         $builder = new PhpCsProcessBuilder($directory);
         $builder->setExtensions($this->extensions);
@@ -51,7 +53,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function hasErrors()
+    public function hasErrors(): bool
     {
         return $this->hasErrors;
     }
@@ -59,7 +61,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory($directory)
+    public function fixDirectory(string $directory) : string
     {
         $builder = new PhpCbfProcessBuilder($directory);
         $builder->setStandard('psr2');
@@ -71,10 +73,7 @@ final class Psr2Runner implements RunnerInterface
         return $process->getOutput();
     }
 
-    /**
-     * @param $output
-     */
-    private function detectErrorsInOutput($output)
+    private function detectErrorsInOutput(string $output)
     {
         if (strpos($output, 'ERROR') !== false) {
             $this->hasErrors = true;
