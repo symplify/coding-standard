@@ -7,7 +7,6 @@
 
 namespace Symplify\CodingStandard\Process;
 
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Process\ProcessBuilderInterface;
 
