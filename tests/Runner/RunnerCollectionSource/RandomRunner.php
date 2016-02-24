@@ -9,21 +9,21 @@ final class RandomRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory(string $directory) : string
+    public function runForDirectory($directory)
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory(string $directory) : string
+    public function fixDirectory($directory)
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasErrors() : bool
+    public function hasErrors()
     {
     }
 }
