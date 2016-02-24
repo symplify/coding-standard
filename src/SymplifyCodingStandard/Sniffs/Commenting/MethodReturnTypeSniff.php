@@ -107,7 +107,10 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return $this->file->getTokensAsString($commentStart, $commentEnd - $commentStart + 1);
     }
 
-    private function hasMethodCommentReturnOrInheritDoc() : bool
+    /**
+     * @return bool
+     */
+    private function hasMethodCommentReturnOrInheritDoc()
     {
         $comment = $this->getMethodComment();
 
