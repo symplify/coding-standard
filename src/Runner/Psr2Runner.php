@@ -28,7 +28,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * @param string $extensions
      */
-    public function __construct(string $extensions = 'php')
+    public function __construct($extensions = 'php')
     {
         $this->extensions = $extensions;
     }
@@ -36,7 +36,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory(string $directory) : string
+    public function runForDirectory($directory)
     {
         $builder = new PhpCsProcessBuilder($directory);
         $builder->setExtensions($this->extensions);
@@ -53,7 +53,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function hasErrors(): bool
+    public function hasErrors()
     {
         return $this->hasErrors;
     }
@@ -61,7 +61,7 @@ final class Psr2Runner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory(string $directory) : string
+    public function fixDirectory($directory)
     {
         $builder = new PhpCbfProcessBuilder($directory);
         $builder->setStandard('psr2');
@@ -73,7 +73,10 @@ final class Psr2Runner implements RunnerInterface
         return $process->getOutput();
     }
 
-    private function detectErrorsInOutput(string $output)
+    /**
+     * @param string $output
+     */
+    private function detectErrorsInOutput($output)
     {
         if (strpos($output, 'ERROR') !== false) {
             $this->hasErrors = true;

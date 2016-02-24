@@ -11,5 +11,8 @@ use Symfony\Component\Process\Process;
 
 interface ProcessBuilderInterface
 {
-    public function getProcess() : Process;
+    /**
+     * @return Process
+     */
+    public function getProcess();
 }

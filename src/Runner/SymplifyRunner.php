@@ -1,7 +1,5 @@
 <?php
 
-declare (strict_types = 1);
-
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -25,7 +23,10 @@ final class SymplifyRunner implements RunnerInterface
      */
     private $hasErrors = false;
 
-    public function __construct(string $extensions = 'php')
+    /**
+     * @param string $extensions
+     */
+    public function __construct($extensions = 'php')
     {
         $this->extensions = $extensions;
     }
@@ -33,7 +34,7 @@ final class SymplifyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory(string $directory) : string
+    public function runForDirectory($directory)
     {
         $builder = new PhpCsProcessBuilder($directory);
         $builder->setExtensions($this->extensions);
@@ -50,7 +51,7 @@ final class SymplifyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function hasErrors(): bool
+    public function hasErrors()
     {
         return $this->hasErrors;
     }
@@ -58,7 +59,7 @@ final class SymplifyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory(string $directory) : string
+    public function fixDirectory($directory)
     {
         $builder = new PhpCbfProcessBuilder($directory);
         $builder->setStandard($this->getRuleset());
@@ -70,14 +71,20 @@ final class SymplifyRunner implements RunnerInterface
         return $process->getOutput();
     }
 
-    private function detectErrorsInOutput(string $output)
+    /**
+     * @param string $output
+     */
+    private function detectErrorsInOutput($output)
     {
         if (strpos($output, 'ERROR') !== false) {
             $this->hasErrors = true;
         }
     }
 
-    private function getRuleset() : string
+    /**
+     * @return string
+     */
+    private function getRuleset()
     {
         if (file_exists($path = 'src/SymplifyCodingStandard/ruleset.xml')) {
             return $path;

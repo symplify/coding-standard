@@ -20,7 +20,10 @@ final class PhpCsProcessBuilder implements ProcessBuilderInterface
      */
     private $builder;
 
-    public function __construct(string $directory)
+    /**
+     * @param string $directory
+     */
+    public function __construct($directory)
     {
         $this->builder = new ProcessBuilder();
         $this->builder->setPrefix('./vendor/bin/phpcs');
@@ -33,17 +36,23 @@ final class PhpCsProcessBuilder implements ProcessBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getProcess() : Process
+    public function getProcess()
     {
         return $this->builder->getProcess();
     }
 
-    public function setStandard(string $standard)
+    /**
+     * @param string $standard
+     */
+    public function setStandard($standard)
     {
         $this->builder->add('--standard='.$standard);
     }
 
-    public function setExtensions(string $extensions)
+    /**
+     * @param string $extensions
+     */
+    public function setExtensions($extensions)
     {
         $this->builder->add('--extensions='.$extensions);
     }

@@ -1,7 +1,5 @@
 <?php
 
-declare (strict_types = 1);
-
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -44,7 +42,10 @@ final class CheckCommand extends AbstractCommand
         }
     }
 
-    private function executeRunnersForDirectory(string $directory)
+    /**
+     * @param string $directory
+     */
+    private function executeRunnersForDirectory($directory)
     {
         foreach ($this->runnerCollection->getRunners() as $runner) {
             $processOutput = $runner->runForDirectory($directory);
@@ -56,7 +57,10 @@ final class CheckCommand extends AbstractCommand
         }
     }
 
-    private function outputCheckResult() : int
+    /**
+     * @return int
+     */
+    private function outputCheckResult()
     {
         if ($this->exitCode === self::EXIT_CODE_ERROR) {
             $this->io->error('Some errors were found');

@@ -1,7 +1,5 @@
 <?php
 
-declare (strict_types = 1);
-
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -56,7 +54,10 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         $file->addError('Getters should have @return tag (except {@inheritdoc}).', $position);
     }
 
-    private function shouldBeSkipped() : bool
+    /**
+     * @return bool
+     */
+    private function shouldBeSkipped()
     {
         if ($this->guessIsGetterMethod() === false) {
             return true;
@@ -73,7 +74,10 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    private function guessIsGetterMethod() : bool
+    /**
+     * @return bool
+     */
+    private function guessIsGetterMethod()
     {
         $methodName = $this->file->getDeclarationName($this->position);
 
@@ -88,7 +92,10 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    private function getMethodComment() : string
+    /**
+     * @return string
+     */
+    private function getMethodComment()
     {
         if (!$this->hasMethodComment()) {
             return '';
@@ -115,7 +122,10 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    private function hasMethodComment() : bool
+    /**
+     * @return bool
+     */
+    private function hasMethodComment()
     {
         $tokens = $this->file->getTokens();
         $currentToken = $tokens[$this->position];
@@ -133,7 +143,10 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    private function hasPhp7ReturnType() : bool
+    /**
+     * @return bool
+     */
+    private function hasPhp7ReturnType()
     {
         $tokens = $this->file->getTokens();
         $colonPosition = $this->file->findNext(T_COLON, $this->position, null, false);
@@ -149,12 +162,22 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    private function isRawGetterName(string $methodName) : bool
+    /**
+     * @param string $methodName
+     *
+     * @return bool
+     */
+    private function isRawGetterName($methodName)
     {
         return in_array($methodName, $this->getterMethodPrefixes);
     }
 
-    private function hasGetterNamePrefix(string $methodName) : bool
+    /**
+     * @param string $methodName
+     *
+     * @return bool
+     */
+    private function hasGetterNamePrefix($methodName)
     {
         foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
             if (strpos($methodName, $getterMethodPrefix) === 0) {

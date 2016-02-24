@@ -1,7 +1,5 @@
 <?php
 
-declare (strict_types = 1);
-
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -22,7 +20,7 @@ final class SymfonyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory(string $directory) : string
+    public function runForDirectory($directory)
     {
         $builder = new PhpCsFixerProcessBuilder($directory);
         $builder->setLevel('symfony');
@@ -40,7 +38,7 @@ final class SymfonyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function hasErrors() : bool
+    public function hasErrors()
     {
         return $this->hasErrors;
     }
@@ -48,7 +46,7 @@ final class SymfonyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory(string $directory) : string
+    public function fixDirectory($directory)
     {
         $builder = new PhpCsFixerProcessBuilder($directory);
         $builder->setLevel('symfony');
@@ -60,7 +58,10 @@ final class SymfonyRunner implements RunnerInterface
         return $process->getOutput();
     }
 
-    private function detectErrorsInOutput(string $output)
+    /**
+     * @param string $output
+     */
+    private function detectErrorsInOutput($output)
     {
         if (strpos($output, 'end diff') !== false) {
             $this->hasErrors = true;

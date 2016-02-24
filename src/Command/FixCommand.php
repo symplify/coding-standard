@@ -1,7 +1,5 @@
 <?php
 
-declare (strict_types = 1);
-
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -45,7 +43,10 @@ final class FixCommand extends AbstractCommand
         }
     }
 
-    private function executeFixersForDirectory(string $directory)
+    /**
+     * @param string $directory
+     */
+    private function executeFixersForDirectory($directory)
     {
         foreach ($this->runnerCollection->getRunners() as $fixableRunner) {
             $this->io->text($fixableRunner->fixDirectory($directory));
