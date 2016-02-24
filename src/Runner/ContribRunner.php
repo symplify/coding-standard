@@ -1,7 +1,5 @@
 <?php
 
-declare (strict_types = 1);
-
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -68,7 +66,10 @@ final class ContribRunner implements RunnerInterface
         }
     }
 
-    private function getCustomFixers() : string
+    /**
+     * @return string
+     */
+    private function getCustomFixers()
     {
         $fixers = [
             'short_array_syntax',
