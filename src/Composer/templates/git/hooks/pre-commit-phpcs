@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # get changed .php files, ready to be commited, all but deleted
-FILES=$(git diff --name-only --cached --diff-filter=ACMRTUXB | grep .php);
+FILES=$(git diff --name-only --cached --diff-filter=ACMRTUXB *.php);
 
 # run phpcs
 if [ ! -z "$FILES" ]; then
