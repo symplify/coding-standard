@@ -2,8 +2,8 @@
 
 namespace Symplify\CodingStandard\Tests\Console;
 
-use PHPUnit_Framework_Assert;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_Assert;
 use Symplify\CodingStandard\Command\CheckCommand;
 use Symplify\CodingStandard\Command\FixCommand;
 use Symplify\CodingStandard\Console\Application;
