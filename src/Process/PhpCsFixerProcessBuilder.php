@@ -7,6 +7,7 @@
 
 namespace Symplify\CodingStandard\Process;
 
+use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Process\ProcessBuilderInterface;
 
@@ -17,10 +18,7 @@ final class PhpCsFixerProcessBuilder implements ProcessBuilderInterface
      */
     private $builder;
 
-    /**
-     * @param string $directory
-     */
-    public function __construct($directory)
+    public function __construct(string $directory)
     {
         $this->builder = new ProcessBuilder();
         $this->builder->setPrefix('./vendor/bin/php-cs-fixer');
@@ -31,23 +29,17 @@ final class PhpCsFixerProcessBuilder implements ProcessBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getProcess()
+    public function getProcess() : Process
     {
         return $this->builder->getProcess();
     }
 
-    /**
-     * @param string $level
-     */
-    public function setLevel($level)
+    public function setLevel(string $level)
     {
         $this->builder->add('--level='.$level);
     }
 
-    /**
-     * @param string $fixers
-     */
-    public function setFixers($fixers)
+    public function setFixers(string $fixers)
     {
         $this->builder->add('--fixers='.$fixers);
     }

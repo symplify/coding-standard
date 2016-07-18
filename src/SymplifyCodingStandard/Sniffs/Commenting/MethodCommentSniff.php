@@ -49,13 +49,7 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
         $file->addError('Method docblock is missing, due to some parameters without typehints.', $position);
     }
 
-    /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
-     *
-     * @return bool
-     */
-    private function hasMethodDocblock(PHP_CodeSniffer_File $file, $position)
+    private function hasMethodDocblock(PHP_CodeSniffer_File $file, int $position) : bool
     {
         $tokens = $file->getTokens();
         $currentToken = $tokens[$position];
@@ -73,10 +67,7 @@ final class MethodCommentSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return int
-     */
-    private function countParametersWithTypehint(array $parameters)
+    private function countParametersWithTypehint(array $parameters) : int
     {
         $parameterWithTypehintCount = 0;
         foreach ($parameters as $parameter) {

@@ -23,10 +23,7 @@ final class SymplifyRunner implements RunnerInterface
      */
     private $hasErrors = false;
 
-    /**
-     * @param string $extensions
-     */
-    public function __construct($extensions = 'php')
+    public function __construct(string $extensions = 'php')
     {
         $this->extensions = $extensions;
     }
@@ -34,7 +31,7 @@ final class SymplifyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory($directory)
+    public function runForDirectory(string $directory) : string
     {
         $builder = new PhpCsProcessBuilder($directory);
         $builder->setExtensions($this->extensions);
@@ -51,7 +48,7 @@ final class SymplifyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function hasErrors()
+    public function hasErrors() : bool
     {
         return $this->hasErrors;
     }
@@ -59,7 +56,7 @@ final class SymplifyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory($directory)
+    public function fixDirectory(string $directory) : string
     {
         $builder = new PhpCbfProcessBuilder($directory);
         $builder->setStandard($this->getRuleset());
@@ -81,10 +78,7 @@ final class SymplifyRunner implements RunnerInterface
         }
     }
 
-    /**
-     * @return string
-     */
-    private function getRuleset()
+    private function getRuleset() : string
     {
         if (file_exists($path = 'src/SymplifyCodingStandard/ruleset.xml')) {
             return $path;

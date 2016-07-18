@@ -20,7 +20,7 @@ final class ContribRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory($directory)
+    public function runForDirectory(string $directory) : string
     {
         $builder = new PhpCsFixerProcessBuilder($directory);
         $builder->setFixers($this->getCustomFixers());
@@ -37,7 +37,7 @@ final class ContribRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function hasErrors()
+    public function hasErrors() : bool
     {
         return $this->hasErrors;
     }
@@ -45,7 +45,7 @@ final class ContribRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory($directory)
+    public function fixDirectory(string $directory) : string
     {
         $builder = new PhpCsFixerProcessBuilder($directory);
         $builder->setFixers($this->getCustomFixers());
@@ -66,10 +66,7 @@ final class ContribRunner implements RunnerInterface
         }
     }
 
-    /**
-     * @return string
-     */
-    private function getCustomFixers()
+    private function getCustomFixers() : string
     {
         $fixers = [
             'short_array_syntax',

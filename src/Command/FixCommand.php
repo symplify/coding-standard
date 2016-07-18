@@ -43,10 +43,7 @@ final class FixCommand extends AbstractCommand
         }
     }
 
-    /**
-     * @param string $directory
-     */
-    private function executeFixersForDirectory($directory)
+    private function executeFixersForDirectory(string $directory)
     {
         foreach ($this->runnerCollection->getRunners() as $fixableRunner) {
             $this->io->text($fixableRunner->fixDirectory($directory));

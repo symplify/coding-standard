@@ -51,13 +51,7 @@ final class VarPropertyCommentSniff extends PHP_CodeSniffer_Standards_AbstractVa
     {
     }
 
-    /**
-     * @param PHP_CodeSniffer_File $file
-     * @param int                  $position
-     *
-     * @return string
-     */
-    private function getPropertyComment(PHP_CodeSniffer_File $file, $position)
+    private function getPropertyComment(PHP_CodeSniffer_File $file, int $position) : string
     {
         $commentEnd = $file->findPrevious([T_DOC_COMMENT_CLOSE_TAG], $position);
         if ($commentEnd === false) {

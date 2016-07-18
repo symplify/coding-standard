@@ -54,10 +54,7 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         $file->addError('Getters should have @return tag (except {@inheritdoc}).', $position);
     }
 
-    /**
-     * @return bool
-     */
-    private function shouldBeSkipped()
+    private function shouldBeSkipped() : bool
     {
         if ($this->guessIsGetterMethod() === false) {
             return true;
@@ -74,10 +71,7 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return bool
-     */
-    private function guessIsGetterMethod()
+    private function guessIsGetterMethod() : bool
     {
         $methodName = $this->file->getDeclarationName($this->position);
 
@@ -92,10 +86,7 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return string
-     */
-    private function getMethodComment()
+    private function getMethodComment() : string
     {
         if (!$this->hasMethodComment()) {
             return '';
@@ -107,10 +98,7 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return $this->file->getTokensAsString($commentStart, $commentEnd - $commentStart + 1);
     }
 
-    /**
-     * @return bool
-     */
-    private function hasMethodCommentReturnOrInheritDoc()
+    private function hasMethodCommentReturnOrInheritDoc() : bool
     {
         $comment = $this->getMethodComment();
 
@@ -125,10 +113,7 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return bool
-     */
-    private function hasMethodComment()
+    private function hasMethodComment() : bool
     {
         $tokens = $this->file->getTokens();
         $currentToken = $tokens[$this->position];
@@ -146,10 +131,7 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return bool
-     */
-    private function hasPhp7ReturnType()
+    private function hasPhp7ReturnType() : bool
     {
         $tokens = $this->file->getTokens();
         $colonPosition = $this->file->findNext(T_COLON, $this->position, null, false);
@@ -165,22 +147,12 @@ final class MethodReturnTypeSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @param string $methodName
-     *
-     * @return bool
-     */
-    private function isRawGetterName($methodName)
+    private function isRawGetterName(string $methodName) : bool
     {
         return in_array($methodName, $this->getterMethodPrefixes);
     }
 
-    /**
-     * @param string $methodName
-     *
-     * @return bool
-     */
-    private function hasGetterNamePrefix($methodName)
+    private function hasGetterNamePrefix(string $methodName) : bool
     {
         foreach ($this->getterMethodPrefixes as $getterMethodPrefix) {
             if (strpos($methodName, $getterMethodPrefix) === 0) {

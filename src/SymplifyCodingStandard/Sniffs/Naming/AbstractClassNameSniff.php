@@ -57,10 +57,7 @@ final class AbstractClassNameSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * @return bool
-     */
-    private function isClassAbstract()
+    private function isClassAbstract() : bool
     {
         $classProperties = $this->file->getClassProperties($this->position);
 

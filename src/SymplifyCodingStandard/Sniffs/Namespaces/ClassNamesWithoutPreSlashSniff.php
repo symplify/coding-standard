@@ -47,12 +47,7 @@ final class ClassNamesWithoutPreSlashSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * @param string $className
-     *
-     * @return bool
-     */
-    private function isExcludedClassName($className)
+    private function isExcludedClassName(string $className) : bool
     {
         if (in_array($className, $this->excludedClassNames)) {
             return true;

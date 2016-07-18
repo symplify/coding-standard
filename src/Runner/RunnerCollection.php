@@ -28,7 +28,7 @@ final class RunnerCollection implements RunnerCollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function getRunners()
+    public function getRunners() : array
     {
         return $this->runners;
     }

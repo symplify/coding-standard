@@ -7,6 +7,7 @@
 
 namespace Symplify\CodingStandard\Process;
 
+use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 use Symplify\CodingStandard\Contract\Process\ProcessBuilderInterface;
 
@@ -17,10 +18,7 @@ final class PhpCbfProcessBuilder implements ProcessBuilderInterface
      */
     private $builder;
 
-    /**
-     * @param string $directory
-     */
-    public function __construct($directory)
+    public function __construct(string $directory)
     {
         $this->builder = new ProcessBuilder();
         $this->builder->setPrefix('./vendor/bin/phpcbf');
@@ -30,23 +28,17 @@ final class PhpCbfProcessBuilder implements ProcessBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getProcess()
+    public function getProcess() : Process
     {
         return $this->builder->getProcess();
     }
 
-    /**
-     * @param string $standard
-     */
-    public function setStandard($standard)
+    public function setStandard(string $standard)
     {
         $this->builder->add('--standard='.$standard);
     }
 
-    /**
-     * @param string $extensions
-     */
-    public function setExtensions($extensions)
+    public function setExtensions(string $extensions)
     {
         $this->builder->add('--extensions='.$extensions);
     }

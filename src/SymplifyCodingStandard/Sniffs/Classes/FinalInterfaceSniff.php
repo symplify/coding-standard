@@ -60,10 +60,7 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
         }
     }
 
-    /**
-     * @return bool
-     */
-    private function shouldBeSkipped()
+    private function shouldBeSkipped() : bool
     {
         if ($this->implementsInterface() === false) {
             return true;
@@ -80,28 +77,19 @@ final class FinalInterfaceSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @return bool
-     */
-    private function implementsInterface()
+    private function implementsInterface() : bool
     {
         return (bool) $this->file->findNext(T_IMPLEMENTS, $this->position);
     }
 
-    /**
-     * @return bool
-     */
-    private function isFinalOrAbstractClass()
+    private function isFinalOrAbstractClass() : bool
     {
         $classProperties = $this->file->getClassProperties($this->position);
 
         return $classProperties['is_abstract'] || $classProperties['is_final'];
     }
 
-    /**
-     * @return bool
-     */
-    private function isDoctrineEntity()
+    private function isDoctrineEntity() : bool
     {
         $docCommentPosition = $this->file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $this->position);
         if ($docCommentPosition === false) {

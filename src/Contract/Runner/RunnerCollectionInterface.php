@@ -14,5 +14,5 @@ interface RunnerCollectionInterface
     /**
      * @return RunnerInterface[]
      */
-    public function getRunners();
+    public function getRunners() : array;
 }

@@ -9,22 +9,9 @@ namespace Symplify\CodingStandard\Contract\Runner;
 
 interface RunnerInterface
 {
-    /**
-     * @param string $directory
-     *
-     * @return string
-     */
-    public function runForDirectory($directory);
+    public function runForDirectory(string $directory) : string;
 
-    /**
-     * @param string $directory
-     *
-     * @return string
-     */
-    public function fixDirectory($directory);
+    public function fixDirectory(string $directory) : string;
 
-    /**
-     * @return bool
-     */
-    public function hasErrors();
+    public function hasErrors() : bool;
 }

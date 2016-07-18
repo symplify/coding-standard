@@ -20,7 +20,7 @@ final class SymfonyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function runForDirectory($directory)
+    public function runForDirectory(string $directory) : string
     {
         $builder = new PhpCsFixerProcessBuilder($directory);
         $builder->setLevel('symfony');
@@ -38,7 +38,7 @@ final class SymfonyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function hasErrors()
+    public function hasErrors() : bool
     {
         return $this->hasErrors;
     }
@@ -46,7 +46,7 @@ final class SymfonyRunner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function fixDirectory($directory)
+    public function fixDirectory(string $directory) : string
     {
         $builder = new PhpCsFixerProcessBuilder($directory);
         $builder->setLevel('symfony');
@@ -58,10 +58,7 @@ final class SymfonyRunner implements RunnerInterface
         return $process->getOutput();
     }
 
-    /**
-     * @param string $output
-     */
-    private function detectErrorsInOutput($output)
+    private function detectErrorsInOutput(string $output)
     {
         if (strpos($output, 'end diff') !== false) {
             $this->hasErrors = true;

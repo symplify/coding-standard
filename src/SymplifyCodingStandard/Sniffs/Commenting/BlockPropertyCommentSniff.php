@@ -53,12 +53,7 @@ final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
         $file->addError($error, $position);
     }
 
-    /**
-     * @param int $position
-     *
-     * @return bool
-     */
-    private function isPropertyOrMethodComment($position)
+    private function isPropertyOrMethodComment(int $position) : bool
     {
         $nextPropertyOrMethodPosition = $this->file->findNext([T_VARIABLE, T_FUNCTION], $position + 1);
         if ($this->isVariableOrPropertyUse($nextPropertyOrMethodPosition) === true) {
@@ -68,13 +63,7 @@ final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
         return true;
     }
 
-    /**
-     * @param int $openTagPosition
-     * @param int $closeTagPosition
-     *
-     * @return bool
-     */
-    private function isSingleLineDoc($openTagPosition, $closeTagPosition)
+    private function isSingleLineDoc(int $openTagPosition, int $closeTagPosition) : bool
     {
         $lines = $this->tokens[$closeTagPosition]['line'] - $this->tokens[$openTagPosition]['line'];
         if ($lines < 2) {
@@ -84,12 +73,7 @@ final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff
         return false;
     }
 
-    /**
-     * @param int $position
-     *
-     * @return bool
-     */
-    private function isVariableOrPropertyUse($position)
+    private function isVariableOrPropertyUse(int $position) : bool
     {
         if ($previous = $this->file->findPrevious(T_OPEN_CURLY_BRACKET, $position - 1)) {
             $previous = $this->file->findPrevious(T_OPEN_CURLY_BRACKET, $previous - 1);
