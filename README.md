@@ -18,41 +18,30 @@ Using:
 - [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
 
 
-
 ## Install
 
 ```sh
-$ composer require symplify/coding-standard --dev
+composer require symplify/coding-standard --dev
 ```
 
 ## Usage
 
-If you want to check your `/src` directory, just run these 3 commands:
+To check your `src` directory, just run:
 
-```sh
-$ vendor/bin/phpcs src --standard=vendor/symplify/coding-standard/src/SymplifyCodingStandard/ruleset.xml -p -s --colors
-$ vendor/bin/phpcs src --standard=PSR2 -p -s --colors
-$ vendor/bin/php-cs-fixer fix src --dry-run --diff -v --level=symfony
+```
+vendor/bin/symplify-cs check src
 ```
 
-...just kidding. **Run this one instead**:
+Or more dirs...
 
 ```sh
-$ vendor/bin/symplify-cs check src
-```
-
-This command accepts multiple dirs as well.
-
-```sh
-$ vendor/bin/symplify-cs check src tests
+vendor/bin/symplify-cs check src tests
 ```
 
 ### Fixing with ease
 
-Are you lazy like me? Just fix them with:
-
 ```sh
-$ vendor/bin/symplify-cs fix src
+vendor/bin/symplify-cs fix src
 ```
 
 Not all violations can be fixed though, so I recommend running the check again and fix the rest manually.
