@@ -2,10 +2,10 @@
 
 namespace Symplify\CodingStandard\Tests\Process;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Process\PhpCbfProcessBuilder;
 
-final class PhpCbfProcessBuilderTest extends PHPUnit_Framework_TestCase
+final class PhpCbfProcessBuilderTest extends TestCase
 {
     public function test()
     {

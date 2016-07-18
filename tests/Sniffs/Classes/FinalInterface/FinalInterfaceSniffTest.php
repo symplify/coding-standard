@@ -2,13 +2,13 @@
 
 namespace Symplify\CodingStandard\Tests\Sniffs\Classes\ClassDeclaration;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
 /**
  * @covers SymplifyCodingStandard\Sniffs\Classes\FinalInterfaceSniff
  */
-final class FinalInterfaceSniffTest extends PHPUnit_Framework_TestCase
+final class FinalInterfaceSniffTest extends TestCase
 {
     public function testDetection()
     {

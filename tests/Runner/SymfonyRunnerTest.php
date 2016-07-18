@@ -2,10 +2,10 @@
 
 namespace Symplify\CodingStandard\Tests\Runner;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Runner\SymfonyRunner;
 
-final class SymfonyRunnerTest extends PHPUnit_Framework_TestCase
+final class SymfonyRunnerTest extends TestCase
 {
     /**
      * @var SymfonyRunner

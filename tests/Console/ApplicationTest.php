@@ -3,13 +3,13 @@
 namespace Symplify\CodingStandard\Tests\Console;
 
 use PHPUnit_Framework_Assert;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Command\CheckCommand;
 use Symplify\CodingStandard\Command\FixCommand;
 use Symplify\CodingStandard\Console\Application;
 use Symplify\CodingStandard\Contract\Runner\RunnerCollectionInterface;
 
-final class ApplicationTest extends PHPUnit_Framework_TestCase
+final class ApplicationTest extends TestCase
 {
     /**
      * @var Application

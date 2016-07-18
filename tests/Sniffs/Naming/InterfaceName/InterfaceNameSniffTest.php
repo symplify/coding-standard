@@ -2,13 +2,13 @@
 
 namespace Symplify\CodingStandard\Tests\Sniffs\Naming\InterfaceName;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
 /**
  * @covers SymplifyCodingStandard\Sniffs\Naming\InterfaceNameSniff
  */
-final class InterfaceNameSniffTest extends PHPUnit_Framework_TestCase
+final class InterfaceNameSniffTest extends TestCase
 {
     /**
      * @var CodeSnifferRunner

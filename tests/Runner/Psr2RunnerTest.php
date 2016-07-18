@@ -2,11 +2,11 @@
 
 namespace Symplify\CodingStandard\Tests\Runner;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 use Symplify\CodingStandard\Runner\Psr2Runner;
 
-final class Psr2RunnerTest extends PHPUnit_Framework_TestCase
+final class Psr2RunnerTest extends TestCase
 {
     /**
      * @var RunnerInterface

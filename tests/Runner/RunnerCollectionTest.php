@@ -2,12 +2,12 @@
 
 namespace Symplify\CodingStandard\Tests\Runner;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Contract\Runner\RunnerInterface;
 use Symplify\CodingStandard\Runner\RunnerCollection;
 use Symplify\CodingStandard\Tests\Runner\RunnerCollectionSource\RandomRunner;
 
-final class RunnerCollectionTest extends PHPUnit_Framework_TestCase
+final class RunnerCollectionTest extends TestCase
 {
     public function testRunForDirectory()
     {

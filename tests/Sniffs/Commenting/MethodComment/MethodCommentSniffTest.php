@@ -2,13 +2,13 @@
 
 namespace Symplify\CodingStandard\Tests\Sniffs\Commenting\MethodComment;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
 /**
  * @covers SymplifyCodingStandard\Sniffs\Commenting\MethodCommentSniff
  */
-final class MethodCommentSniffTest extends PHPUnit_Framework_TestCase
+final class MethodCommentSniffTest extends TestCase
 {
     public function testDetection()
     {
