@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Symplify\CodingStandard\Tests;
 
 use PHP_CodeSniffer;
@@ -12,21 +14,13 @@ final class CodeSnifferRunner
      */
     private $codeSniffer;
 
-    /**
-     * @param string $sniff
-     */
-    public function __construct($sniff)
+    public function __construct(string $sniff)
     {
         $this->codeSniffer = new PHP_CodeSniffer();
         $this->codeSniffer->initStandard(__DIR__.'/../src/SymplifyCodingStandard/ruleset.xml', [$sniff]);
     }
 
-    /**
-     * @param string $source
-     *
-     * @return int
-     */
-    public function getErrorCountInFile($source)
+    public function getErrorCountInFile(string $source) : int
     {
         $this->ensureFileExists($source);
 
@@ -35,12 +29,7 @@ final class CodeSnifferRunner
         return $file->getErrorCount();
     }
 
-    /**
-     * @param string $source
-     *
-     * @return string
-     */
-    public function getFixedContent($source)
+    public function getFixedContent(string $source) : string
     {
         $this->ensureFileExists($source);
 
@@ -50,10 +39,7 @@ final class CodeSnifferRunner
         return $file->fixer->getContents();
     }
 
-    /**
-     * @param string $source
-     */
-    private function ensureFileExists($source)
+    private function ensureFileExists(string $source)
     {
         if (!file_exists($source)) {
             throw new FileNotFoundException(

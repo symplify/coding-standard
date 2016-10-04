@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Symplify
  * Copyright (c) 2012 Tomas Votruba (http://tomasvotruba.cz).
@@ -11,7 +13,8 @@ use PHP_CodeSniffer_File;
 use PHP_CodeSniffer_Sniff;
 
 /**
- * Rules:
+ * Rules:.
+ *
  * - Block comment should be used instead of one liner.
  */
 final class BlockPropertyCommentSniff implements PHP_CodeSniffer_Sniff

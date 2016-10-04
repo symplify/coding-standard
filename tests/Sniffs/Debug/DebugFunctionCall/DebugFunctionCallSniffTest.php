@@ -5,9 +5,6 @@ namespace SymplifyTests\MikulasCodeSniffs\Sniffs\Debug\DebugFunctionCall;
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Debug\DebugFunctionCallSniff
- */
 final class DebugFunctionCallSniffTest extends TestCase
 {
     public function testDetection()

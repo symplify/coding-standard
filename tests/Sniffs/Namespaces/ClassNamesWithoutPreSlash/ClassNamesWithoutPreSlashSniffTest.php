@@ -5,9 +5,6 @@ namespace Symplify\CodingStandard\Tests\Sniffs\Namespaces\ClassNamesWithoutPreSl
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
- */
 final class ClassNamesWithoutPreSlashSniffTest extends TestCase
 {
     public function testDetection()

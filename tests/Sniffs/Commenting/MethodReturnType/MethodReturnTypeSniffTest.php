@@ -5,9 +5,6 @@ namespace Symplify\CodingStandard\Tests\Sniffs\Commenting\MethodReturnType;
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Commenting\MethodReturnTypeSniff
- */
 final class MethodReturnTypeSniffTest extends TestCase
 {
     public function testDetection()

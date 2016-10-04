@@ -5,9 +5,6 @@ namespace Symplify\CodingStandard\Tests\Sniffs\Naming\InterfaceName;
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Naming\InterfaceNameSniff
- */
 final class InterfaceNameSniffTest extends TestCase
 {
     /**

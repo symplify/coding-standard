@@ -5,9 +5,6 @@ namespace Symplify\CodingStandard\Tests\Sniffs\Commenting\VarPropertyComment;
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
- */
 final class VarPropertyCommentSniffTest extends TestCase
 {
     public function testDetection()

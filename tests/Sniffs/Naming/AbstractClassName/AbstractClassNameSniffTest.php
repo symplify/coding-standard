@@ -5,9 +5,6 @@ namespace Symplify\CodingStandard\Tests\Sniffs\Naming\AbstractClassName;
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Naming\AbstractClassNameSniff
- */
 final class AbstractClassNameSniffTest extends TestCase
 {
     public function testDetection()

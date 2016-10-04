@@ -5,9 +5,6 @@ namespace Symplify\CodingStandard\Tests\Sniffs\Commenting\BlockPropertyComment;
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
- */
 final class BlockPropertyCommentSniffTest extends TestCase
 {
     public function testDetection()

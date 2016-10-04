@@ -5,9 +5,6 @@ namespace Symplify\CodingStandard\Tests\Sniffs\Classes\ClassDeclaration;
 use PHPUnit\Framework\TestCase;
 use Symplify\CodingStandard\Tests\CodeSnifferRunner;
 
-/**
- * @covers SymplifyCodingStandard\Sniffs\Classes\FinalInterfaceSniff
- */
 final class FinalInterfaceSniffTest extends TestCase
 {
     public function testDetection()
