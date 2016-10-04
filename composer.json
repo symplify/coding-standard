@@ -8,7 +8,7 @@
     "require": {
         "php": "^7.0",
         "friendsofphp/php-cs-fixer": "^1.11",
-        "squizlabs/php_codesniffer": "^2.6",
+        "squizlabs/php_codesniffer": "^2.7",
         "symfony/console": "^3.0",
         "symfony/process": "^3.0"
     },
