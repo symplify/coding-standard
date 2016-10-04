@@ -15,7 +15,7 @@ use PHP_CodeSniffer_Standards_AbstractVariableSniff;
  * - Property should have docblock comment (except for {@inheritdoc}).
  *
  * @see PHP_CodeSniffer_Standards_AbstractVariableSniff is used, because it's very difficult to
- * separate properties from variables (in args, method etc.). This class does is for us.
+ * separate properties from variables (in args, method etc.). This class does is for us
  */
 final class VarPropertyCommentSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
