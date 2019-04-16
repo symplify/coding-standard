@@ -445,7 +445,7 @@ services:
 # ecs.yml
 services:
     Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer:
-        max_line_length: 100 # default: 120
+        line_length: 100 # default: 120
         break_long_lines: true # default: true
         inline_short_lines: false # default: true
 ```
