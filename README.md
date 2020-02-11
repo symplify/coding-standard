@@ -102,7 +102,7 @@ Same as the one above just for classes.
 
 <br>
 
-### Remove extra around public/protected/private/static modifiers and const
+### Remove extra spacing around public/protected/private/static modifiers and const
 
 - class: [`Symplify\CodingStandard\Fixer\Spacing\RemoveSpacingAroundModifierAndConstFixer`](packages/coding-standard/src/Fixer/Spacing/RemoveSpacingAroundModifierAndConstFixer.php)
 
@@ -238,7 +238,7 @@ class Finder
  }
 ```
 
-Do you want skip some classes? Configure it:
+Do you want to skip some classes? Configure it:
 
 ```yaml
 # ecs.yml
