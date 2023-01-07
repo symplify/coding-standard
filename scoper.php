@@ -91,5 +91,18 @@ return [
                 $content
             );
         },
+
+        function (string $filePath, string $prefix, string $content): string {
+            if (! str_ends_with($filePath, '/config/config.php') && ! str_ends_with($filePath, '/config/symplify.php')) {
+                return $content;
+            }
+
+            return str_replace(
+                $prefix . '\\\\Symplify\\\\EasyCodingStandard\\\\Config\\\\ECSConfig',
+                'Symplify\EasyCodingStandard\Config\ECSConfig',
+                $content
+            );
+        },
+
     ],
 ];
