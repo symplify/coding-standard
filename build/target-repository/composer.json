@@ -4,5 +4,10 @@
     "license": "MIT",
     "require": {
         "php": ">=7.2"
+    },
+    "autoload": {
+        "files": [
+            "vendor/scoper-autoload.php"
+        ]
     }
 }
