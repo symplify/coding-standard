@@ -1,7 +1,9 @@
 name: Code Analysis
 
 on:
-    pull_request: null
+    pull_request:
+        branches:
+            - next-process-moving
     push:
         branches:
             - main
