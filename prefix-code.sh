@@ -41,8 +41,4 @@ mv scoped-code/* .
 note "Dumping Composer Autoload"
 composer dump-autoload --ansi --classmap-authoritative --no-dev
 
-# make bin/ecs runnable without "php"
-chmod 777 "bin/easy-ci"
-chmod 777 "bin/easy-ci.php"
-
 note "Finished"
