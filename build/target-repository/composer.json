@@ -1,0 +1,8 @@
+{
+    "name": "symplify/coding-standard",
+    "description": "Set of Symplify rules for PHP_CodeSniffer and PHP CS Fixer.",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.2"
+    }
+}
