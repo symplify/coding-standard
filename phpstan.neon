@@ -5,3 +5,7 @@ parameters:
         - src
         - config
         - tests
+
+    excludePaths:
+        - '*/tests/**/Source/*'
+        - '*/tests/**/Fixture/*'
