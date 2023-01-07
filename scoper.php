@@ -2,104 +2,94 @@
 
 declare(strict_types=1);
 
+use Isolated\Symfony\Component\Finder\Finder;
+
 require __DIR__ . '/vendor/autoload.php';
 
-$nowDateTime = new DateTime('now');
-$timestamp = $nowDateTime->format('Ym');
+$timestamp = (new DateTime('now'))->format('Ym');
 
 // @see https://github.com/humbug/php-scoper/blob/master/docs/further-reading.md
 use Nette\Utils\Strings;
 
+$polyfillsBootstraps = array_map(
+    static fn (SplFileInfo $fileInfo) => $fileInfo->getPathname(),
+    iterator_to_array(
+        Finder::create()
+            ->files()
+            ->in(__DIR__ . '/vendor/symfony/polyfill-*')
+            ->name('bootstrap*.php'),
+        false,
+    ),
+);
+
+$polyfillsStubs = array_map(
+    static fn (SplFileInfo $fileInfo) => $fileInfo->getPathname(),
+    iterator_to_array(
+        Finder::create()
+            ->files()
+            ->in(__DIR__ . '/vendor/symfony/polyfill-*/Resources/stubs')
+            ->name('*.php'),
+        false,
+    ),
+);
+
 // see https://github.com/humbug/php-scoper
 return [
     'prefix' => 'CodingStandard' . $timestamp,
-    'expose-classes' => [
-        // part of public interface of configs.php
-        'Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator',
-    ],
     'expose-constants' => ['#^SYMFONY\_[\p{L}_]+$#'],
-    'exclude-namespaces' => ['#^Symplify\\\\CodingStandard#', '#^Symfony\\\\Polyfill#'],
+
+    // excluded
+    'exclude-namespaces' => [
+        '#^Symplify\\\\CodingStandard#',
+        '#^Symplify\\\\PhpConfigPrinter#',
+        '#^Symfony\\\\Polyfill#',
+    ],
     'exclude-files' => [
-        // do not prefix "trigger_deprecation" from symfony - https://github.com/symfony/symfony/commit/0032b2a2893d3be592d4312b7b098fb9d71aca03
         // these paths are relative to this file location, so it should be in the root directory
         'vendor/symfony/deprecation-contracts/function.php',
-        'stubs/PHPUnit/PHPUnit_Framework_TestCase.php',
+        ...$polyfillsBootstraps,
+        ...$polyfillsStubs,
     ],
     'patchers' => [
-        // scope symfony configs
+        // unprefix strings used for config printing
+        // fixes https://github.com/symplify/symplify/issues/3976
         function (string $filePath, string $prefix, string $content): string {
-            if (! Strings::match($filePath, '#(packages|config|services)\.php$#')) {
+            /** @see \Symplify\PhpConfigPrinter\ValueObject\FunctionName */
+            if (! str_ends_with($filePath, 'vendor/symplify/php-config-printer/src/ValueObject/FunctionName.php')) {
                 return $content;
             }
 
-            // fix symfony config load scoping, except CodingStandard
-            $content = Strings::replace(
-                $content,
-                '#load\(\'Symplify\\\\\\\\(?<package_name>[A-Za-z]+)#',
-                function (array $match) use ($prefix) {
-                    if (in_array($match['package_name'], ['CodingStandard'], true)) {
-                        // skip
-                        return $match[0];
-                    }
+            $pattern = sprintf('#public const (.*?) = \'%s\\\\\\\\#', $prefix);
 
-                    return 'load(\'' . $prefix . '\Symplify\\' . $match['package_name'];
-                }
-            );
-
-            return $content;
+            return Strings::replace($content, $pattern, 'public const $1 = \'');
         },
 
-        // unprefix test case class names
+        // unprefix strings class, used for node factory
+        // fixes https://github.com/symplify/symplify/issues/3976
         function (string $filePath, string $prefix, string $content): string {
-            if (! str_ends_with($filePath, 'packages/Testing/UnitTestFilter.php')) {
+            if (! str_ends_with($filePath, 'src/NodeFactory/ContainerConfiguratorReturnClosureFactory.php')) {
                 return $content;
             }
 
-            $content = Strings::replace(
-                $content,
-                '#' . $prefix . '\\\\PHPUnit\\\\Framework\\\\TestCase#',
-                'PHPUnit\Framework\TestCase'
-            );
-
-            return Strings::replace(
-                $content,
-                '#' . $prefix . '\\\\PHPUnit_Framework_TestCase#',
-                'PHPUnit_Framework_TestCase'
+            return str_replace(
+                $prefix . '\\\\Symfony\\\\Component\\\\DependencyInjection\\\\Loader\\\\Configurator\\\\ContainerConfigurator',
+                'Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator',
+                $content
             );
         },
 
-        // unprefix kernerl test case class names
+        // unprefix strings class, used for node factory
+        // fixes https://github.com/symplify/symplify/issues/3976
         function (string $filePath, string $prefix, string $content): string {
-            if (! str_ends_with($filePath, 'packages/Testing/UnitTestFilter.php')) {
+            if (! str_ends_with($filePath, '/PhpParser/NodeFactory/ConfiguratorClosureNodeFactory.php')) {
                 return $content;
             }
 
-            $content = Strings::replace(
-                $content,
-                '#' . $prefix . '\\\\Symfony\\\\Bundle\\\\FrameworkBundle\\\\Test\\\\KernelTestCase#',
-                'Symfony\Bundle\FrameworkBundle\Test\KernelTestCase'
+            return str_replace(
+                $prefix . '\\\\Symfony\\\\Component\\\\Routing\\\\Loader\\\\Configurator\\\\RoutingConfigurator',
+                'Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator',
+                $content
             );
-
-            return Strings::replace(
-                $content,
-                '#' . $prefix . '\\\\Symfony\\\\Component\\\\Form\\\\Test\\\\TypeTestCase',
-                'Symfony\Component\Form\Test\TypeTestCase'
-            );
-        },
-
-        // unprefix string class names to ignore, to keep original class names
-        function (string $filePath, string $prefix, string $content): string {
-            if (! str_ends_with($filePath, 'packages/ActiveClass/Filtering/PossiblyUnusedClassesFilter.php')) {
-                return $content;
-            }
-
-            return Strings::replace($content, '#DEFAULT_TYPES_TO_SKIP = (?<content>.*?)\;#ms', function (array $match) use (
-                $prefix
-            ) {
-                // remove prefix from there
-                return 'DEFAULT_TYPES_TO_SKIP = ' .
-                    Strings::replace($match['content'], '#' . $prefix . '\\\\#', '') . ';';
-            });
         },
     ],
 ];
