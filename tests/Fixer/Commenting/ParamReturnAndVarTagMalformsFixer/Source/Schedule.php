@@ -6,5 +6,4 @@ namespace Symplify\CodingStandard\Tests\Fixer\Commenting\ParamReturnAndVarTagMal
 
 final class Schedule
 {
-
 }
