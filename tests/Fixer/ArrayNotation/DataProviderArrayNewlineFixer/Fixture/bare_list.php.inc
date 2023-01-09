@@ -24,10 +24,8 @@ final class BareList extends TestCase
 {
     public function provideData()
     {
-        return [
-            'simple',
-            'easy'
-        ];
+        return ['simple',
+'easy'];
     }
 }
 

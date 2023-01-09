@@ -20,7 +20,4 @@ return static function (ECSConfig $ecsConfig): void {
         SetList::COMMON,
         SetList::PSR_12,
     ]);
-
-    $ecsConfig->services()
-        ->set(\Symplify\CodingStandard\TokenRunner\Arrays\ArrayItemNewliner::class);
 };

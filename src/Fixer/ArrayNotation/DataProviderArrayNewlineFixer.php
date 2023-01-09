@@ -14,7 +14,6 @@ use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\ArrayAnalyzer;
 use Symplify\CodingStandard\TokenRunner\Arrays\ArrayItemNewliner;
 use Symplify\CodingStandard\TokenRunner\Traverser\ArrayBlockInfoFinder;
-use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 use Symplify\CodingStandard\TokenRunner\ValueObject\TokenKinds;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -72,8 +71,11 @@ final class DataProviderArrayNewlineFixer extends AbstractSymplifyFixer implemen
      */
     public function fix(SplFileInfo $fileInfo, Tokens $tokens): void
     {
-        $arrayBlockInfos = $this->arrayBlockInfoFinder->findArrayOpenerBlockInfos($tokens);
+        if (! $this->isInsidePHPUnitTestCase($tokens)) {
+            return;
+        }
 
+        $arrayBlockInfos = $this->arrayBlockInfoFinder->findArrayOpenerBlockInfos($tokens);
         foreach ($arrayBlockInfos as $arrayBlockInfo) {
             $this->arrayItemNewliner->fixArrayOpener($tokens, $arrayBlockInfo);
         }
@@ -115,36 +117,31 @@ CODE_SAMPLE
         ]);
     }
 
-    ///**
-    // * @param Tokens<Token> $tokens
-    // */
-    //private function fixArrayOpener(Tokens $tokens, BlockInfo $blockInfo): void
-    //{
-    //    $this->arrayAnalyzer->traverseArrayWithoutNesting(
-    //        $tokens,
-    //        $blockInfo,
-    //        function (Token $token, int $position, Tokens $tokens): void {
-    //            if ($token->getContent() !== ',') {
-    //                return;
-    //            }
-    //
-    //            $nextTokenPosition = $position + 1;
-    //            $nextToken = $tokens[$nextTokenPosition] ?? null;
-    //            if (! $nextToken instanceof Token) {
-    //                return;
-    //            }
-    //
-    //            if (\str_contains($nextToken->getContent(), "\n")) {
-    //                return;
-    //            }
-    //
-    //            $lookaheadPosition = $tokens->getNonWhitespaceSibling($position, 1, " \t\r\0\x0B");
-    //            if ($lookaheadPosition !== null && $tokens[$lookaheadPosition]->isGivenKind(T_COMMENT)) {
-    //                return;
-    //            }
-    //
-    //            $tokens->ensureWhitespaceAtIndex($nextTokenPosition, 0, $this->whitespacesFixerConfig->getLineEnding());
-    //        }
-    //    );
-    //}
+    /**
+     * @param Tokens<Token> $tokens
+     */
+    private function isInsidePHPUnitTestCase(Tokens $tokens): bool
+    {
+        // function arguments, function call parameters, lambda use()
+        foreach ($tokens as $position => $token) {
+            if (! $token->isGivenKind(T_EXTENDS)) {
+                continue;
+            }
+
+            $parentClassNamePosition = $tokens->getNextTokenOfKind($position, [[T_STRING]], false);
+            if (! is_int($parentClassNamePosition)) {
+                continue;
+            }
+
+            /** @var Token $parentClassNameToken */
+            $parentClassNameToken = $tokens[$parentClassNamePosition];
+
+            // we're in a test case most likely
+            if (str_ends_with($parentClassNameToken->getContent(), 'TestCase')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
