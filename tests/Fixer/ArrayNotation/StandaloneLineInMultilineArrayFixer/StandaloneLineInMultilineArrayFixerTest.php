@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symplify\CodingStandard\Tests\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer;
 
 use Iterator;
+use Symplify\CodingStandard\Tests\DataProviderFixtureYielder;
 use Symplify\EasyCodingStandard\Testing\PHPUnit\AbstractCheckerTestCase;
 
 final class StandaloneLineInMultilineArrayFixerTest extends AbstractCheckerTestCase
@@ -19,7 +20,7 @@ final class StandaloneLineInMultilineArrayFixerTest extends AbstractCheckerTestC
 
     public function provideData(): Iterator
     {
-        yield self::yieldFiles(__DIR__ . '/Fixture');
+        return DataProviderFixtureYielder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
     public function provideConfig(): string

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symplify\CodingStandard\Tests\Fixer\LineLength\LineLengthFixer;
 
 use Iterator;
+use Symplify\CodingStandard\Tests\DataProviderFixtureYielder;
 use Symplify\EasyCodingStandard\Testing\PHPUnit\AbstractCheckerTestCase;
 
 final class LineLengthFixerTest extends AbstractCheckerTestCase
@@ -19,7 +20,7 @@ final class LineLengthFixerTest extends AbstractCheckerTestCase
 
     public function provideData(): Iterator
     {
-        yield self::yieldFiles(__DIR__ . '/Fixture');
+        return DataProviderFixtureYielder::yieldDirectory(__DIR__ . '/Fixture');
     }
 
     public function provideConfig(): string

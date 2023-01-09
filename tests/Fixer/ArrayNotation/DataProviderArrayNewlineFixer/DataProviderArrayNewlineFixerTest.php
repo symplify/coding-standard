@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Symplify\CodingStandard\Tests\Fixer\Spacing\MethodChainingNewlineFixer;
+namespace Symplify\CodingStandard\Tests\Fixer\ArrayNotation\DataProviderArrayNewlineFixer;
 
 use Iterator;
 use Symplify\CodingStandard\Tests\DataProviderFixtureYielder;
 use Symplify\EasyCodingStandard\Testing\PHPUnit\AbstractCheckerTestCase;
 
-final class MethodChainingNewlineFixerTest extends AbstractCheckerTestCase
+final class DataProviderArrayNewlineFixerTest extends AbstractCheckerTestCase
 {
     /**
      * @dataProvider provideData()
