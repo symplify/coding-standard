@@ -1,4 +1,4 @@
-# 16 Rules Overview
+# 15 Rules Overview
 
 ## ArrayListItemNewlineFixer
 
@@ -39,31 +39,6 @@ Strict type declaration has to be followed by empty line
  declare(strict_types=1);
 +
  namespace App;
-```
-
-<br>
-
-## DataProviderArrayNewlineFixer
-
-PHP array item in data provider has to have new line per item
-
-- class: [`Symplify\CodingStandard\Fixer\ArrayNotation\DataProviderArrayNewlineFixer`](../src/Fixer/ArrayNotation/DataProviderArrayNewlineFixer.php)
-
-```diff
- use PHPUnit\Framework\TestCase;
-
- final class SomeTest extends TestCase
- {
-     public function provideData()
-     {
--        return [1, 2, 3];
-+        return [
-+            1,
-+            2,
-+            3
-+        ];
-     }
- }
 ```
 
 <br>
