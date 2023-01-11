@@ -37,7 +37,6 @@ return static function (ECSConfig $ecsConfig): void {
         MethodChainingNewlineFixer::class,
         NewlineServiceDefinitionConfigFixer::class,
         SpaceAfterCommaHereNowDocFixer::class,
-        StandaloneLinePromotedPropertyFixer::class,
         BlankLineAfterStrictTypesFixer::class,
 
         // line length
@@ -45,7 +44,6 @@ return static function (ECSConfig $ecsConfig): void {
 
         // naming
         StandardizeHereNowDocKeywordFixer::class,
-
     ]);
 
     $ecsConfig->ruleWithConfiguration(GeneralPhpdocAnnotationRemoveFixer::class, [
