@@ -15,7 +15,6 @@ final class MethodNameResolver
 {
     /**
      * @param Tokens<Token> $tokens
-     * @param MethodName::* $desiredMethodName
      */
     public function isMethodName(Tokens $tokens, int $position, string $desiredMethodName): bool
     {
