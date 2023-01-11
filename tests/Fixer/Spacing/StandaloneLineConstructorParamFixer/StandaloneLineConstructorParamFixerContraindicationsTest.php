@@ -19,7 +19,7 @@ final class StandaloneLineConstructorParamFixerContraindicationsTest extends Abs
 
     public function provideData(): Iterator
     {
-        yield self::yieldFiles(__DIR__ . '/FixtureContraindications');
+        return self::yieldFiles(__DIR__ . '/FixtureContraindications');
     }
 
     public function provideConfig(): string

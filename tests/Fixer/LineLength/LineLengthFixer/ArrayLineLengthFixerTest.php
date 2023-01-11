@@ -19,7 +19,7 @@ final class ArrayLineLengthFixerTest extends AbstractCheckerTestCase
 
     public function provideData(): Iterator
     {
-        yield self::yieldFiles(__DIR__ . '/FixtureArray');
+        return self::yieldFiles(__DIR__ . '/FixtureArray');
     }
 
     public function provideConfig(): string
