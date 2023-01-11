@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use PhpCsFixer\Tokenizer\Analyzer\FunctionsAnalyzer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return static function (ECSConfig $ecsConfig): void {
@@ -20,6 +19,4 @@ return static function (ECSConfig $ecsConfig): void {
             __DIR__ . '/../src/Exception',
             __DIR__ . '/../src/ValueObject',
         ]);
-
-    $services->set(FunctionsAnalyzer::class);
 };
