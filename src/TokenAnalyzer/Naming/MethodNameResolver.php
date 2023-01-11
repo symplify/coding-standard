@@ -6,7 +6,6 @@ namespace Symplify\CodingStandard\TokenAnalyzer\Naming;
 
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
-use Symplify\CodingStandard\Enum\MethodName;
 
 /**
  * @api
