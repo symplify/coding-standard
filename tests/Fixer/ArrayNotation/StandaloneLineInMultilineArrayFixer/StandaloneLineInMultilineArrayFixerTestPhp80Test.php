@@ -19,7 +19,7 @@ final class StandaloneLineInMultilineArrayFixerTestPhp80Test extends AbstractChe
 
     public function provideData(): Iterator
     {
-        yield self::yieldFiles(__DIR__ . '/FixturePhp80');
+        return self::yieldFiles(__DIR__ . '/FixturePhp80');
     }
 
     public function provideConfig(): string

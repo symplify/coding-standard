@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer;
 
 use Iterator;
-use Symplify\CodingStandard\Tests\DataProviderFixtureYielder;
 use Symplify\EasyCodingStandard\Testing\PHPUnit\AbstractCheckerTestCase;
 
 /**
@@ -23,7 +22,7 @@ final class ParamReturnAndVarTagMalformsFixerTest extends AbstractCheckerTestCas
 
     public function provideData(): Iterator
     {
-        return DataProviderFixtureYielder::yieldDirectory(__DIR__ . '/Fixture');
+        return self::yieldFiles(__DIR__ . '/Fixture');
     }
 
     public function provideConfig(): string

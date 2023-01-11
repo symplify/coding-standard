@@ -19,7 +19,7 @@ final class ConfiguredLineLengthFixerTest extends AbstractCheckerTestCase
 
     public function provideData(): Iterator
     {
-        yield self::yieldFiles(__DIR__ . '/FixtureConfigured');
+        return self::yieldFiles(__DIR__ . '/FixtureConfigured');
     }
 
     public function provideConfig(): string

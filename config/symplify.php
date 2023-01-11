@@ -18,6 +18,8 @@ return static function (ECSConfig $ecsConfig): void {
         ->public()
         ->autowire();
 
+    // epxpclit like other configs :) no magic!!!
+
     $services->set(FinalInternalClassFixer::class);
 
     $services->load('Symplify\CodingStandard\Fixer\\', __DIR__ . '/../src/Fixer')

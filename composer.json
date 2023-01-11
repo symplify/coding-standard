@@ -13,8 +13,7 @@
         "symplify/rule-doc-generator-contracts": "^11.2"
     },
     "require-dev": {
-        "symplify/easy-coding-standard": "^11.1.31",
-        "symplify/symplify-kernel": "^11.2",
+        "symplify/easy-coding-standard": "^11.2.1",
         "symplify/smart-file-system": "^11.2",
         "symfony/framework-bundle": "6.1.*",
         "squizlabs/php_codesniffer": "^3.7.1",
