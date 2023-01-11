@@ -13,7 +13,6 @@ use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\TokenAnalyzer\Naming\MethodNameResolver;
 use Symplify\CodingStandard\TokenAnalyzer\ParamNewliner;
-use Symplify\PackageBuilder\ValueObject\MethodName;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -71,7 +70,7 @@ final class StandaloneLineConstructorParamFixer extends AbstractSymplifyFixer im
                 continue;
             }
 
-            if (! $this->methodNameResolver->isMethodName($tokens, $position, MethodName::CONSTRUCTOR)) {
+            if (! $this->methodNameResolver->isMethodName($tokens, $position, '__construct')) {
                 continue;
             }
 

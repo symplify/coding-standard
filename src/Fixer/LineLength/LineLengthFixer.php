@@ -20,7 +20,6 @@ use Symplify\CodingStandard\TokenAnalyzer\Naming\MethodNameResolver;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\BlockFinder;
 use Symplify\CodingStandard\TokenRunner\Transformer\FixerTransformer\LineLengthTransformer;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
-use Symplify\PackageBuilder\ValueObject\MethodName;
 use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
@@ -243,7 +242,7 @@ CODE_SAMPLE
         if ($this->standaloneLineConstructorParamFixer && $this->methodNameResolver->isMethodName(
             $tokens,
             $position,
-            MethodName::CONSTRUCTOR
+            '__construct'
         )) {
             return;
         }
