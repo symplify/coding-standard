@@ -50,8 +50,8 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer impl
      * @param MalformWorkerInterface[] $malformWorkers
      */
     public function __construct(
-        private array $malformWorkers,
-        private TokenReverser $tokenReverser
+        private readonly array $malformWorkers,
+        private readonly TokenReverser $tokenReverser
     ) {
     }
 

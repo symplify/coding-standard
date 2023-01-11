@@ -13,7 +13,7 @@ use Symplify\CodingStandard\TokenRunner\Exception\TokenNotFoundException;
 final class LineLengthOpenerTransformer
 {
     public function __construct(
-        private CallAnalyzer $callAnalyzer
+        private readonly CallAnalyzer $callAnalyzer
     ) {
     }
 

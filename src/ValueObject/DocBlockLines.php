@@ -11,8 +11,8 @@ final class DocBlockLines
      * @param array<string> $otherLines
      */
     public function __construct(
-        private array $descriptionLines,
-        private array $otherLines
+        private readonly array $descriptionLines,
+        private readonly array $otherLines
     ) {
     }
 

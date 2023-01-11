@@ -13,7 +13,7 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\Wrapper\FixerWrapper\ArrayWr
 final class ArrayWrapperFactory
 {
     public function __construct(
-        private TokenSkipper $tokenSkipper
+        private readonly TokenSkipper $tokenSkipper
     ) {
     }
 

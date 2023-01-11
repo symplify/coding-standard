@@ -7,8 +7,8 @@ namespace Symplify\CodingStandard\TokenRunner\ValueObject;
 final class BlockInfo
 {
     public function __construct(
-        private int $start,
-        private int $end
+        private readonly int $start,
+        private readonly int $end
     ) {
     }
 

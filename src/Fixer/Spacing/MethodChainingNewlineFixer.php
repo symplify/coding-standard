@@ -29,9 +29,9 @@ final class MethodChainingNewlineFixer extends AbstractSymplifyFixer implements 
     private const ERROR_MESSAGE = 'Each chain method call must be on own line';
 
     public function __construct(
-        private WhitespacesFixerConfig $whitespacesFixerConfig,
-        private BlockFinder $blockFinder,
-        private ChainMethodCallAnalyzer $chainMethodCallAnalyzer
+        private readonly WhitespacesFixerConfig $whitespacesFixerConfig,
+        private readonly BlockFinder $blockFinder,
+        private readonly ChainMethodCallAnalyzer $chainMethodCallAnalyzer
     ) {
     }
 

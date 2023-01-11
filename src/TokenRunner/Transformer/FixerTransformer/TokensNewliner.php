@@ -15,11 +15,11 @@ use Symplify\CodingStandard\TokenRunner\Whitespace\IndentResolver;
 final class TokensNewliner
 {
     public function __construct(
-        private LineLengthCloserTransformer $lineLengthCloserTransformer,
-        private TokenSkipper $tokenSkipper,
-        private LineLengthOpenerTransformer $lineLengthOpenerTransformer,
-        private WhitespacesFixerConfig $whitespacesFixerConfig,
-        private IndentResolver $indentResolver
+        private readonly LineLengthCloserTransformer $lineLengthCloserTransformer,
+        private readonly TokenSkipper $tokenSkipper,
+        private readonly LineLengthOpenerTransformer $lineLengthOpenerTransformer,
+        private readonly WhitespacesFixerConfig $whitespacesFixerConfig,
+        private readonly IndentResolver $indentResolver
     ) {
     }
 

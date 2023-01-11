@@ -29,8 +29,8 @@ final class StandaloneLineConstructorParamFixer extends AbstractSymplifyFixer im
     private const ERROR_MESSAGE = 'Constructor param should be on a standalone line to ease git diffs on new dependency';
 
     public function __construct(
-        private ParamNewliner $paramNewliner,
-        private MethodNameResolver $methodNameResolver
+        private readonly ParamNewliner $paramNewliner,
+        private readonly MethodNameResolver $methodNameResolver
     ) {
     }
 

@@ -12,8 +12,8 @@ use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\IndentDetector;
 final class IndentResolver
 {
     public function __construct(
-        private IndentDetector $indentDetector,
-        private WhitespacesFixerConfig $whitespacesFixerConfig
+        private readonly IndentDetector $indentDetector,
+        private readonly WhitespacesFixerConfig $whitespacesFixerConfig
     ) {
     }
 

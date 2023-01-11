@@ -33,9 +33,9 @@ final class NewlineServiceDefinitionConfigFixer extends AbstractSymplifyFixer im
     private const FLUENT_METHOD_NAMES = ['call', 'property', 'args', 'arg'];
 
     public function __construct(
-        private WhitespacesFixerConfig $whitespacesFixerConfig,
-        private SymfonyClosureAnalyzer $symfonyClosureAnalyzer,
-        private TokenReverser $tokenReverser,
+        private readonly WhitespacesFixerConfig $whitespacesFixerConfig,
+        private readonly SymfonyClosureAnalyzer $symfonyClosureAnalyzer,
+        private readonly TokenReverser $tokenReverser,
     ) {
     }
 

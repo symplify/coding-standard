@@ -11,7 +11,7 @@ use PhpCsFixer\WhitespacesFixerConfig;
 final class IndentDetector
 {
     public function __construct(
-        private WhitespacesFixerConfig $whitespacesFixerConfig
+        private readonly WhitespacesFixerConfig $whitespacesFixerConfig
     ) {
     }
 

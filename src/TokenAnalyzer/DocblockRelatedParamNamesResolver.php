@@ -16,7 +16,7 @@ final class DocblockRelatedParamNamesResolver
     private array $functionTokens = [];
 
     public function __construct(
-        private FunctionsAnalyzer $functionsAnalyzer
+        private readonly FunctionsAnalyzer $functionsAnalyzer
     ) {
         $this->functionTokens[] = new Token([T_FUNCTION, 'function']);
 

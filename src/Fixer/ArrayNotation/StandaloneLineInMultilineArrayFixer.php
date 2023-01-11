@@ -31,9 +31,9 @@ final class StandaloneLineInMultilineArrayFixer extends AbstractSymplifyFixer im
     private const ERROR_MESSAGE = 'Indexed arrays must have 1 item per line';
 
     public function __construct(
-        private ArrayWrapperFactory $arrayWrapperFactory,
-        private TokensNewliner $tokensNewliner,
-        private BlockFinder $blockFinder
+        private readonly ArrayWrapperFactory $arrayWrapperFactory,
+        private readonly TokensNewliner $tokensNewliner,
+        private readonly BlockFinder $blockFinder
     ) {
     }
 

@@ -14,8 +14,8 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 final class ParamNewliner
 {
     public function __construct(
-        private BlockFinder $blockFinder,
-        private TokensNewliner $tokensNewliner,
+        private readonly BlockFinder $blockFinder,
+        private readonly TokensNewliner $tokensNewliner,
     ) {
     }
 

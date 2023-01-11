@@ -21,7 +21,7 @@ final class ParamNameTypoMalformWorker implements MalformWorkerInterface
     private const PARAM_NAME_REGEX = '#@param(\s+)(?<callable>callable)?(.*?)(?<paramName>\$\w+)#';
 
     public function __construct(
-        private DocblockRelatedParamNamesResolver $docblockRelatedParamNamesResolver
+        private readonly DocblockRelatedParamNamesResolver $docblockRelatedParamNamesResolver
     ) {
     }
 

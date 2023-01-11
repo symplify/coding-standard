@@ -21,9 +21,9 @@ final class ArrayWrapper
      * @param Tokens<Token> $tokens
      */
     public function __construct(
-        private Tokens $tokens,
-        private BlockInfo $blockInfo,
-        private TokenSkipper $tokenSkipper
+        private readonly Tokens $tokens,
+        private readonly BlockInfo $blockInfo,
+        private readonly TokenSkipper $tokenSkipper
     ) {
     }
 

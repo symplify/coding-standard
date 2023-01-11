@@ -33,7 +33,7 @@ final class RemovePHPStormAnnotationFixer extends AbstractSymplifyFixer implemen
     private const ERROR_MESSAGE = 'Remove "Created by PhpStorm" annotations';
 
     public function __construct(
-        private TokenReverser $tokenReverser
+        private readonly TokenReverser $tokenReverser
     ) {
     }
 

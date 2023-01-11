@@ -9,8 +9,8 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 final class BlockInfoMetadata
 {
     public function __construct(
-        private string $blockType,
-        private BlockInfo $blockInfo
+        private readonly string $blockType,
+        private readonly BlockInfo $blockInfo
     ) {
     }
 

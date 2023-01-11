@@ -7,8 +7,8 @@ namespace Symplify\CodingStandard\TokenRunner\ValueObject;
 final class LineLengthAndPosition
 {
     public function __construct(
-        private int $lineLength,
-        private int $currentPosition
+        private readonly int $lineLength,
+        private readonly int $currentPosition
     ) {
     }
 

@@ -36,7 +36,7 @@ final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer impleme
     private array $declareStrictTypeTokens = [];
 
     public function __construct(
-        private WhitespacesFixerConfig $whitespacesFixerConfig
+        private readonly WhitespacesFixerConfig $whitespacesFixerConfig
     ) {
         $this->declareStrictTypeTokens = [
             new Token([T_DECLARE, 'declare']),

@@ -13,7 +13,7 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\TokenKinds;
 final class ArrayBlockInfoFinder
 {
     public function __construct(
-        private BlockFinder $blockFinder
+        private readonly BlockFinder $blockFinder
     ) {
     }
 

@@ -13,7 +13,7 @@ final class ChainMethodCallAnalyzer
     private int $bracketNesting = 0;
 
     public function __construct(
-        private NewlineAnalyzer $newlineAnalyzer
+        private readonly NewlineAnalyzer $newlineAnalyzer
     ) {
     }
 

@@ -68,12 +68,12 @@ final class LineLengthFixer extends AbstractSymplifyFixer implements Configurabl
     private bool $inlineShortLines = true;
 
     public function __construct(
-        private LineLengthTransformer $lineLengthTransformer,
-        private BlockFinder $blockFinder,
-        private FunctionCallNameMatcher $functionCallNameMatcher,
-        private MethodNameResolver $methodNameResolver,
-        private HeredocAnalyzer $heredocAnalyzer,
-        private ?StandaloneLineConstructorParamFixer $standaloneLineConstructorParamFixer = null
+        private readonly LineLengthTransformer $lineLengthTransformer,
+        private readonly BlockFinder $blockFinder,
+        private readonly FunctionCallNameMatcher $functionCallNameMatcher,
+        private readonly MethodNameResolver $methodNameResolver,
+        private readonly HeredocAnalyzer $heredocAnalyzer,
+        private readonly ?StandaloneLineConstructorParamFixer $standaloneLineConstructorParamFixer = null
     ) {
     }
 

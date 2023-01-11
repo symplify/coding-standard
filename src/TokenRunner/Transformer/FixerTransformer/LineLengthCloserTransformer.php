@@ -15,8 +15,8 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 final class LineLengthCloserTransformer
 {
     public function __construct(
-        private CallAnalyzer $callAnalyzer,
-        private TokenFinder $tokenFinder
+        private readonly CallAnalyzer $callAnalyzer,
+        private readonly TokenFinder $tokenFinder
     ) {
     }
 

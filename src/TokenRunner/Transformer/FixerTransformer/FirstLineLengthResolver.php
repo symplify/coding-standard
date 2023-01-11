@@ -15,7 +15,7 @@ use Symplify\PackageBuilder\Configuration\StaticEolConfiguration;
 final class FirstLineLengthResolver
 {
     public function __construct(
-        private LineLengthAndPositionFactory $lineLengthAndPositionFactory
+        private readonly LineLengthAndPositionFactory $lineLengthAndPositionFactory
     ) {
     }
 

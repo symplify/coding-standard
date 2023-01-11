@@ -27,8 +27,8 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
     private const ERROR_MESSAGE = 'Remove useless PHPStorm-generated @todo comments, redundant "Class XY" or "gets service" comments etc.';
 
     public function __construct(
-        private UselessDocBlockCleaner $uselessDocBlockCleaner,
-        private TokenReverser $tokenReverser
+        private readonly UselessDocBlockCleaner $uselessDocBlockCleaner,
+        private readonly TokenReverser $tokenReverser
     ) {
     }
 

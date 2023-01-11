@@ -30,8 +30,8 @@ final class StandaloneLinePromotedPropertyFixer extends AbstractSymplifyFixer im
     private const ERROR_MESSAGE = 'Promoted property should be on standalone line';
 
     public function __construct(
-        private ParamNewliner $paramNewliner,
-        private MethodNameResolver $methodNameResolver
+        private readonly ParamNewliner $paramNewliner,
+        private readonly MethodNameResolver $methodNameResolver
     ) {
     }
 

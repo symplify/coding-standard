@@ -13,10 +13,10 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 final class LineLengthTransformer
 {
     public function __construct(
-        private LineLengthResolver $lineLengthResolver,
-        private TokensInliner $tokensInliner,
-        private FirstLineLengthResolver $firstLineLengthResolver,
-        private TokensNewliner $tokensNewliner
+        private readonly LineLengthResolver $lineLengthResolver,
+        private readonly TokensInliner $tokensInliner,
+        private readonly FirstLineLengthResolver $firstLineLengthResolver,
+        private readonly TokensNewliner $tokensNewliner
     ) {
     }
 

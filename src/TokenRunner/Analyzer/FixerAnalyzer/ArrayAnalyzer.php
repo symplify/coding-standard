@@ -12,7 +12,7 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 final class ArrayAnalyzer
 {
     public function __construct(
-        private TokenSkipper $tokenSkipper
+        private readonly TokenSkipper $tokenSkipper
     ) {
     }
 
