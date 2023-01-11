@@ -11,7 +11,6 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenAnalyzer\DocblockRelatedParamNamesResolver;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
-use Symplify\PackageBuilder\Configuration\StaticEolConfiguration;
 
 final class MissingParamNameMalformWorker implements MalformWorkerInterface
 {
@@ -138,7 +137,7 @@ final class MissingParamNameMalformWorker implements MalformWorkerInterface
             return Strings::replace($line->getContent(), $missingDollarSignPattern, '$1$$3');
         }
 
-        $replacement = '@param $1 ' . $newArgumentName . '$2' . StaticEolConfiguration::getEolChar();
+        $replacement = '@param $1 ' . $newArgumentName . '$2' . "\n";
 
         return Strings::replace($line->getContent(), self::PARAM_WITHOUT_NAME_REGEX, $replacement);
     }

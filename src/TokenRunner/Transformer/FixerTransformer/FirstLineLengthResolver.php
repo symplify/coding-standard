@@ -10,7 +10,6 @@ use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Exception\TokenNotFoundException;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 use Symplify\CodingStandard\TokenRunner\ValueObjectFactory\LineLengthAndPositionFactory;
-use Symplify\PackageBuilder\Configuration\StaticEolConfiguration;
 
 final class FirstLineLengthResolver
 {
@@ -42,7 +41,7 @@ final class FirstLineLengthResolver
         $lineLength += strlen($currentToken->getContent());
 
         // minus end of lines, do not count line feeds as characters
-        $endOfLineCount = substr_count($currentToken->getContent(), StaticEolConfiguration::getEolChar());
+        $endOfLineCount = substr_count($currentToken->getContent(), "\n");
         $lineLength -= $endOfLineCount;
 
         // compute from here to end of line
@@ -82,7 +81,7 @@ final class FirstLineLengthResolver
             throw new TokenNotFoundException($position);
         }
 
-        if (\str_starts_with($tokens[$position]->getContent(), StaticEolConfiguration::getEolChar())) {
+        if (\str_starts_with($tokens[$position]->getContent(), "\n")) {
             return true;
         }
 

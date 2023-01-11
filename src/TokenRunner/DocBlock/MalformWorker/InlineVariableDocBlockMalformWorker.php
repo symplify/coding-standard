@@ -8,7 +8,6 @@ use Nette\Utils\Strings;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
-use Symplify\PackageBuilder\Configuration\StaticEolConfiguration;
 
 final class InlineVariableDocBlockMalformWorker implements MalformWorkerInterface
 {
@@ -40,7 +39,7 @@ final class InlineVariableDocBlockMalformWorker implements MalformWorkerInterfac
         }
 
         // more than 2 newlines - keep it
-        if (substr_count($docContent, StaticEolConfiguration::getEolChar()) > 2) {
+        if (substr_count($docContent, "\n") > 2) {
             return $docContent;
         }
 

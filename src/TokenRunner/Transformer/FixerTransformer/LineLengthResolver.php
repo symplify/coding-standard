@@ -7,7 +7,6 @@ namespace Symplify\CodingStandard\TokenRunner\Transformer\FixerTransformer;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
-use Symplify\PackageBuilder\Configuration\StaticEolConfiguration;
 
 final class LineLengthResolver
 {
@@ -49,7 +48,7 @@ final class LineLengthResolver
         /** @var Token $currentToken */
         $currentToken = $tokens[$position];
 
-        if (\str_starts_with($currentToken->getContent(), StaticEolConfiguration::getEolChar())) {
+        if (\str_starts_with($currentToken->getContent(), "\n")) {
             return true;
         }
 
@@ -98,7 +97,7 @@ final class LineLengthResolver
         /** @var Token $currentToken */
         $currentToken = $tokens[$end];
 
-        while (! \str_starts_with($currentToken->getContent(), StaticEolConfiguration::getEolChar())) {
+        while (! \str_starts_with($currentToken->getContent(), "\n")) {
             $length += strlen($currentToken->getContent());
             ++$end;
 

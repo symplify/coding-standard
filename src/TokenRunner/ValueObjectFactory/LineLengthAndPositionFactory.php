@@ -8,7 +8,6 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Exception\TokenNotFoundException;
 use Symplify\CodingStandard\TokenRunner\ValueObject\LineLengthAndPosition;
-use Symplify\PackageBuilder\Configuration\StaticEolConfiguration;
 
 final class LineLengthAndPositionFactory
 {
@@ -57,7 +56,7 @@ final class LineLengthAndPositionFactory
             throw new TokenNotFoundException($position);
         }
 
-        if (\str_starts_with($tokens[$position]->getContent(), StaticEolConfiguration::getEolChar())) {
+        if (\str_starts_with($tokens[$position]->getContent(), "\n")) {
             return true;
         }
 
