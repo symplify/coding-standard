@@ -3,10 +3,7 @@
 declare(strict_types=1);
 
 use PhpCsFixer\Tokenizer\Analyzer\FunctionsAnalyzer;
-use PhpCsFixer\Tokenizer\Analyzer\NamespaceUsesAnalyzer;
-use Symplify\EasyCodingStandard\Caching\ChangedFilesDetector;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
-use Symplify\PackageBuilder\Reflection\PrivatesAccessor;
 
 return static function (ECSConfig $ecsConfig): void {
     $services = $ecsConfig->services();
@@ -24,9 +21,5 @@ return static function (ECSConfig $ecsConfig): void {
             __DIR__ . '/../src/ValueObject',
         ]);
 
-    $services->set(NamespaceUsesAnalyzer::class);
     $services->set(FunctionsAnalyzer::class);
-    $services->set(PrivatesAccessor::class);
-
-    $services->set(ChangedFilesDetector::class);
 };

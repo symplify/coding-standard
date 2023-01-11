@@ -13,27 +13,18 @@ use Symplify\EasyCodingStandard\Config\ECSConfig;
 return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->import(__DIR__ . '/config.php');
 
-    $services = $ecsConfig->services();
-    $services->defaults()
-        ->public()
-        ->autowire();
-
     // epxpclit like other configs :) no magic!!!
 
-    $services->set(FinalInternalClassFixer::class);
 
-    $services->load('Symplify\CodingStandard\Fixer\\', __DIR__ . '/../src/Fixer')
-        ->exclude([__DIR__ . '/../src/Fixer/Spacing', __DIR__ . '/../src/Fixer/Annotation']);
+    $ecsConfig->rules([
+        // newlines
+        MethodChainingNewlineFixer::class,
+        NewlineServiceDefinitionConfigFixer::class,
+        SpaceAfterCommaHereNowDocFixer::class,
+        StandaloneLinePromotedPropertyFixer::class,
+    ]);
 
-    // include rules from spacing, except only promoted property
-    // the file exclude does not work since Symfony 6.2 for some reason, so it must be done this way
-    $services->set(MethodChainingNewlineFixer::class);
-    $services->set(NewlineServiceDefinitionConfigFixer::class);
-    $services->set(SpaceAfterCommaHereNowDocFixer::class);
-    $services->set(StandaloneLinePromotedPropertyFixer::class);
-
-    $services->set(GeneralPhpdocAnnotationRemoveFixer::class)
-        ->call('configure', [[
-            'annotations' => ['throws', 'author', 'package', 'group', 'covers'],
-        ]]);
+    $ecsConfig->ruleWithConfiguration(GeneralPhpdocAnnotationRemoveFixer::class, [
+        'annotations' => ['throws', 'author', 'package', 'group', 'covers', 'category'],
+    ]);
 };
