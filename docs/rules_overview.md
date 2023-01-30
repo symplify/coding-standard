@@ -1,4 +1,4 @@
-# 15 Rules Overview
+# 14 Rules Overview
 
 ## ArrayListItemNewlineFixer
 
@@ -52,13 +52,15 @@ Docblock lenght should fit expected width
 - class: [`Symplify\CodingStandard\Fixer\LineLength\DocBlockLineLengthFixer`](../src/Fixer/LineLength/DocBlockLineLengthFixer.php)
 
 ```php
+<?php
+
+declare(strict_types=1);
+
 use Symplify\CodingStandard\Fixer\LineLength\DocBlockLineLengthFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->ruleWithConfiguration(DocBlockLineLengthFixer::class, [
-        DocBlockLineLengthFixer::LINE_LENGTH => 40,
-    ]);
+    $ecsConfig->ruleWithConfiguration(DocBlockLineLengthFixer::class, [DocBlockLineLengthFixer::LINE_LENGTH => 40]);
 };
 ```
 
@@ -86,13 +88,15 @@ Array items, method parameters, method call arguments, new arguments should be o
 - class: [`Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer`](../src/Fixer/LineLength/LineLengthFixer.php)
 
 ```php
+<?php
+
+declare(strict_types=1);
+
 use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->ruleWithConfiguration(LineLengthFixer::class, [
-        LineLengthFixer::LINE_LENGTH => 40,
-    ]);
+    $ecsConfig->ruleWithConfiguration(LineLengthFixer::class, [LineLengthFixer::LINE_LENGTH => 40]);
 };
 ```
 
@@ -288,37 +292,6 @@ Promoted property should be on standalone line
 +    ) {
      }
  }
-```
-
-<br>
-
-## StandardizeHereNowDocKeywordFixer
-
-Use configured nowdoc and heredoc keyword
-
-:wrench: **configure it!**
-
-- class: [`Symplify\CodingStandard\Fixer\Naming\StandardizeHereNowDocKeywordFixer`](../src/Fixer/Naming/StandardizeHereNowDocKeywordFixer.php)
-
-```php
-use Symplify\CodingStandard\Fixer\Naming\StandardizeHereNowDocKeywordFixer;
-use Symplify\EasyCodingStandard\Config\ECSConfig;
-
-return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->ruleWithConfiguration(StandardizeHereNowDocKeywordFixer::class, [
-        StandardizeHereNowDocKeywordFixer::KEYWORD => 'CODE_SNIPPET',
-    ]);
-};
-```
-
-↓
-
-```diff
--$value = <<<'WHATEVER'
-+$value = <<<'CODE_SNIPPET'
- ...
--'WHATEVER'
-+'CODE_SNIPPET'
 ```
 
 <br>
