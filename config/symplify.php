@@ -9,7 +9,6 @@ use Symplify\CodingStandard\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer;
 use Symplify\CodingStandard\Fixer\Commenting\RemoveUselessDefaultCommentFixer;
 use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
 use Symplify\CodingStandard\Fixer\Spacing\MethodChainingNewlineFixer;
-use Symplify\CodingStandard\Fixer\Spacing\NewlineServiceDefinitionConfigFixer;
 use Symplify\CodingStandard\Fixer\Spacing\SpaceAfterCommaHereNowDocFixer;
 use Symplify\CodingStandard\Fixer\Spacing\StandaloneLinePromotedPropertyFixer;
 use Symplify\CodingStandard\Fixer\Strict\BlankLineAfterStrictTypesFixer;
@@ -33,7 +32,6 @@ return static function (ECSConfig $ecsConfig): void {
 
         // newlines
         MethodChainingNewlineFixer::class,
-        NewlineServiceDefinitionConfigFixer::class,
         SpaceAfterCommaHereNowDocFixer::class,
         BlankLineAfterStrictTypesFixer::class,
 

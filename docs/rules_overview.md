@@ -1,4 +1,4 @@
-# 14 Rules Overview
+# 13 Rules Overview
 
 ## ArrayListItemNewlineFixer
 
@@ -132,26 +132,6 @@ Each chain method call must be on own line
 -$someClass->firstCall()->secondCall();
 +$someClass->firstCall()
 +->secondCall();
-```
-
-<br>
-
-## NewlineServiceDefinitionConfigFixer
-
-Add newline for a fluent call on service definition in Symfony config
-
-- class: [`Symplify\CodingStandard\Fixer\Spacing\NewlineServiceDefinitionConfigFixer`](../src/Fixer/Spacing/NewlineServiceDefinitionConfigFixer.php)
-
-```diff
- use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
- use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
-
- return static function (ContainerConfigurator $containerConfigurator): void {
-     $services = $containerConfigurator->services();
--    $services->set(LineLengthFixer::class)->call('configure', [['values']]);
-+    $services->set(LineLengthFixer::class)
-+        ->call('configure', [['values']]);
- };
 ```
 
 <br>
