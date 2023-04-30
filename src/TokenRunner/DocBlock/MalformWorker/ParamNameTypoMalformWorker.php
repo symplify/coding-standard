@@ -37,17 +37,19 @@ final class ParamNameTypoMalformWorker implements MalformWorkerInterface
 
         $paramNames = $this->getParamNames($docContent);
 
+        $missArgumentNames = [];
         // remove correct params
         foreach ($argumentNames as $key => $argumentName) {
             if (in_array($argumentName, $paramNames, true)) {
                 $paramPosition = array_search($argumentName, $paramNames, true);
                 unset($paramNames[$paramPosition]);
-                unset($argumentNames[$key]);
+            } else {
+                $missArgumentNames[$key] = $argumentName;
             }
         }
 
         // nothing to edit, all arguments are correct or there are no more @param annotations
-        if ($argumentNames === []) {
+        if ($missArgumentNames === []) {
             return $docContent;
         }
 
@@ -55,7 +57,7 @@ final class ParamNameTypoMalformWorker implements MalformWorkerInterface
             return $docContent;
         }
 
-        return $this->fixTypos($argumentNames, $paramNames, $docContent);
+        return $this->fixTypos($argumentNames, $missArgumentNames, $paramNames, $docContent);
     }
 
     /**
@@ -93,20 +95,36 @@ final class ParamNameTypoMalformWorker implements MalformWorkerInterface
 
     /**
      * @param string[] $argumentNames
+     * @param string[] $missArgumentNames
      * @param string[] $paramNames
      */
-    private function fixTypos(array $argumentNames, array $paramNames, string $docContent): string
+    private function fixTypos(array $argumentNames, array $missArgumentNames, array $paramNames, string $docContent): string
     {
-        foreach ($argumentNames as $key => $argumentName) {
+        // A table of permuted params. initialized by $argumentName instead of $paramNames is correct
+        $replacedParams = array_fill_keys($argumentNames, false);
+
+        foreach ($missArgumentNames as $key => $argumentName) {
             // 1. the same position
             if (! isset($paramNames[$key])) {
                 continue;
             }
 
             $typoName = $paramNames[$key];
-            $replacePattern = '#@param(.*?)' . preg_quote($typoName, '#') . '#';
+            $replacePattern = '#@param(.*?)(' . preg_quote($typoName, '#') . '\b)#';
 
-            $docContent = Strings::replace($docContent, $replacePattern, '@param$1' . $argumentName);
+            $docContent = Strings::replace($docContent, $replacePattern, static function ($matched) use ($argumentName, &$replacedParams) {
+                $paramName = $matched[2];
+
+                // 2. If the PHPDoc $paramName is one of the existing $argumentNames and has not already been replaced, it will be deferred
+                if (isset($replacedParams[$paramName]) && ! $replacedParams[$paramName]) {
+                    $replacedParams[$paramName] = true;
+
+                    return $matched[0];
+                }
+
+                // 3. Otherwise, replace $paramName with $argumentName in the @param line
+                return sprintf('@param%s%s', $matched[1], $argumentName);
+            });
         }
 
         return $docContent;
