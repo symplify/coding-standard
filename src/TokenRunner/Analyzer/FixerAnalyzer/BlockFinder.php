@@ -40,9 +40,6 @@ final class BlockFinder
     public function findInTokensByEdge(Tokens $tokens, int $position): ?BlockInfo
     {
         $token = $tokens[$position];
-        if (! $token instanceof Token) {
-            return null;
-        }
 
         if ($token->isGivenKind(T_ATTRIBUTE)) {
             return $this->createAttributeBlockInfo($tokens, $position);
