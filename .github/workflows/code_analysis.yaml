@@ -62,4 +62,9 @@ jobs:
             # composer install cache - https://github.com/ramsey/composer-install
             -   uses: "ramsey/composer-install@v2"
 
+            # Override code from symplify/coding-standard shipped with ECS
+            -   run: |
+                    rm -rf vendor/symplify/easy-coding-standard/vendor/symplify/coding-standard/src
+                    ln -s $PWD/src vendor/symplify/easy-coding-standard/vendor/symplify/coding-standard/
+
             -   run: ${{ matrix.actions.run }}
