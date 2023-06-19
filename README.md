@@ -17,10 +17,11 @@ composer require symplify/easy-coding-standard --dev
 
 ```diff
 # ecs.php
+ use Symplify\EasyCodingStandard\Config\ECSConfig;
 +use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
- return static function (ContainerConfigurator $containerConfigurator): void {
-+    $containerConfigurator->import(SetList::SYMPLIFY);
+ return static function (ECSConfig $ecsConfig): void {
++    $ecsConfig->sets([SetList::SYMPLIFY]);
 ```
 
 ## Rules Overview

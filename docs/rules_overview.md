@@ -1,4 +1,4 @@
-# 13 Rules Overview
+# 12 Rules Overview
 
 ## ArrayListItemNewlineFixer
 
@@ -43,42 +43,6 @@ Strict type declaration has to be followed by empty line
 
 <br>
 
-## DocBlockLineLengthFixer
-
-Docblock lenght should fit expected width
-
-:wrench: **configure it!**
-
-- class: [`Symplify\CodingStandard\Fixer\LineLength\DocBlockLineLengthFixer`](../src/Fixer/LineLength/DocBlockLineLengthFixer.php)
-
-```php
-<?php
-
-declare(strict_types=1);
-
-use Symplify\CodingStandard\Fixer\LineLength\DocBlockLineLengthFixer;
-use Symplify\EasyCodingStandard\Config\ECSConfig;
-
-return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->ruleWithConfiguration(DocBlockLineLengthFixer::class, [DocBlockLineLengthFixer::LINE_LENGTH => 40]);
-};
-```
-
-↓
-
-```diff
- /**
-- * Super long doc block description
-+ * Super long doc
-+ * block description
-  */
- function some()
- {
- }
-```
-
-<br>
-
 ## LineLengthFixer
 
 Array items, method parameters, method call arguments, new arguments should be on same/standalone line to fit line length.
@@ -96,7 +60,9 @@ use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->ruleWithConfiguration(LineLengthFixer::class, [LineLengthFixer::LINE_LENGTH => 40]);
+    $ecsConfig->ruleWithConfiguration(LineLengthFixer::class, [
+        LineLengthFixer::LINE_LENGTH => 40,
+    ]);
 };
 ```
 
