@@ -19,7 +19,8 @@
         "phpstan/phpstan": "^1.10.19",
         "rector/rector": "^0.17.1",
         "symplify/easy-ci": "^11.2",
-        "symplify/phpstan-extensions": "^11.2"
+        "symplify/phpstan-extensions": "^11.2",
+        "tomasvotruba/unused-public": "^0.1.12"
     },
     "autoload": {
         "psr-4": {
