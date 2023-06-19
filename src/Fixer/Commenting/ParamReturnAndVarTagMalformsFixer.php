@@ -12,8 +12,11 @@ use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\InlineVariableDocBlockMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\InlineVarMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\MissingParamNameMalformWorker;
+use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\MissingVarNameMalformWorker;
+use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\ParamNameReferenceMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\ParamNameTypoMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SuperfluousReturnNameMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SuperfluousVarNameMalformWorker;
@@ -24,13 +27,6 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see ParamNameTypoMalformWorker
- * @see InlineVarMalformWorker
- * @see MissingParamNameMalformWorker
- * @see SwitchedTypeAndNameMalformWorker
- * @see SuperfluousReturnNameMalformWorker
- * @see SuperfluousVarNameMalformWorker
- *
  * @see \Symplify\CodingStandard\Tests\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer\ParamReturnAndVarTagMalformsFixerTest
  */
 final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
@@ -47,12 +43,33 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer impl
     private const TYPE_ANNOTATION_REGEX = '#@(psalm-|phpstan-)?(param|return|var)#';
 
     /**
-     * @param MalformWorkerInterface[] $malformWorkers
+     * @var MalformWorkerInterface[]
      */
+    private array $malformWorkers = [];
+
     public function __construct(
-        private readonly array $malformWorkers,
+        InlineVariableDocBlockMalformWorker $inlineVariableDocBlockMalformWorker,
+        InlineVarMalformWorker $inlineVarMalformWorker,
+        MissingParamNameMalformWorker $missingParamNameMalformWorker,
+        MissingVarNameMalformWorker $missingVarNameMalformWorker,
+        ParamNameReferenceMalformWorker $paramNameReferenceMalformWorker,
+        ParamNameTypoMalformWorker $paramNameTypoMalformWorker,
+        SuperfluousReturnNameMalformWorker $superfluousReturnNameMalformWorker,
+        SuperfluousVarNameMalformWorker $superfluousVarNameMalformWorker,
+        SwitchedTypeAndNameMalformWorker $switchedTypeAndNameMalformWorker,
         private readonly TokenReverser $tokenReverser
     ) {
+        $this->malformWorkers = [
+            $inlineVariableDocBlockMalformWorker,
+            $inlineVarMalformWorker,
+            $missingParamNameMalformWorker,
+            $missingVarNameMalformWorker,
+            $paramNameReferenceMalformWorker,
+            $paramNameTypoMalformWorker,
+            $superfluousReturnNameMalformWorker,
+            $superfluousVarNameMalformWorker,
+            $switchedTypeAndNameMalformWorker,
+        ];
     }
 
     public function getDefinition(): FixerDefinitionInterface
