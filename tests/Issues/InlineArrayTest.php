@@ -5,19 +5,18 @@ declare(strict_types=1);
 namespace Symplify\CodingStandard\Tests\Issues;
 
 use Iterator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symplify\EasyCodingStandard\Testing\PHPUnit\AbstractCheckerTestCase;
 
 final class InlineArrayTest extends AbstractCheckerTestCase
 {
-    /**
-     * @dataProvider provideData()
-     */
+    #[DataProvider('provideData')]
     public function test(string $filePath): void
     {
         $this->doTestFile($filePath);
     }
 
-    public function provideData(): Iterator
+    public static function provideData(): Iterator
     {
         yield [__DIR__ . '/Fixture/inline_array.php.inc'];
         yield [__DIR__ . '/Fixture/skip_already_inlined.php.inc'];

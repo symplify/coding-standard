@@ -8,6 +8,5 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->sets([SetList::ARRAY]);
-
     $ecsConfig->rule(LineLengthFixer::class);
 };
