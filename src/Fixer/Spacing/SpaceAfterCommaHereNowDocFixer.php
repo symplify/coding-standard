@@ -10,15 +10,12 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\Spacing\SpaceAfterCommaHereNowDocFixer\SpaceAfterCommaHereNowDocFixerTest
  * @see https://3v4l.org/KPZXU
  */
-final class SpaceAfterCommaHereNowDocFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class SpaceAfterCommaHereNowDocFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
@@ -65,31 +62,5 @@ final class SpaceAfterCommaHereNowDocFixer extends AbstractSymplifyFixer impleme
 
             $tokens->ensureWhitespaceAtIndex($position + 1, 0, PHP_EOL);
         }
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-$values = [
-    <<<RECTIFY
-Some content
-RECTIFY,
-    1000
-];
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-$values = [
-    <<<RECTIFY
-Some content
-RECTIFY
-,
-    1000
-];
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

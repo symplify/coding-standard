@@ -14,14 +14,11 @@ use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\ArrayAnalyzer;
 use Symplify\CodingStandard\TokenRunner\Arrays\ArrayItemNewliner;
 use Symplify\CodingStandard\TokenRunner\Traverser\ArrayBlockInfoFinder;
 use Symplify\CodingStandard\TokenRunner\ValueObject\TokenKinds;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\ArrayNotation\ArrayListItemNewlineFixer\ArrayListItemNewlineFixerTest
  */
-final class ArrayListItemNewlineFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class ArrayListItemNewlineFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
@@ -70,21 +67,5 @@ final class ArrayListItemNewlineFixer extends AbstractSymplifyFixer implements D
 
             $this->arrayItemNewliner->fixArrayOpener($tokens, $arrayBlockInfo);
         }
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-$value = ['simple' => 1, 'easy' => 2];
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-$value = ['simple' => 1,
-'easy' => 2];
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

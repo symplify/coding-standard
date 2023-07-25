@@ -23,7 +23,3 @@ composer require symplify/easy-coding-standard --dev
  return static function (ECSConfig $ecsConfig): void {
 +    $ecsConfig->sets([SetList::SYMPLIFY]);
 ```
-
-## Rules Overview
-
-- [Rules Overview](/docs/rules_overview.md)

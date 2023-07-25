@@ -21,16 +21,13 @@ use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\BlockFinder;
 use Symplify\CodingStandard\TokenRunner\Transformer\FixerTransformer\LineLengthTransformer;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SymplifyKernel\Exception\ShouldNotHappenException;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\LineLength\LineLengthFixer\LineLengthFixerTest
  * @see \Symplify\CodingStandard\Tests\Fixer\LineLength\LineLengthFixer\ConfiguredLineLengthFixerTest
  */
-final class LineLengthFixer extends AbstractSymplifyFixer implements ConfigurableRuleInterface, ConfigurableFixerInterface, DocumentedRuleInterface
+final class LineLengthFixer extends AbstractSymplifyFixer implements ConfigurableRuleInterface, ConfigurableFixerInterface
 {
     /**
      * @api
@@ -136,41 +133,6 @@ final class LineLengthFixer extends AbstractSymplifyFixer implements Configurabl
 
             $this->processFunctionOrArray($tokens, $position);
         }
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new ConfiguredCodeSample(
-                <<<'CODE_SAMPLE'
-function some($veryLong, $superLong, $oneMoreTime)
-{
-}
-
-function another(
-    $short,
-    $now
-) {
-}
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-function some(
-    $veryLong,
-    $superLong,
-    $oneMoreTime
-) {
-}
-
-function another($short, $now) {
-}
-CODE_SAMPLE
-                ,
-                [
-                    self::LINE_LENGTH => 40,
-                ]
-            ),
-        ]);
     }
 
     /**
