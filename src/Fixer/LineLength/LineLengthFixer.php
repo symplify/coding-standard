@@ -12,6 +12,7 @@ use PhpCsFixer\Tokenizer\CT;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
+use Symplify\CodingStandard\Exception\ShouldNotHappenException;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\Fixer\Spacing\StandaloneLineConstructorParamFixer;
 use Symplify\CodingStandard\TokenAnalyzer\FunctionCallNameMatcher;
@@ -24,7 +25,6 @@ use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use Symplify\SymplifyKernel\Exception\ShouldNotHappenException;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\LineLength\LineLengthFixer\LineLengthFixerTest

@@ -112,7 +112,7 @@ final class ParamNameTypoMalformWorker implements MalformWorkerInterface
             $typoName = $paramNames[$key];
             $replacePattern = '#@param(.*?)(' . preg_quote($typoName, '#') . '\b)#';
 
-            $docContent = Strings::replace($docContent, $replacePattern, static function ($matched) use ($argumentName, &$replacedParams) {
+            $docContent = Strings::replace($docContent, $replacePattern, static function (array $matched) use ($argumentName, &$replacedParams) {
                 $paramName = $matched[2];
 
                 // 2. If the PHPDoc $paramName is one of the existing $argumentNames and has not already been replaced, it will be deferred

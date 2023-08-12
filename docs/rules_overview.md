@@ -51,23 +51,6 @@ Array items, method parameters, method call arguments, new arguments should be o
 
 - class: [`Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer`](../src/Fixer/LineLength/LineLengthFixer.php)
 
-```php
-<?php
-
-declare(strict_types=1);
-
-use Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer;
-use Symplify\EasyCodingStandard\Config\ECSConfig;
-
-return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->ruleWithConfiguration(LineLengthFixer::class, [
-        LineLengthFixer::LINE_LENGTH => 40,
-    ]);
-};
-```
-
-↓
-
 ```diff
 -function some($veryLong, $superLong, $oneMoreTime)
 -{
