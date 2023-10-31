@@ -61,6 +61,17 @@ final class BlockFinder
             if ($token->equals(';')) {
                 return null;
             }
+
+            if ($position !== null && $token->equals('(')) {
+                $closingPosition = $tokens->getNextMeaningfulToken($position);
+                if ($closingPosition !== null) {
+                    $closingToken = $tokens[$closingPosition];
+                    if ($closingToken->equals(')')) {
+                        // function has no arguments
+                        return null;
+                    }
+                }
+            }
         }
 
         // some invalid code
