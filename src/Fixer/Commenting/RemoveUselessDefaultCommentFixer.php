@@ -60,8 +60,9 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
             $cleanedDocContent = $this->uselessDocBlockCleaner->clearDocTokenContent(
                 $reversedTokens,
                 $index,
-                $token->getContent()
+                $token
             );
+
             if ($cleanedDocContent !== '') {
                 continue;
             }

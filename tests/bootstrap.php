@@ -28,3 +28,8 @@ if (! defined('PHP_CODESNIFFER_VERBOSITY')) {
     // initialize custom T_* token constants used by PHP_CodeSniffer parser
     new Tokens();
 }
+
+
+// prefer local coding-standard over old, vendor one
+exec('rm -rf vendor/symplify/easy-coding-standard/vendor/symplify/coding-standard/src');
+exec('ln -s $PWD/src vendor/symplify/easy-coding-standard/vendor/symplify/coding-standard/');
