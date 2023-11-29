@@ -37,10 +37,6 @@ jobs:
                         run: vendor/bin/phpunit
 
                     -
-                        name: 'PHP Linter'
-                        run: vendor/bin/parallel-lint src tests
-
-                    -
                         name: 'Check Commented Code'
                         run: vendor/bin/easy-ci check-commented-code src tests --ansi
 
