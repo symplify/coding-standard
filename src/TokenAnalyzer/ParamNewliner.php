@@ -11,11 +11,11 @@ use Symplify\CodingStandard\TokenRunner\Enum\LineKind;
 use Symplify\CodingStandard\TokenRunner\Transformer\FixerTransformer\TokensNewliner;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class ParamNewliner
+final readonly class ParamNewliner
 {
     public function __construct(
-        private readonly BlockFinder $blockFinder,
-        private readonly TokensNewliner $tokensNewliner,
+        private BlockFinder $blockFinder,
+        private TokensNewliner $tokensNewliner,
     ) {
     }
 

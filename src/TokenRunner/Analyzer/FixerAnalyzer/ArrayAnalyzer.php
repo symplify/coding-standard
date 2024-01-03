@@ -9,10 +9,10 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class ArrayAnalyzer
+final readonly class ArrayAnalyzer
 {
     public function __construct(
-        private readonly TokenSkipper $tokenSkipper
+        private TokenSkipper $tokenSkipper
     ) {
     }
 

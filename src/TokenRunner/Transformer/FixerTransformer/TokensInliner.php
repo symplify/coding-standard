@@ -9,10 +9,10 @@ use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\TokenSkipper;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class TokensInliner
+final readonly class TokensInliner
 {
     public function __construct(
-        private readonly TokenSkipper $tokenSkipper
+        private TokenSkipper $tokenSkipper
     ) {
     }
 

@@ -9,11 +9,11 @@ use PhpCsFixer\Tokenizer\Tokens;
 use PhpCsFixer\WhitespacesFixerConfig;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\IndentDetector;
 
-final class IndentResolver
+final readonly class IndentResolver
 {
     public function __construct(
-        private readonly IndentDetector $indentDetector,
-        private readonly WhitespacesFixerConfig $whitespacesFixerConfig
+        private IndentDetector $indentDetector,
+        private WhitespacesFixerConfig $whitespacesFixerConfig
     ) {
     }
 

@@ -10,11 +10,11 @@ use PhpCsFixer\WhitespacesFixerConfig;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\ArrayAnalyzer;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class ArrayItemNewliner
+final readonly class ArrayItemNewliner
 {
     public function __construct(
-        private readonly ArrayAnalyzer $arrayAnalyzer,
-        private readonly WhitespacesFixerConfig $whitespacesFixerConfig
+        private ArrayAnalyzer $arrayAnalyzer,
+        private WhitespacesFixerConfig $whitespacesFixerConfig
     ) {
     }
 

@@ -10,10 +10,10 @@ use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\CallAnalyzer;
 use Symplify\CodingStandard\TokenRunner\Exception\TokenNotFoundException;
 
-final class LineLengthOpenerTransformer
+final readonly class LineLengthOpenerTransformer
 {
     public function __construct(
-        private readonly CallAnalyzer $callAnalyzer
+        private CallAnalyzer $callAnalyzer
     ) {
     }
 

@@ -11,10 +11,10 @@ use Symplify\CodingStandard\TokenRunner\Exception\TokenNotFoundException;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 use Symplify\CodingStandard\TokenRunner\ValueObjectFactory\LineLengthAndPositionFactory;
 
-final class FirstLineLengthResolver
+final readonly class FirstLineLengthResolver
 {
     public function __construct(
-        private readonly LineLengthAndPositionFactory $lineLengthAndPositionFactory
+        private LineLengthAndPositionFactory $lineLengthAndPositionFactory
     ) {
     }
 

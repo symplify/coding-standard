@@ -12,7 +12,7 @@ use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenAnalyzer\DocblockRelatedParamNamesResolver;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
 
-final class MissingParamNameMalformWorker implements MalformWorkerInterface
+final readonly class MissingParamNameMalformWorker implements MalformWorkerInterface
 {
     /**
      * @var string
@@ -33,7 +33,7 @@ final class MissingParamNameMalformWorker implements MalformWorkerInterface
     private const PARAM_WITH_NAME_REGEX = '#@param(.*?)\$[\w]+(.*?)\n#';
 
     public function __construct(
-        private readonly DocblockRelatedParamNamesResolver $docblockRelatedParamNamesResolver
+        private DocblockRelatedParamNamesResolver $docblockRelatedParamNamesResolver
     ) {
     }
 
