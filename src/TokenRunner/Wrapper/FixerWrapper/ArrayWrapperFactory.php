@@ -10,10 +10,10 @@ use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\TokenSkipper;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 use Symplify\CodingStandard\TokenRunner\ValueObject\Wrapper\FixerWrapper\ArrayWrapper;
 
-final class ArrayWrapperFactory
+final readonly class ArrayWrapperFactory
 {
     public function __construct(
-        private readonly TokenSkipper $tokenSkipper
+        private TokenSkipper $tokenSkipper
     ) {
     }
 

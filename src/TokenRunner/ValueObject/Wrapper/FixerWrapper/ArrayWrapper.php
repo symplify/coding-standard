@@ -10,7 +10,7 @@ use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\TokenSkipper;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class ArrayWrapper
+final readonly class ArrayWrapper
 {
     /**
      * @var int[]
@@ -21,9 +21,9 @@ final class ArrayWrapper
      * @param Tokens<Token> $tokens
      */
     public function __construct(
-        private readonly Tokens $tokens,
-        private readonly BlockInfo $blockInfo,
-        private readonly TokenSkipper $tokenSkipper
+        private Tokens $tokens,
+        private BlockInfo $blockInfo,
+        private TokenSkipper $tokenSkipper
     ) {
     }
 

@@ -10,10 +10,10 @@ use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\BlockFinder;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 use Symplify\CodingStandard\TokenRunner\ValueObject\TokenKinds;
 
-final class ArrayBlockInfoFinder
+final readonly class ArrayBlockInfoFinder
 {
     public function __construct(
-        private readonly BlockFinder $blockFinder
+        private BlockFinder $blockFinder
     ) {
     }
 

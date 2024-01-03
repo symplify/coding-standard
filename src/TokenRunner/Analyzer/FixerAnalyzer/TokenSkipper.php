@@ -11,10 +11,10 @@ use Symplify\CodingStandard\Exception\ShouldNotHappenException;
 use Symplify\CodingStandard\TokenRunner\Exception\TokenNotFoundException;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class TokenSkipper
+final readonly class TokenSkipper
 {
     public function __construct(
-        private readonly BlockFinder $blockFinder
+        private BlockFinder $blockFinder
     ) {
     }
 

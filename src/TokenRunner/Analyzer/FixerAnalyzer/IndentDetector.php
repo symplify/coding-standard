@@ -8,10 +8,10 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use PhpCsFixer\WhitespacesFixerConfig;
 
-final class IndentDetector
+final readonly class IndentDetector
 {
     public function __construct(
-        private readonly WhitespacesFixerConfig $whitespacesFixerConfig
+        private WhitespacesFixerConfig $whitespacesFixerConfig
     ) {
     }
 

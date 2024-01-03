@@ -6,11 +6,11 @@ namespace Symplify\CodingStandard\ValueObject;
 
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class BlockInfoMetadata
+final readonly class BlockInfoMetadata
 {
     public function __construct(
-        private readonly string $blockType,
-        private readonly BlockInfo $blockInfo
+        private string $blockType,
+        private BlockInfo $blockInfo
     ) {
     }
 

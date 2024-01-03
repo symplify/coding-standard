@@ -10,13 +10,13 @@ use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Enum\LineKind;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class LineLengthTransformer
+final readonly class LineLengthTransformer
 {
     public function __construct(
-        private readonly LineLengthResolver $lineLengthResolver,
-        private readonly TokensInliner $tokensInliner,
-        private readonly FirstLineLengthResolver $firstLineLengthResolver,
-        private readonly TokensNewliner $tokensNewliner
+        private LineLengthResolver $lineLengthResolver,
+        private TokensInliner $tokensInliner,
+        private FirstLineLengthResolver $firstLineLengthResolver,
+        private TokensNewliner $tokensNewliner
     ) {
     }
 

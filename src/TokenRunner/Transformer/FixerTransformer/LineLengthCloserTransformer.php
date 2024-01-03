@@ -12,11 +12,11 @@ use Symplify\CodingStandard\TokenRunner\Enum\LineKind;
 use Symplify\CodingStandard\TokenRunner\TokenFinder;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
 
-final class LineLengthCloserTransformer
+final readonly class LineLengthCloserTransformer
 {
     public function __construct(
-        private readonly CallAnalyzer $callAnalyzer,
-        private readonly TokenFinder $tokenFinder
+        private CallAnalyzer $callAnalyzer,
+        private TokenFinder $tokenFinder
     ) {
     }
 

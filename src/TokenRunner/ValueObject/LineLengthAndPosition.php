@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\ValueObject;
 
-final class LineLengthAndPosition
+final readonly class LineLengthAndPosition
 {
     public function __construct(
-        private readonly int $lineLength,
-        private readonly int $currentPosition
+        private int $lineLength,
+        private int $currentPosition
     ) {
     }
 

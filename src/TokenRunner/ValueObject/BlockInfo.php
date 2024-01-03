@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\ValueObject;
 
-final class BlockInfo
+final readonly class BlockInfo
 {
     public function __construct(
-        private readonly int $start,
-        private readonly int $end
+        private int $start,
+        private int $end
     ) {
     }
 
