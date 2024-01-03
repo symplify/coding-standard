@@ -69,6 +69,7 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
 
             // remove token
             $tokens->clearAt($index);
+            $tokens->removeTrailingWhitespace($index, "\n");
         }
     }
 
