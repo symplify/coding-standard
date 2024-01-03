@@ -38,26 +38,21 @@ class SomeClass5
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessClassCommentFixer\Fixture;
 
-
 class SomeClass1
 {
 }
-
 
 class SomeClass2
 {
 }
 
-
 class SomeClass3
 {
 }
 
-
 class SomeClass4
 {
 }
-
 
 class SomeClass5
 {

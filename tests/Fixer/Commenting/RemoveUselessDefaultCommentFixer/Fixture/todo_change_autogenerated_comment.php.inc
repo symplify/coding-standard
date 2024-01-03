@@ -10,6 +10,5 @@ namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemovePHPStormTodoComme
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemovePHPStormTodoCommentFixer\Fixture;
 
-
 // TODO some other notes
 ?>
