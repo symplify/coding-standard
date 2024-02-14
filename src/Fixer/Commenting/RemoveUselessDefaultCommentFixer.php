@@ -45,6 +45,12 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
         return $tokens->isAnyTokenKindsFound([T_DOC_COMMENT, T_COMMENT]);
     }
 
+    public function getPriority(): int
+    {
+        /** must run before @see \PhpCsFixer\Fixer\Basic\BracesFixer to cleanup spaces */
+        return 40;
+    }
+
     /**
      * @param Tokens<Token> $tokens
      */
@@ -63,13 +69,10 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
                 $token
             );
 
-            if ($cleanedDocContent !== '') {
-                continue;
+            if ($cleanedDocContent === '') {
+                // remove token
+                $tokens->clearTokenAndMergeSurroundingWhitespace($index);
             }
-
-            // remove token
-            $tokens->clearAt($index);
-            $tokens->removeTrailingWhitespace($index, "\n");
         }
     }
 
