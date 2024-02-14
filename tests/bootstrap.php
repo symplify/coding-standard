@@ -21,14 +21,12 @@ if (! defined('T_ENUM')) {
     define('T_ENUM', 5015);
 }
 
-
 // required for PHP_CodeSniffer in packages/EasyCodingStandard/tests/*
 if (! defined('PHP_CODESNIFFER_VERBOSITY')) {
     define('PHP_CODESNIFFER_VERBOSITY', 0);
     // initialize custom T_* token constants used by PHP_CodeSniffer parser
     new Tokens();
 }
-
 
 // prefer local coding-standard over old, vendor one
 exec('rm -rf vendor/symplify/easy-coding-standard/vendor/symplify/coding-standard/src');

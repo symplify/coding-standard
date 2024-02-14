@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Commenting;
 
+use PhpCsFixer\Fixer\Basic\BracesFixer;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -45,6 +46,12 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
         return $tokens->isAnyTokenKindsFound([T_DOC_COMMENT, T_COMMENT]);
     }
 
+    public function getPriority(): int
+    {
+        /** must run before @see BracesFixer to cleanup spaces */
+        return 40;
+    }
+
     /**
      * @param Tokens<Token> $tokens
      */
@@ -63,13 +70,10 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
                 $token
             );
 
-            if ($cleanedDocContent !== '') {
-                continue;
+            if ($cleanedDocContent === '') {
+                // remove token
+                $tokens->clearTokenAndMergeSurroundingWhitespace($index);
             }
-
-            // remove token
-            $tokens->clearAt($index);
-            $tokens->removeTrailingWhitespace($index, "\n");
         }
     }
 
