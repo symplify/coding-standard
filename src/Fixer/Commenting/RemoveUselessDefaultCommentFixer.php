@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Commenting;
 
-use PhpCsFixer\Fixer\Basic\BracesFixer;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -48,7 +47,7 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
 
     public function getPriority(): int
     {
-        /** must run before @see BracesFixer to cleanup spaces */
+        /** must run before @see \PhpCsFixer\Fixer\Basic\BracesFixer to cleanup spaces */
         return 40;
     }
 
