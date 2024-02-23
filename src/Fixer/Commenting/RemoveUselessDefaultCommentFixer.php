@@ -63,15 +63,13 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
                 continue;
             }
 
-            $cleanedDocContent = $this->uselessDocBlockCleaner->clearDocTokenContent(
-                $reversedTokens,
-                $index,
-                $token
-            );
-
+            $cleanedDocContent = $this->uselessDocBlockCleaner->clearDocTokenContent($token);
             if ($cleanedDocContent === '') {
                 // remove token
                 $tokens->clearTokenAndMergeSurroundingWhitespace($index);
+            } else {
+                // update in case of other contents
+                $tokens[$index] = new Token([T_DOC_COMMENT, $cleanedDocContent]);
             }
         }
     }
