@@ -2,13 +2,13 @@
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
-class PackagesData
+/**
+ * @property SomeItem $item
+ * Class RemoveFromPropertyTest
+ */
+#[\AllowDynamicProperties]
+final class RemoveFromBottomLine
 {
-    public function getIterator()
-    {
-        // TODO: Implement getIterator() method.
-        $value = 100;
-    }
 }
 
 ?>
@@ -17,12 +17,12 @@ class PackagesData
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
-class PackagesData
+/**
+ * @property SomeItem $item
+ */
+#[\AllowDynamicProperties]
+final class RemoveFromBottomLine
 {
-    public function getIterator()
-    {
-        $value = 100;
-    }
 }
 
 ?>

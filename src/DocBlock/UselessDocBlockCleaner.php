@@ -15,9 +15,14 @@ final class UselessDocBlockCleaner
     private const CLEANING_REGEXES = [
         self::TODO_COMMENT_BY_PHPSTORM_REGEX,
         self::TODO_IMPLEMENT_METHOD_COMMENT_BY_PHPSTORM_REGEX,
-        self::STANDALONE_COMMENT_CLASS_REGEX,
-        self::INLINE_COMMENT_CLASS_REGEX,
         self::COMMENT_CONSTRUCTOR_CLASS_REGEX,
+
+        // must run first
+        self::STANDALONE_DOCBLOCK_CLASS_REGEX,
+        // then this one
+        self::STANDALONE_COMMENT_CLASS_REGEX,
+        // then this one
+        self::INLINE_COMMENT_CLASS_REGEX,
     ];
 
     /**
@@ -36,7 +41,13 @@ final class UselessDocBlockCleaner
      * @see https://regex101.com/r/RzTdFH/4
      * @var string
      */
-    private const STANDALONE_COMMENT_CLASS_REGEX = '#(\/\*{2}\s+?)?(\*|\/\/)\s+[cC]lass\s+[^\s]*(\s+\*\/)?$#';
+    private const STANDALONE_DOCBLOCK_CLASS_REGEX = '#(\/\*\*\s+)\*\s+[cC]lass\s+[^\s]*(\s+\*\/)$#';
+
+    /**
+     * @see https://regex101.com/r/RzTdFH/4
+     * @var string
+     */
+    private const STANDALONE_COMMENT_CLASS_REGEX = '#\/\/\s+[cC]lass\s+\w+$#';
 
     /**
      * @see https://regex101.com/r/RzTdFH/4
