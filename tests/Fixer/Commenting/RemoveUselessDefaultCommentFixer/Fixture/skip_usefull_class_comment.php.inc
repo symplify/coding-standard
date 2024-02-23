@@ -5,6 +5,6 @@ namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCom
 /**
  * class to provide something
  */
-class SomeClass5
+class SkipUsefullClassComment
 {
 }

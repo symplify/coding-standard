@@ -4,9 +4,9 @@ namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCom
 
 class SkipInlineSet
 {
-	public function getTranslator()
-	{
+    public function getTranslator()
+    {
         // set value
         $value = 1000;
-	}
+    }
 }

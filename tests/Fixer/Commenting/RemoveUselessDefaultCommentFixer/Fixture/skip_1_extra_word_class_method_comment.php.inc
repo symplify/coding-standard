@@ -2,15 +2,12 @@
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
-class SomeClass
+final class Skip1ExtraWordClassMethodComment
 {
-/**
- * Get special translator
- */
-	public function getTranslator()
-	{
-
-	}
+    /**
+    * Get special translator
+    */
+    public function getTranslator()
+    {
+    }
 }
-
-?>
