@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 use PhpCsFixer\Fixer\Basic\BracesFixer;
-
 use Symplify\CodingStandard\Fixer\Commenting\RemoveUselessDefaultCommentFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
