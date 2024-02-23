@@ -15,7 +15,8 @@ final class UselessDocBlockCleaner
     private const CLEANING_REGEXES = [
         self::TODO_COMMENT_BY_PHPSTORM_REGEX,
         self::TODO_IMPLEMENT_METHOD_COMMENT_BY_PHPSTORM_REGEX,
-        self::COMMENT_CLASS_REGEX,
+        self::STANDALONE_COMMENT_CLASS_REGEX,
+        self::INLINE_COMMENT_CLASS_REGEX,
         self::COMMENT_CONSTRUCTOR_CLASS_REGEX,
     ];
 
@@ -35,7 +36,13 @@ final class UselessDocBlockCleaner
      * @see https://regex101.com/r/RzTdFH/4
      * @var string
      */
-    private const COMMENT_CLASS_REGEX = '#(\/\*{2}\s+?)?(\*|\/\/)\s+[cC]lass\s+[^\s]*(\s+\*\/)?$#';
+    private const STANDALONE_COMMENT_CLASS_REGEX = '#(\/\*{2}\s+?)?(\*|\/\/)\s+[cC]lass\s+[^\s]*(\s+\*\/)?$#';
+
+    /**
+     * @see https://regex101.com/r/RzTdFH/4
+     * @var string
+     */
+    private const INLINE_COMMENT_CLASS_REGEX = '#( \*|\/\/)\s+[cC]lass\s+(\w+)\n#';
 
     /**
      * @see https://regex101.com/r/bzbxXz/2
@@ -43,15 +50,12 @@ final class UselessDocBlockCleaner
      */
     private const COMMENT_CONSTRUCTOR_CLASS_REGEX = '#^\s{0,}(\/\*{2}\s+?)?(\*|\/\/)\s+[^\s]*\s+[Cc]onstructor\.?(\s+\*\/)?$#';
 
-    /**
-     * @param Token[] $tokens
-     */
-    public function clearDocTokenContent(array $tokens, int $position, Token $currentToken): string
+    public function clearDocTokenContent(Token $currentToken): string
     {
         $docContent = $currentToken->getContent();
 
         foreach (self::CLEANING_REGEXES as $cleaningRegex) {
-            $docContent = Strings::replace($docContent, $cleaningRegex, '');
+            $docContent = Strings::replace($docContent, $cleaningRegex);
         }
 
         return $docContent;
