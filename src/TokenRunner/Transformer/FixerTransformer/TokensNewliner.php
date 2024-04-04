@@ -50,7 +50,7 @@ final readonly class TokensNewliner
         );
 
         // again, from the bottom to the top
-        for ($i = $blockInfo->getEnd() - 1; $i > $blockInfo->getStart(); --$i) {
+        for ($i = $blockInfo->getEnd() - 1; $i >= $blockInfo->getStart(); --$i) {
             /** @var Token $currentToken */
             $currentToken = $tokens[$i];
 
