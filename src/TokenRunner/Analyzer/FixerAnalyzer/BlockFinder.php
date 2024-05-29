@@ -54,6 +54,11 @@ final class BlockFinder
 
         if ($token->isGivenKind([T_FUNCTION, CT::T_USE_LAMBDA, T_NEW])) {
             $position = $tokens->getNextTokenOfKind($position, ['(', ';']);
+
+            if ($position === null) {
+                return null;
+            }
+
             /** @var Token $token */
             $token = $tokens[$position];
 
