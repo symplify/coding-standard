@@ -48,6 +48,11 @@ final class BlockFinder
         // shift "array" to "(", event its position
         if ($token->isGivenKind(T_ARRAY)) {
             $position = $tokens->getNextMeaningfulToken($position);
+
+            if ($position === null) {
+                return null;
+            }
+
             /** @var Token $token */
             $token = $tokens[$position];
         }
