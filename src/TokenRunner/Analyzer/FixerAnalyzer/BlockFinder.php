@@ -48,6 +48,11 @@ final class BlockFinder
         // shift "array" to "(", event its position
         if ($token->isGivenKind(T_ARRAY)) {
             $position = $tokens->getNextMeaningfulToken($position);
+
+            if ($position === null) {
+                return null;
+            }
+
             /** @var Token $token */
             $token = $tokens[$position];
         }
@@ -67,7 +72,7 @@ final class BlockFinder
                 return null;
             }
 
-            if ($position !== null && $token->equals('(')) {
+            if ($token->equals('(')) {
                 $closingPosition = $tokens->getNextMeaningfulToken($position);
                 if ($closingPosition !== null) {
                     $closingToken = $tokens[$closingPosition];
@@ -77,11 +82,6 @@ final class BlockFinder
                     }
                 }
             }
-        }
-
-        // some invalid code
-        if ($position === null) {
-            return null;
         }
 
         $blockType = $this->getBlockTypeByToken($token);
