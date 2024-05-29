@@ -72,7 +72,7 @@ final class BlockFinder
                 return null;
             }
 
-            if ($position !== null && $token->equals('(')) {
+            if ($token->equals('(')) {
                 $closingPosition = $tokens->getNextMeaningfulToken($position);
                 if ($closingPosition !== null) {
                     $closingToken = $tokens[$closingPosition];
@@ -82,11 +82,6 @@ final class BlockFinder
                     }
                 }
             }
-        }
-
-        // some invalid code
-        if ($position === null) {
-            return null;
         }
 
         $blockType = $this->getBlockTypeByToken($token);
