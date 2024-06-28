@@ -24,7 +24,7 @@ composer require symplify/easy-coding-standard --dev
 +    $ecsConfig->sets([SetList::SYMPLIFY]);
 ```
 
-## Rules Overview
+<br>
 
 <!-- ruledoc-start -->
 # 12 Rules Overview

@@ -40,6 +40,6 @@
         "fix-cs": "vendor/bin/ecs check --fix --ansi",
         "phpstan": "vendor/bin/phpstan analyse --ansi  --error-format symplify",
         "rector": "vendor/bin/rector process --dry-run --ansi",
-        "docs": "vendor/bin/rule-doc-generator generate src --output-file docs/rules_overview.md --ansi"
+        "docs": "vendor/bin/rule-doc-generator generate src --readme --ansi"
     }
 }
