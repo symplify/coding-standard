@@ -15,6 +15,8 @@ trait SomeTrait
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
+/**
+ */
 trait SomeTrait
 {
 }
