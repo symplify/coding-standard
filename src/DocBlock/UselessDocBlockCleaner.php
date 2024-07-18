@@ -47,13 +47,13 @@ final class UselessDocBlockCleaner
      * @see https://regex101.com/r/RzTdFH/4
      * @var string
      */
-    private const STANDALONE_COMMENT_CLASS_REGEX = '#\/\/\s+[cC]lass\s+\w+$#';
+    private const STANDALONE_COMMENT_CLASS_REGEX = '#\/\/\s+([cC]lass|[tT]rait)\s+\w+$#';
 
     /**
      * @see https://regex101.com/r/RzTdFH/4
      * @var string
      */
-    private const INLINE_COMMENT_CLASS_REGEX = '#( \*|\/\/)\s+[cC]lass\s+(\w+)\n#';
+    private const INLINE_COMMENT_CLASS_REGEX = '#( \*|\/\/)\s+([cC]lass|[tT]rait)\s+(\w+)\n#';
 
     /**
      * @see https://regex101.com/r/bzbxXz/2
