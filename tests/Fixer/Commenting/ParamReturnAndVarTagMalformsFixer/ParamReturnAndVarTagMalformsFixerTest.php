@@ -8,9 +8,6 @@ use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symplify\EasyCodingStandard\Testing\PHPUnit\AbstractCheckerTestCase;
 
-/**
- * @mimic https://github.com/rectorphp/rector/pull/807/files
- */
 final class ParamReturnAndVarTagMalformsFixerTest extends AbstractCheckerTestCase
 {
     #[DataProvider('provideData')]
