@@ -2,11 +2,14 @@
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
-/**
- * Trait SomeTrait
- */
-trait SomeTrait
+final class ConstructorBlank
 {
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+    }
 }
 
 ?>
@@ -15,10 +18,11 @@ trait SomeTrait
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
-/**
- */
-trait SomeTrait
+final class ConstructorBlank
 {
+    public function __construct()
+    {
+    }
 }
 
 ?>
