@@ -3,9 +3,9 @@
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
 /**
- * Interface SomeInterface
+ * Trait SomeTrait
  */
-interface SomeInterface
+trait SomeTrait
 {
 }
 
@@ -15,9 +15,8 @@ interface SomeInterface
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
-/**
- */
-interface SomeInterface
+
+trait SomeTrait
 {
 }
 
