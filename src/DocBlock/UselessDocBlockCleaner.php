@@ -60,13 +60,17 @@ final class UselessDocBlockCleaner
      */
     private const COMMENT_CONSTRUCTOR_CLASS_REGEX = '#^(\/\/|(\s|\*)+)(\s\w+\s)?constructor(\.)?$#i';
 
-    public function clearDocTokenContent(Token $currentToken): string
+    public function clearDocTokenContent(Token $currentToken, ?string $classLikeName): string
     {
         $docContent = $currentToken->getContent();
 
         $cleanedCommentLines = [];
 
         foreach (explode("\n", $docContent) as $key => $commentLine) {
+            if ($this->isClassLikeName($commentLine, $classLikeName)) {
+                continue;
+            }
+
             foreach (self::CLEANING_REGEXES as $cleaningRegex) {
                 $commentLine = Strings::replace($commentLine, $cleaningRegex);
             }
@@ -99,5 +103,14 @@ final class UselessDocBlockCleaner
         $endCommentLine = $commentLines[1];
 
         return $startCommentLine === '/**' && trim($endCommentLine) === '*/';
+    }
+
+    private function isClassLikeName(string $commentLine, ?string $classLikeName): bool
+    {
+        if ($classLikeName === null) {
+            return false;
+        }
+
+        return trim($commentLine, '* ') === $classLikeName;
     }
 }

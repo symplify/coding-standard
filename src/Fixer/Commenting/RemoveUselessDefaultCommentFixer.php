@@ -11,6 +11,7 @@ use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
 use Symplify\CodingStandard\DocBlock\UselessDocBlockCleaner;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
+use Symplify\CodingStandard\Fixer\Naming\ClassNameResolver;
 use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -28,7 +29,8 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
 
     public function __construct(
         private readonly UselessDocBlockCleaner $uselessDocBlockCleaner,
-        private readonly TokenReverser $tokenReverser
+        private readonly TokenReverser $tokenReverser,
+        private readonly ClassNameResolver $classNameResolver,
     ) {
     }
 
@@ -63,8 +65,10 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer imple
                 continue;
             }
 
+            $classLikeName = $this->classNameResolver->resolveClassName($fileInfo, $tokens);
+
             $originalContent = $token->getContent();
-            $cleanedDocContent = $this->uselessDocBlockCleaner->clearDocTokenContent($token);
+            $cleanedDocContent = $this->uselessDocBlockCleaner->clearDocTokenContent($token, $classLikeName);
 
             if ($cleanedDocContent === '') {
                 // remove token
