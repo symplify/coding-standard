@@ -20,7 +20,7 @@ abstract class AbstractSymplifyFixer implements FixerInterface
 
     public function getName(): string
     {
-        return 'Simplify\coding-standard';
+        return 'Simplify\codingstandard';
     }
 
     public function isRisky(): bool
