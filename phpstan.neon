@@ -1,6 +1,8 @@
 parameters:
     level: 8
 
+    errorFormat: symplify
+
     paths:
         - src
         - config
@@ -24,7 +26,7 @@ parameters:
         # unused generics
         - '#Class (.*?) implements generic interface PhpCsFixer\\Fixer\\ConfigurableFixerInterface but does not specify its types\: TFixerInputConfig, TFixerComputedConfig#'
 
-        # false positive
+        # conditional check to allow various php versions
         -
-            message: '#Parameter \#1 \$sequence of method PhpCsFixer\\Tokenizer\\Tokens\:\:findSequence\(\) expects non\-empty\-array<int, array\{0\: int, 1\?\: string\}\|PhpCsFixer\\Tokenizer\\Token\|string>, array<PhpCsFixer\\Tokenizer\\Token> given#'
-            path: src/Fixer/Strict/BlankLineAfterStrictTypesFixer.php
+            message: '#Comparison operation ">\=" between int<80200, 80499> and (.*?) is always true#'
+            path: src/TokenAnalyzer/DocblockRelatedParamNamesResolver.php

@@ -19,6 +19,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  * Inspired at https://github.com/aidantwoods/PHP-CS-Fixer/tree/feature/DeclareStrictTypesFixer-split
  *
  * @thanks Aidan Woods
+ *
  * @see \Symplify\CodingStandard\Tests\Fixer\Strict\BlankLineAfterStrictTypesFixer\BlankLineAfterStrictTypesFixerTest
  */
 final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
@@ -31,9 +32,9 @@ final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer impleme
     /**
      * Generates: "declare(strict_types=1);"
      *
-     * @var Token[]
+     * @var non-empty-list<Token>
      */
-    private array $declareStrictTypeTokens = [];
+    private array $declareStrictTypeTokens;
 
     public function __construct(
         private readonly WhitespacesFixerConfig $whitespacesFixerConfig
