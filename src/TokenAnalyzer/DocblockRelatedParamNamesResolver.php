@@ -22,7 +22,7 @@ final class DocblockRelatedParamNamesResolver
         $this->functionsAnalyzer = new FunctionsAnalyzer();
 
         $this->functionTokens = [
-            new Token([T_FUNCTION, 'function'])
+            new Token([T_FUNCTION, 'function']),
         ];
 
         // only in PHP 7.4+

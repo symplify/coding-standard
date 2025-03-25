@@ -14,14 +14,11 @@ use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\TokenAnalyzer\ChainMethodCallAnalyzer;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\BlockFinder;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\Spacing\MethodChainingNewlineFixer\MethodChainingNewlineFixerTest
  */
-final class MethodChainingNewlineFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class MethodChainingNewlineFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
@@ -77,22 +74,6 @@ final class MethodChainingNewlineFixer extends AbstractSymplifyFixer implements 
             $tokens->ensureWhitespaceAtIndex($index, 0, $this->whitespacesFixerConfig->getLineEnding());
             ++$index;
         }
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-$someClass->firstCall()->secondCall();
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-$someClass->firstCall()
-->secondCall();
-CODE_SAMPLE
-            ),
-        ]);
     }
 
     /**

@@ -12,14 +12,11 @@ use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\TokenAnalyzer\Naming\MethodNameResolver;
 use Symplify\CodingStandard\TokenAnalyzer\ParamNewliner;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\Spacing\StandaloneLineConstructorParamFixer\StandaloneLineConstructorParamFixerTest
  */
-final class StandaloneLineConstructorParamFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class StandaloneLineConstructorParamFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
@@ -75,32 +72,5 @@ final class StandaloneLineConstructorParamFixer extends AbstractSymplifyFixer im
 
             $this->paramNewliner->processFunction($tokens, $position);
         }
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-final class PromotedProperties
-{
-    public function __construct(int $age, string $name)
-    {
-    }
-}
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-final class PromotedProperties
-{
-    public function __construct(
-        int $age,
-        string $name
-    ) {
-    }
-}
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

@@ -11,9 +11,6 @@ use PhpCsFixer\Tokenizer\Tokens;
 use PhpCsFixer\WhitespacesFixerConfig;
 use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * Inspired at https://github.com/aidantwoods/PHP-CS-Fixer/tree/feature/DeclareStrictTypesFixer-split
@@ -22,7 +19,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
  *
  * @see \Symplify\CodingStandard\Tests\Fixer\Strict\BlankLineAfterStrictTypesFixer\BlankLineAfterStrictTypesFixerTest
  */
-final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
@@ -34,7 +31,7 @@ final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer impleme
      *
      * @var non-empty-list<Token>
      */
-    private array $declareStrictTypeTokens;
+    private readonly array $declareStrictTypeTokens;
 
     public function __construct(
         private readonly WhitespacesFixerConfig $whitespacesFixerConfig
@@ -83,23 +80,5 @@ final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer impleme
         $lineEnding = $this->whitespacesFixerConfig->getLineEnding();
 
         $tokens->ensureWhitespaceAtIndex($semicolonPosition + 1, 0, $lineEnding . $lineEnding);
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-declare(strict_types=1);
-namespace App;
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-declare(strict_types=1);
-
-namespace App;
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

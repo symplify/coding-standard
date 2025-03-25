@@ -12,14 +12,11 @@ use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\Annotation\RemovePHPStormAnnotationFixer\RemovePHPStormAnnotationFixerTest
  */
-final class RemovePHPStormAnnotationFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class RemovePHPStormAnnotationFixer extends AbstractSymplifyFixer
 {
     /**
      * @see https://regex101.com/r/nGZBzj/2
@@ -71,30 +68,5 @@ final class RemovePHPStormAnnotationFixer extends AbstractSymplifyFixer implemen
             // remove token
             $tokens->clearAt($index);
         }
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-/**
- * Created by PhpStorm.
- * User: ...
- * Date: 17/10/17
- * Time: 8:50 AM
- */
-class SomeClass
-{
-}
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-class SomeClass
-{
-}
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

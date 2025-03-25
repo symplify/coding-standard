@@ -16,14 +16,11 @@ use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\ArrayAnalyzer;
 use Symplify\CodingStandard\TokenRunner\Traverser\ArrayBlockInfoFinder;
 use Symplify\CodingStandard\TokenRunner\ValueObject\TokenKinds;
 use Symplify\CodingStandard\ValueObject\BlockInfoMetadata;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer\ArrayOpenerAndCloserNewlineFixerTest
  */
-final class ArrayOpenerAndCloserNewlineFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class ArrayOpenerAndCloserNewlineFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
@@ -50,23 +47,6 @@ final class ArrayOpenerAndCloserNewlineFixer extends AbstractSymplifyFixer imple
     public function getPriority(): int
     {
         return 34;
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-$items = [1 => 'Hey'];
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-$items = [
-1 => 'Hey'
-];
-CODE_SAMPLE
-            ),
-        ]);
     }
 
     /**
