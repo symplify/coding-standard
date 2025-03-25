@@ -5,8 +5,7 @@
     "require": {
         "php": ">=8.2",
         "nette/utils": "^4.0",
-        "friendsofphp/php-cs-fixer": "^3.73.1",
-        "symplify/rule-doc-generator-contracts": "^11.2"
+        "friendsofphp/php-cs-fixer": "^3.73.1"
     },
     "require-dev": {
         "symplify/easy-coding-standard": "^12.5",
