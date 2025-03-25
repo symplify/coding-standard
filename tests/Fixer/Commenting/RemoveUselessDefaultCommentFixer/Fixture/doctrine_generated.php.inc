@@ -16,6 +16,7 @@ class SomeClass1
 
 namespace Symplify\CodingStandard\Tests\Fixer\Commenting\RemoveUselessDefaultCommentFixer\Fixture;
 
+
 class SomeClass1
 {
 }
