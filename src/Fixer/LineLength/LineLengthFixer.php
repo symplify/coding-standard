@@ -21,13 +21,12 @@ use Symplify\CodingStandard\TokenAnalyzer\Naming\MethodNameResolver;
 use Symplify\CodingStandard\TokenRunner\Analyzer\FixerAnalyzer\BlockFinder;
 use Symplify\CodingStandard\TokenRunner\Transformer\FixerTransformer\LineLengthTransformer;
 use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
-use Symplify\RuleDocGenerator\Contract\ConfigurableRuleInterface;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\LineLength\LineLengthFixer\LineLengthFixerTest
  * @see \Symplify\CodingStandard\Tests\Fixer\LineLength\LineLengthFixer\ConfiguredLineLengthFixerTest
  */
-final class LineLengthFixer extends AbstractSymplifyFixer implements ConfigurableRuleInterface, ConfigurableFixerInterface
+final class LineLengthFixer extends AbstractSymplifyFixer implements ConfigurableFixerInterface
 {
     /**
      * @api
