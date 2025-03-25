@@ -22,14 +22,11 @@ use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SuperfluousReturn
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SuperfluousVarNameMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SwitchedTypeAndNameMalformWorker;
 use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer\ParamReturnAndVarTagMalformsFixerTest
  */
-final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer implements DocumentedRuleInterface
+final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
@@ -141,30 +138,5 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer impl
     public function getPriority(): int
     {
         return -37;
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-/**
- * @param string
- */
-function getPerson($name)
-{
-}
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-/**
- * @param string $name
- */
-function getPerson($name)
-{
-}
-CODE_SAMPLE
-            ),
-        ]);
     }
 }

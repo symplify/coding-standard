@@ -11,9 +11,9 @@ use PhpCsFixer\Tokenizer\Tokens;
 final class DocblockRelatedParamNamesResolver
 {
     /**
-     * @var Token[]
+     * @var list<Token>
      */
-    private array $functionTokens = [];
+    private array $functionTokens;
 
     private readonly FunctionsAnalyzer $functionsAnalyzer;
 
@@ -21,7 +21,9 @@ final class DocblockRelatedParamNamesResolver
     ) {
         $this->functionsAnalyzer = new FunctionsAnalyzer();
 
-        $this->functionTokens[] = new Token([T_FUNCTION, 'function']);
+        $this->functionTokens = [
+            new Token([T_FUNCTION, 'function']),
+        ];
 
         // only in PHP 7.4+
         if ($this->doesFnTokenExist()) {

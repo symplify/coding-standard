@@ -2,9 +2,9 @@
 
 [![Downloads](https://img.shields.io/packagist/dt/symplify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/symplify/coding-standard/stats)
 
-Set of rules for PHP_CodeSniffer and PHP-CS-Fixer used by Symplify projects.
+Coding standard rules for clean, consistent, and readable PHP code. No configuration needed—just install and let it handle the rest.
 
-**They run best with [EasyCodingStandard](https://github.com/symplify/easy-coding-standard)**.
+They run best with [ECS](https://github.com/symplify/easy-coding-standard).
 
 <br>
 
@@ -12,24 +12,35 @@ Set of rules for PHP_CodeSniffer and PHP-CS-Fixer used by Symplify projects.
 
 ```bash
 composer require symplify/coding-standard --dev
-composer require symplify/easy-coding-standard --dev
+composer require phpecs/phpecs --dev
 ```
 
-1. Run with [ECS](https://github.com/symplify/easy-coding-standard):
+1. Register in ECS config:
 
-```diff
-# ecs.php
+```php
+ # ecs.php
  use Symplify\EasyCodingStandard\Config\ECSConfig;
-+use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
+ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
- return static function (ECSConfig $ecsConfig): void {
-+    $ecsConfig->sets([SetList::SYMPLIFY]);
+ return ECSConfig::configure()
+     ->withSets([SetList::SYMPLIFY]);
+```
+
+
+2. And run:
+
+```bash
+# dry-run without changes
+vendor/bin/ecs
+
+
+# apply changes
+vendor/bin/ecs --fix
 ```
 
 <br>
 
-<!-- ruledoc-start -->
-# 12 Rules Overview
+# 12 Rules to Keep Your Code Clean
 
 ## ArrayListItemNewlineFixer
 
@@ -255,5 +266,3 @@ Promoted property should be on standalone line
 ```
 
 <br>
-
-<!-- ruledoc-end -->
