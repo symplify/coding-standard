@@ -24,7 +24,7 @@ final class RemoveSetterGetterDocblockFixer extends AbstractSymplifyFixer
      */
     private const ERROR_MESSAGE = 'Remove setter and getter only docblocks';
 
-    private MethodNameResolver $methodNameResolver;
+    private readonly MethodNameResolver $methodNameResolver;
 
     public function __construct(
         private readonly TokenReverser $tokenReverser

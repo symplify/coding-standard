@@ -145,6 +145,25 @@ Fixes @param, @return, `@var` and inline `@var` annotations broken formats
 
 <br>
 
+## RemoveSetterGetterDocblockFixer
+
+Remove docblock description from getter/setter methods, that only repeats the method name
+
+- class: [`Symplify\CodingStandard\Fixer\Annotation\RemoveSetterGetterDocblockFixer`](../src/Fixer/Annotation/RemoveSetterGetterDocblockFixer.php)
+
+```diff
+ /**
+- * Get name
+  *
+  * @return string
+  */
+ function getName()
+ {
+ }
+```
+
+<br>
+
 ## RemovePHPStormAnnotationFixer
 
 Remove "Created by PhpStorm" annotations
