@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveSetterGetterDocblockFixer;
+namespace Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveMethodNameDuplicateDescriptionFixer;
 
 use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symplify\EasyCodingStandard\Testing\PHPUnit\AbstractCheckerTestCase;
 
-final class RemoveSetterGetterDocblockFixerTest extends AbstractCheckerTestCase
+final class RemoveMethodNameDuplicateDescriptionFixerTest extends AbstractCheckerTestCase
 {
     #[DataProvider('provideData')]
     public function test(string $filePath): void

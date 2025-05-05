@@ -15,14 +15,14 @@ use Symplify\CodingStandard\Fixer\Naming\MethodNameResolver;
 use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
 
 /**
- * @see \Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveSetterGetterDocblockFixer\RemoveSetterGetterDocblockFixerTest
+ * @see \Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveRedundantDescriptionFixer\RemoveRedundantDescriptionFixerTest
  */
-final class RemoveSetterGetterDocblockFixer extends AbstractSymplifyFixer
+final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
      */
-    private const ERROR_MESSAGE = 'Remove setter and getter only docblocks';
+    private const ERROR_MESSAGE = 'Remove docblock descriptions which duplicate their method name';
 
     private readonly MethodNameResolver $methodNameResolver;
 

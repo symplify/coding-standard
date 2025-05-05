@@ -1,6 +1,6 @@
 <?php
 
-namespace Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveSetterGetterDocblockFixer\Fixture;
+namespace Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveMethodNameDuplicateDescriptionFixer\Fixture;
 
 final class SimpleAnnotation
 {
@@ -16,7 +16,7 @@ final class SimpleAnnotation
 -----
 <?php
 
-namespace Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveSetterGetterDocblockFixer\Fixture;
+namespace Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveMethodNameDuplicateDescriptionFixer\Fixture;
 
 final class SimpleAnnotation
 {
