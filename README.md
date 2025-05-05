@@ -145,11 +145,11 @@ Fixes @param, @return, `@var` and inline `@var` annotations broken formats
 
 <br>
 
-## RemoveSetterGetterDocblockFixer
+## RemoveMethodNameDuplicateDescriptionFixer
 
-Remove docblock description from getter/setter methods, that only repeats the method name
+Remove docblock descriptions which duplicate their method name
 
-- class: [`Symplify\CodingStandard\Fixer\Annotation\RemoveSetterGetterDocblockFixer`](../src/Fixer/Annotation/RemoveSetterGetterDocblockFixer.php)
+- class: [`Symplify\CodingStandard\Fixer\Annotation\RemoveRedundantDescriptionFixer`](../src/Fixer/Annotation/RemoveRedundantDescriptionFixer.php)
 
 ```diff
  /**
