@@ -21,8 +21,20 @@ final class ChainMethodCallAnalyzer
      * Matches e.g: return app()->some(), app()->some(), (clone app)->some()
      *
      * @param Tokens<Token> $tokens
+     *
+     * @deprecated use isPrecededByFuncCall() instead.
      */
     public function isPreceededByFuncCall(Tokens $tokens, int $position): bool
+    {
+        return $this->isPrecededByFuncCall($tokens, $position);
+    }
+
+    /**
+     * Matches e.g: return app()->some(), app()->some(), (clone app)->some()
+     *
+     * @param Tokens<Token> $tokens
+     */
+    public function isPrecededByFuncCall(Tokens $tokens, int $position): bool
     {
         for ($i = $position; $i >= 0; --$i) {
             /** @var Token $currentToken */
