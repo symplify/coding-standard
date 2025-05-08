@@ -119,7 +119,7 @@ final class MethodChainingNewlineFixer extends AbstractSymplifyFixer
      *
      * @param Tokens<Token> $tokens
      */
-    private function isPreceededByOpenedCallInAnotherBracket(Tokens $tokens, int $position): bool
+    private function isPrecededByOpenedCallInAnotherBracket(Tokens $tokens, int $position): bool
     {
         $blockInfo = $this->blockFinder->findInTokensByEdge($tokens, $position);
         if (! $blockInfo instanceof BlockInfo) {
@@ -142,11 +142,11 @@ final class MethodChainingNewlineFixer extends AbstractSymplifyFixer
             return false;
         }
 
-        if ($this->chainMethodCallAnalyzer->isPreceededByFuncCall($tokens, $position)) {
+        if ($this->chainMethodCallAnalyzer->isPrecededByFuncCall($tokens, $position)) {
             return false;
         }
 
-        if ($this->isPreceededByOpenedCallInAnotherBracket($tokens, $position)) {
+        if ($this->isPrecededByOpenedCallInAnotherBracket($tokens, $position)) {
             return false;
         }
 

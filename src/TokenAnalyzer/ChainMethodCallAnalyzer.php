@@ -22,7 +22,7 @@ final class ChainMethodCallAnalyzer
      *
      * @param Tokens<Token> $tokens
      */
-    public function isPreceededByFuncCall(Tokens $tokens, int $position): bool
+    public function isPrecededByFuncCall(Tokens $tokens, int $position): bool
     {
         for ($i = $position; $i >= 0; --$i) {
             /** @var Token $currentToken */
