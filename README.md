@@ -145,6 +145,22 @@ Fixes @param, @return, `@var` and inline `@var` annotations broken formats
 
 <br>
 
+## RemovePropertyVariableNameDescriptionFixer
+
+Remove docblock descriptions which duplicate their property name
+
+- class: [`Symplify\CodingStandard\Fixer\Annotation\RemovePropertyVariableNameDescriptionFixer`](../src/Fixer/Annotation/RemovePropertyVariableNameDescriptionFixer.php)
+
+```diff
+ /**
+- * @var string $name
++ * @var string
+  */
+ private $name;
+```
+
+<br>
+
 ## RemoveMethodNameDuplicateDescriptionFixer
 
 Remove docblock descriptions which duplicate their method name

@@ -3,8 +3,9 @@
 declare(strict_types=1);
 
 use PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer;
-use Symplify\CodingStandard\Fixer\Annotation\RemovePHPStormAnnotationFixer;
 use Symplify\CodingStandard\Fixer\Annotation\RemoveMethodNameDuplicateDescriptionFixer;
+use Symplify\CodingStandard\Fixer\Annotation\RemovePHPStormAnnotationFixer;
+use Symplify\CodingStandard\Fixer\Annotation\RemovePropertyVariableNameDescriptionFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\CodingStandard\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer;
@@ -23,6 +24,7 @@ return static function (ECSConfig $ecsConfig): void {
         ParamReturnAndVarTagMalformsFixer::class,
         RemoveUselessDefaultCommentFixer::class,
         RemoveMethodNameDuplicateDescriptionFixer::class,
+        RemovePropertyVariableNameDescriptionFixer::class,
 
         // arrays
         ArrayListItemNewlineFixer::class,
