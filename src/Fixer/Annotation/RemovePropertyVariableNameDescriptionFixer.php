@@ -30,7 +30,6 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
      */
     private const VAR_REGEX = '#@(?:psalm-|phpstan-)?var#';
 
-
     private readonly PropertyNameResolver $propertyNameResolver;
 
     public function __construct(
@@ -84,7 +83,7 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
                     continue;
                 }
 
-                if (!preg_match(self::VAR_REGEX, $docblockLine)) {
+                if (! preg_match(self::VAR_REGEX, $docblockLine)) {
                     continue;
                 }
 
