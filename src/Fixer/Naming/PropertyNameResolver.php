@@ -7,7 +7,7 @@ namespace Symplify\CodingStandard\Fixer\Naming;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 
-final class MethodNameResolver
+final class PropertyNameResolver
 {
     /**
      * @param Tokens<Token> $tokens
@@ -19,19 +19,11 @@ final class MethodNameResolver
                 continue;
             }
 
-            if (! $token->isGivenKind([T_FUNCTION])) {
+            if (! $token->isGivenKind([T_VARIABLE])) {
                 continue;
             }
 
-            $nextNextMeaningfulTokenIndex = $tokens->getNextMeaningfulToken($position + 1);
-            $nextNextMeaningfulToken = $tokens[$nextNextMeaningfulTokenIndex];
-
-            // skip anonymous functions
-            if (! $nextNextMeaningfulToken->isGivenKind(T_STRING)) {
-                continue;
-            }
-
-            return $nextNextMeaningfulToken->getContent();
+            return $token->getContent();
         }
 
         return null;

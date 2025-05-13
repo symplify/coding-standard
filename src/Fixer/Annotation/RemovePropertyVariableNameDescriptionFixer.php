@@ -11,25 +11,25 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
-use Symplify\CodingStandard\Fixer\Naming\MethodNameResolver;
+use Symplify\CodingStandard\Fixer\Naming\PropertyNameResolver;
 use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
 
 /**
- * @see \Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveRedundantDescriptionFixer\RemoveRedundantDescriptionFixerTest
+ * @see \Symplify\CodingStandard\Tests\Fixer\Annotation\RemovePropertyVariableNameDescriptionFixer\RemovePropertyVariableNameDescriptionFixerTest
  */
-final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFixer
+final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyFixer
 {
     /**
      * @var string
      */
-    private const ERROR_MESSAGE = 'Remove docblock descriptions which duplicate their method name';
+    private const ERROR_MESSAGE = 'Remove useless "$variable" from @var tag';
 
-    private readonly MethodNameResolver $methodNameResolver;
+    private readonly PropertyNameResolver $propertyNameResolver;
 
     public function __construct(
         private readonly TokenReverser $tokenReverser
     ) {
-        $this->methodNameResolver = new MethodNameResolver();
+        $this->propertyNameResolver = new PropertyNameResolver();
     }
 
     public function getDefinition(): FixerDefinitionInterface
@@ -42,7 +42,7 @@ final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFi
      */
     public function isCandidate(Tokens $tokens): bool
     {
-        if (! $tokens->isTokenKindFound(T_FUNCTION)) {
+        if (! $tokens->isTokenKindFound(T_VARIABLE)) {
             return false;
         }
 
@@ -61,8 +61,8 @@ final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFi
                 continue;
             }
 
-            $methodName = $this->methodNameResolver->resolve($tokens, $index);
-            if ($methodName === null) {
+            $propertyName = $this->propertyNameResolver->resolve($tokens, $index);
+            if ($propertyName === null) {
                 continue;
             }
 
@@ -73,13 +73,15 @@ final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFi
 
             $docblockLines = explode("\n", $originalDocContent);
             foreach ($docblockLines as $key => $docblockLine) {
-                $spacelessDocblockLine = Strings::replace($docblockLine, '#[\s\n]+#', '');
-                if (strtolower($spacelessDocblockLine) !== strtolower('*' . $methodName)) {
+                if (! str_ends_with($docblockLine, ' ' . $propertyName)) {
                     continue;
                 }
 
+                // remove last x characters
+                $docblockLine = Strings::substring($docblockLine, 0, -strlen(' ' . $propertyName));
+
                 $hasChanged = true;
-                unset($docblockLines[$key]);
+                $docblockLines[$key] = rtrim($docblockLine);
             }
 
             if (! $hasChanged) {
