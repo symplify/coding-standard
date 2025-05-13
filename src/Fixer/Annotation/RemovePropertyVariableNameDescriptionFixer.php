@@ -24,6 +24,12 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
      */
     private const ERROR_MESSAGE = 'Remove useless "$variable" from @var tag';
 
+    /**
+     * @var string
+     * @see https://regex101.com/r/2PxeKF/1
+     */
+    private const VAR_REGEX = '#@(?:psalm-|phpstan-)?var#';
+
     private readonly PropertyNameResolver $propertyNameResolver;
 
     public function __construct(
@@ -73,11 +79,11 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
 
             $docblockLines = explode("\n", $originalDocContent);
             foreach ($docblockLines as $key => $docblockLine) {
-                if (! str_contains($docblockLine, '@var')) {
+                if (! str_ends_with($docblockLine, ' ' . $propertyName)) {
                     continue;
                 }
 
-                if (! str_ends_with($docblockLine, ' ' . $propertyName)) {
+                if (! preg_match(self::VAR_REGEX, $docblockLine)) {
                     continue;
                 }
 
