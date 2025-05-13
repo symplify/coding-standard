@@ -73,6 +73,10 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
 
             $docblockLines = explode("\n", $originalDocContent);
             foreach ($docblockLines as $key => $docblockLine) {
+                if (! str_contains($docblockLine, '@var')) {
+                    continue;
+                }
+
                 if (! str_ends_with($docblockLine, ' ' . $propertyName)) {
                     continue;
                 }
