@@ -16,5 +16,3 @@ final class SkipMultipleVar
         $args = $firstArgumentValue->getArgs();
     }
 }
-
-?>
