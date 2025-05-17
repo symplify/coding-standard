@@ -75,6 +75,12 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
             // skip if not setter or getter
             $originalDocContent = $token->getContent();
 
+            preg_match_all(self::VAR_REGEX, $originalDocContent, $matches);
+
+            if (count($matches[0]) !== 1) {
+                continue;
+            }
+
             $hasChanged = false;
 
             $docblockLines = explode("\n", $originalDocContent);
