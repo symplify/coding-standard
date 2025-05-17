@@ -77,7 +77,7 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
 
             preg_match_all(self::VAR_REGEX, $originalDocContent, $matches);
 
-            if (isset($matches[0]) && is_array($matches[0]) && count($matches[0]) !== 1) {
+            if (count($matches[0]) !== 1) {
                 continue;
             }
 
