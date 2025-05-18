@@ -16,9 +16,9 @@ final readonly class MissingParamNameMalformWorker implements MalformWorkerInter
 {
     /**
      * @var string
-     * @see https://regex101.com/r/QtWnWv/5
+     * @see https://regex101.com/r/QtWnWv/6
      */
-    private const PARAM_WITHOUT_NAME_REGEX = '#@param ([^${]*?)( ([^$]*?))?\n#';
+    private const PARAM_WITHOUT_NAME_REGEX = '#@param ([^${<]*?)( ([^$]*?))?\n#';
 
     /**
      * @var string
