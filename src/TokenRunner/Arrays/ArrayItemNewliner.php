@@ -46,6 +46,10 @@ final readonly class ArrayItemNewliner
                     return;
                 }
 
+                if ($nextToken->getContent() === '{') {
+                    return;
+                }
+
                 $tokens->ensureWhitespaceAtIndex($nextTokenPosition, 0, $this->whitespacesFixerConfig->getLineEnding());
             }
         );
