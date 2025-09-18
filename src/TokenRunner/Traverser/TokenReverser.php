@@ -24,6 +24,7 @@ final class TokenReverser
         $reversedTokens = array_reverse($tokens->toArray(), true);
 
         // remove null values
+        // @phpstan-ignore arrayFilter.same
         return array_filter($reversedTokens);
     }
 }

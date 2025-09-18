@@ -45,6 +45,11 @@ final class ClassNameResolver
             }
 
             $nextNextMeaningfulTokenIndex = $tokens->getNextMeaningfulToken($position + 1);
+
+            if (null === $nextNextMeaningfulTokenIndex) {
+                continue;
+            }
+
             $nextNextMeaningfulToken = $tokens[$nextNextMeaningfulTokenIndex];
 
             // skip anonymous classes
