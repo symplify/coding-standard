@@ -26,3 +26,17 @@ parameters:
         -
             message: '#Comparison operation ">\=" between int<80200, 80599> and (.*?) is always true#'
             path: src/TokenAnalyzer/DocblockRelatedParamNamesResolver.php
+
+        # offset access issues
+        -
+            message: '#Offset int\|null might not exist on PhpCsFixer\\Tokenizer\\Tokens#'
+            path: src/Fixer/Naming/ClassNameResolver.php
+
+        -
+            message: '#Offset int\|null might not exist on PhpCsFixer\\Tokenizer\\Tokens#'
+            path: src/Fixer/Naming/MethodNameResolver.php
+
+        # array filter issue
+        -
+            message: '#Parameter \#1 \$array \(array<int, PhpCsFixer\\Tokenizer\\Token>\) to function array_filter does not contain falsy values, the array will always stay the same#'
+            path: src/TokenRunner/Traverser/TokenReverser.php

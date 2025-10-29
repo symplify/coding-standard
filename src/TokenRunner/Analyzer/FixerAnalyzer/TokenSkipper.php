@@ -57,8 +57,16 @@ final readonly class TokenSkipper
     {
         /** @var Token $token */
         $token = $tokens[$position];
-        if (! $token->isGivenKind(CT::T_ARRAY_SQUARE_BRACE_CLOSE) && ! $token->equals(')')) {
+        if (! $token->isGivenKind(CT::T_ARRAY_SQUARE_BRACE_CLOSE) && ! $token->equals(')') && ! $token->isGivenKind(CT::T_ATTRIBUTE_CLOSE)) {
             return $position;
+        }
+
+        // Check if this is an attribute closing bracket
+        if ($token->isGivenKind(CT::T_ATTRIBUTE_CLOSE)) {
+            $attributeStartPosition = $this->findAttributeStart($tokens, $position);
+            if ($attributeStartPosition !== null) {
+                return $attributeStartPosition;
+            }
         }
 
         $blockInfo = $this->blockFinder->findInTokensByEdge($tokens, $position);
@@ -67,5 +75,27 @@ final readonly class TokenSkipper
         }
 
         return $blockInfo->getStart();
+    }
+
+    /**
+     * @param Tokens<Token> $tokens
+     */
+    private function findAttributeStart(Tokens $tokens, int $closingBracketPosition): ?int
+    {
+        // Search backwards for T_ATTRIBUTE token (#[)
+        for ($i = $closingBracketPosition - 1; $i >= 0; --$i) {
+            $currentToken = $tokens[$i];
+
+            if ($currentToken->isGivenKind(T_ATTRIBUTE)) {
+                return $i;
+            }
+
+            // If we hit another ] or reach a statement boundary, stop searching
+            if ($currentToken->equals(']') || $currentToken->equals(';') || $currentToken->equals('{') || $currentToken->equals('}')) {
+                break;
+            }
+        }
+
+        return null;
     }
 }
