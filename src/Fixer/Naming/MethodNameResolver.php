@@ -25,7 +25,7 @@ final class MethodNameResolver
 
             $nextNextMeaningfulTokenIndex = $tokens->getNextMeaningfulToken($position + 1);
 
-            if (null === $nextNextMeaningfulTokenIndex) {
+            if ($nextNextMeaningfulTokenIndex === null) {
                 continue;
             }
 
