@@ -9,7 +9,7 @@
     },
     "require-dev": {
         "symplify/easy-coding-standard": "^12.5",
-        "squizlabs/php_codesniffer": "^3.12",
+        "squizlabs/php_codesniffer": "^4.0",
         "phpunit/phpunit": "^11.5",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
