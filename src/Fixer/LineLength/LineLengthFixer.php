@@ -15,6 +15,7 @@ use SplFileInfo;
 use Symplify\CodingStandard\Exception\ShouldNotHappenException;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\Fixer\Spacing\StandaloneLineConstructorParamFixer;
+use Symplify\CodingStandard\Fixer\Spacing\StandaloneLinePromotedPropertyFixer;
 use Symplify\CodingStandard\TokenAnalyzer\FunctionCallNameMatcher;
 use Symplify\CodingStandard\TokenAnalyzer\HeredocAnalyzer;
 use Symplify\CodingStandard\TokenAnalyzer\Naming\MethodNameResolver;
@@ -68,7 +69,8 @@ final class LineLengthFixer extends AbstractSymplifyFixer implements Configurabl
         private readonly FunctionCallNameMatcher $functionCallNameMatcher,
         private readonly MethodNameResolver $methodNameResolver,
         private readonly HeredocAnalyzer $heredocAnalyzer,
-        private readonly ?StandaloneLineConstructorParamFixer $standaloneLineConstructorParamFixer = null
+        private readonly ?StandaloneLineConstructorParamFixer $standaloneLineConstructorParamFixer = null,
+        private readonly ?StandaloneLinePromotedPropertyFixer $standaloneLinePromotedPropertyFixer = null
     ) {
     }
 
@@ -208,6 +210,11 @@ final class LineLengthFixer extends AbstractSymplifyFixer implements Configurabl
             return;
         }
 
+        // StandaloneLinePromotedPropertyFixer enforces standalone lines, do not undo its work
+        if ($this->standaloneLinePromotedPropertyFixer && $this->hasPromotedProperty($tokens, $blockInfo)) {
+            return;
+        }
+
         if ($this->shouldSkip($tokens, $blockInfo)) {
             return;
         }
@@ -243,5 +250,19 @@ final class LineLengthFixer extends AbstractSymplifyFixer implements Configurabl
 
         // has comments => dangerous to change: https://github.com/symplify/symplify/issues/973
         return (bool) $tokens->findGivenKind(T_COMMENT, $blockInfo->getStart(), $blockInfo->getEnd());
+    }
+
+    /**
+     * @param Tokens<Token> $tokens
+     */
+    private function hasPromotedProperty(Tokens $tokens, BlockInfo $blockInfo): bool
+    {
+        $resultByKind = $tokens->findGivenKind([
+            CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PUBLIC,
+            CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PROTECTED,
+            CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PRIVATE,
+        ], $blockInfo->getStart(), $blockInfo->getEnd());
+
+        return (bool) array_filter($resultByKind);
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\Transformer\FixerTransformer;
 
-use PhpCsFixer\Tokenizer\CT;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Enum\LineKind;
@@ -30,10 +29,6 @@ final readonly class LineLengthTransformer
         bool $breakLongLines,
         bool $inlineShortLine
     ): void {
-        if ($this->hasPromotedProperty($tokens, $blockInfo)) {
-            return;
-        }
-
         $firstLineLength = $this->firstLineLengthResolver->resolveFromTokensAndStartPosition($tokens, $blockInfo);
         if ($firstLineLength > $lineLength && $breakLongLines) {
             $this->tokensNewliner->breakItems($blockInfo, $tokens, LineKind::CALLS);
@@ -50,19 +45,5 @@ final readonly class LineLengthTransformer
         }
 
         $this->tokensInliner->inlineItems($tokens, $blockInfo);
-    }
-
-    /**
-     * @param Tokens<Token> $tokens
-     */
-    private function hasPromotedProperty(Tokens $tokens, BlockInfo $blockInfo): bool
-    {
-        $resultByKind = $tokens->findGivenKind([
-            CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PUBLIC,
-            CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PROTECTED,
-            CT::T_CONSTRUCTOR_PROPERTY_PROMOTION_PRIVATE,
-        ], $blockInfo->getStart(), $blockInfo->getEnd());
-
-        return (bool) array_filter($resultByKind);
     }
 }

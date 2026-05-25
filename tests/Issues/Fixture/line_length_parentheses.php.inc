@@ -13,9 +13,7 @@ final class LineLengtParentheses
 
 final class LineLengtParentheses
 {
-    public function __construct(
-        private DateTimeImmutable $dateTimeImmutable = new DateTimeImmutable
-    ) {}
+    public function __construct(private DateTimeImmutable $dateTimeImmutable = new DateTimeImmutable) {}
 }
 
 ?>
