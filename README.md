@@ -12,7 +12,7 @@ They run best with [ECS](https://github.com/symplify/easy-coding-standard).
 
 ```bash
 composer require symplify/coding-standard --dev
-composer require phpecs/phpecs --dev
+composer require symplify/easy-coding-standard --dev
 ```
 
 1. Register in ECS config:
