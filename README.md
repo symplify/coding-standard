@@ -40,7 +40,7 @@ vendor/bin/ecs --fix
 
 <br>
 
-# 12 Rules to Keep Your Code Clean
+# 14 Rules to Keep Your Code Clean
 
 ## ArrayListItemNewlineFixer
 
@@ -165,7 +165,7 @@ Remove docblock descriptions which duplicate their property name
 
 Remove docblock descriptions which duplicate their method name
 
-- class: [`Symplify\CodingStandard\Fixer\Annotation\RemoveRedundantDescriptionFixer`](../src/Fixer/Annotation/RemoveRedundantDescriptionFixer.php)
+- class: [`Symplify\CodingStandard\Fixer\Annotation\RemoveMethodNameDuplicateDescriptionFixer`](../src/Fixer/Annotation/RemoveMethodNameDuplicateDescriptionFixer.php)
 
 ```diff
  /**
