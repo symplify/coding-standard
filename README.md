@@ -11,19 +11,17 @@ They run best with [ECS](https://github.com/symplify/easy-coding-standard).
 ## Install
 
 ```bash
-composer require symplify/coding-standard --dev
-composer require symplify/easy-coding-standard --dev
+composer require symplify/coding-standard symplify/easy-coding-standard --dev
 ```
 
-1. Register in ECS config:
+1. Register in `ecs.php` config:
 
 ```php
  # ecs.php
  use Symplify\EasyCodingStandard\Config\ECSConfig;
- use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
  return ECSConfig::configure()
-     ->withSets([SetList::SYMPLIFY]);
+    ->withPreparedSets(symplify: true);
 ```
 
 
