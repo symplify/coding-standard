@@ -15,7 +15,7 @@ use Symplify\CodingStandard\Fixer\Naming\MethodNameResolver;
 use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
 
 /**
- * @see \Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveRedundantDescriptionFixer\RemoveRedundantDescriptionFixerTest
+ * @see \Symplify\CodingStandard\Tests\Fixer\Annotation\RemoveMethodNameDuplicateDescriptionFixer\RemoveMethodNameDuplicateDescriptionFixerTest
  */
 final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFixer
 {
