@@ -30,11 +30,7 @@ jobs:
 
                     -
                         name: 'Coding Standard'
-                        run: composer fix-cs --ansi
-
-                    -
-                        name: 'Tests'
-                        run: vendor/bin/phpunit
+                        run: composer check-cs --ansi
 
                     -
                         name: 'Check Active Classes'
@@ -44,7 +40,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            -   uses: actions/checkout@v3
+            -   uses: actions/checkout@v4
 
             # see https://github.com/shivammathur/setup-php
             -   uses: shivammathur/setup-php@v2
@@ -53,7 +49,7 @@ jobs:
                     coverage: none
 
             # composer install cache - https://github.com/ramsey/composer-install
-            -   uses: "ramsey/composer-install@v2"
+            -   uses: "ramsey/composer-install@v3"
 
             # Override code from symplify/coding-standard shipped with ECS
             -   run: |
@@ -61,3 +57,26 @@ jobs:
                     ln -s $PWD/src vendor/symplify/easy-coding-standard/vendor/symplify/coding-standard/
 
             -   run: ${{ matrix.actions.run }}
+
+    tests:
+        strategy:
+            fail-fast: false
+            matrix:
+                php-version: [ '8.2', '8.3', '8.4' ]
+
+        name: Tests (PHP ${{ matrix.php-version }})
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v4
+
+            # see https://github.com/shivammathur/setup-php
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-version }}
+                    coverage: none
+
+            # composer install cache - https://github.com/ramsey/composer-install
+            -   uses: "ramsey/composer-install@v3"
+
+            -   run: vendor/bin/phpunit
