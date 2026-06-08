@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Spacing;
 
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -18,10 +19,7 @@ use Symplify\CodingStandard\TokenAnalyzer\ParamNewliner;
  */
 final class StandaloneLineConstructorParamFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Constructor param should be on a standalone line to ease git diffs on new dependency';
+    private const string ERROR_MESSAGE = 'Constructor param should be on a standalone line to ease git diffs on new dependency';
 
     public function __construct(
         private readonly ParamNewliner $paramNewliner,
@@ -34,6 +32,7 @@ final class StandaloneLineConstructorParamFixer extends AbstractSymplifyFixer
      *
      * @see \PhpCsFixer\Fixer\Basic\BracesFixer::getPriority()
      */
+    #[Override]
     public function getPriority(): int
     {
         return 40;

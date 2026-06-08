@@ -13,10 +13,9 @@ use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface
 final class SwitchedTypeAndNameMalformWorker implements MalformWorkerInterface
 {
     /**
-     * @var string
      * @see https://regex101.com/r/4us32A/1
      */
-    private const NAME_THEN_TYPE_REGEX = '#@((?:psalm-|phpstan-)?(?:param|var))(\s+)(?<name>\$\w+)(\s+)(?<type>[|\\\\\w\[\]\<\>]+)#';
+    private const string NAME_THEN_TYPE_REGEX = '#@((?:psalm-|phpstan-)?(?:param|var))(\s+)(?<name>\$\w+)(\s+)(?<type>[|\\\\\w\[\]\<\>]+)#';
 
     /**
      * @param Tokens<Token> $tokens

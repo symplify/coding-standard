@@ -9,13 +9,7 @@ namespace Symplify\CodingStandard\TokenRunner\Enum;
  */
 final class LineKind
 {
-    /**
-     * @var int
-     */
-    public const ARRAYS = 1;
+    public const int ARRAYS = 1;
 
-    /**
-     * @var int
-     */
-    public const CALLS = 2;
+    public const int CALLS = 2;
 }

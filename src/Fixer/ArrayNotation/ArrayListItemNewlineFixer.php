@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\ArrayNotation;
 
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -20,10 +21,7 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\TokenKinds;
  */
 final class ArrayListItemNewlineFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Indexed PHP array item has to have one line per item';
+    private const string ERROR_MESSAGE = 'Indexed PHP array item has to have one line per item';
 
     public function __construct(
         private readonly ArrayItemNewliner $arrayItemNewliner,
@@ -37,6 +35,7 @@ final class ArrayListItemNewlineFixer extends AbstractSymplifyFixer
         return new FixerDefinition(self::ERROR_MESSAGE, []);
     }
 
+    #[Override]
     public function getPriority(): int
     {
         return 40;

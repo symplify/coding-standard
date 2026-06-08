@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Commenting;
 
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -19,10 +20,7 @@ use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
  */
 final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Remove useless PHPStorm-generated @todo comments, redundant "Class XY" or "gets service" comments etc.';
+    private const string ERROR_MESSAGE = 'Remove useless PHPStorm-generated @todo comments, redundant "Class XY" or "gets service" comments etc.';
 
     public function __construct(
         private readonly UselessDocBlockCleaner $uselessDocBlockCleaner,
@@ -44,6 +42,7 @@ final class RemoveUselessDefaultCommentFixer extends AbstractSymplifyFixer
         return $tokens->isAnyTokenKindsFound([T_DOC_COMMENT, T_COMMENT]);
     }
 
+    #[Override]
     public function getPriority(): int
     {
         /** must run before @see \PhpCsFixer\Fixer\Basic\BracesFixer to cleanup spaces */

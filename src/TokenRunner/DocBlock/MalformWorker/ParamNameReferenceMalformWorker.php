@@ -12,10 +12,9 @@ use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface
 final class ParamNameReferenceMalformWorker implements MalformWorkerInterface
 {
     /**
-     * @var string
      * @see https://regex101.com/r/B4rWNk/3
      */
-    private const PARAM_NAME_REGEX = '#(?<param>@param(.*?))&(?<paramName>\$\w+)#';
+    private const string PARAM_NAME_REGEX = '#(?<param>@param(.*?))&(?<paramName>\$\w+)#';
 
     /**
      * @param Tokens<Token> $tokens

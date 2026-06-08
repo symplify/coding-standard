@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\LineLength;
 
+use Override;
 use PhpCsFixer\Fixer\ConfigurableFixerInterface;
 use PhpCsFixer\FixerConfiguration\FixerConfigurationResolverInterface;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
@@ -30,31 +31,22 @@ final class LineLengthFixer extends AbstractSymplifyFixer implements Configurabl
 {
     /**
      * @api
-     * @var string
      */
-    public const LINE_LENGTH = 'line_length';
+    public const string LINE_LENGTH = 'line_length';
 
     /**
      * @api
-     * @var string
      */
-    public const BREAK_LONG_LINES = 'break_long_lines';
+    public const string BREAK_LONG_LINES = 'break_long_lines';
 
     /**
      * @api
-     * @var string
      */
-    public const INLINE_SHORT_LINES = 'inline_short_lines';
+    public const string INLINE_SHORT_LINES = 'inline_short_lines';
 
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Array items, method parameters, method call arguments, new arguments should be on same/standalone line to fit line length.';
+    private const string ERROR_MESSAGE = 'Array items, method parameters, method call arguments, new arguments should be on same/standalone line to fit line length.';
 
-    /**
-     * @var int
-     */
-    private const DEFAULT_LINE_LENGHT = 120;
+    private const int DEFAULT_LINE_LENGHT = 120;
 
     private int $lineLength = self::DEFAULT_LINE_LENGHT;
 
@@ -139,6 +131,7 @@ final class LineLengthFixer extends AbstractSymplifyFixer implements Configurabl
      *
      * @see \PhpCsFixer\Fixer\ArrayNotation\TrimArraySpacesFixer::getPriority()
      */
+    #[Override]
     public function getPriority(): int
     {
         return 5;

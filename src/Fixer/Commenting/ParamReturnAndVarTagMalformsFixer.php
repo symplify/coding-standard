@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symplify\CodingStandard\Fixer\Commenting;
 
 use Nette\Utils\Strings;
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -28,16 +29,12 @@ use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
  */
 final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Fixes @param, @return, @var and inline @var annotations broken formats';
+    private const string ERROR_MESSAGE = 'Fixes @param, @return, @var and inline @var annotations broken formats';
 
     /**
-     * @var string
      * @see https://regex101.com/r/Nlxkd9/1
      */
-    private const TYPE_ANNOTATION_REGEX = '#@(psalm-|phpstan-)?(param|return|var)#';
+    private const string TYPE_ANNOTATION_REGEX = '#@(psalm-|phpstan-)?(param|return|var)#';
 
     /**
      * @var MalformWorkerInterface[]
@@ -135,6 +132,7 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
      *
      * @see \PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer::getPriority()
      */
+    #[Override]
     public function getPriority(): int
     {
         return -37;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\ArrayNotation;
 
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -22,10 +23,7 @@ use Symplify\CodingStandard\TokenRunner\Wrapper\FixerWrapper\ArrayWrapperFactory
  */
 final class StandaloneLineInMultilineArrayFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Indexed arrays must have 1 item per line';
+    private const string ERROR_MESSAGE = 'Indexed arrays must have 1 item per line';
 
     public function __construct(
         private readonly ArrayWrapperFactory $arrayWrapperFactory,
@@ -44,6 +42,7 @@ final class StandaloneLineInMultilineArrayFixer extends AbstractSymplifyFixer
      *
      * @see \PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer::getPriority()
      */
+    #[Override]
     public function getPriority(): int
     {
         return 5;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Spacing;
 
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\CT;
@@ -19,10 +20,7 @@ use Symplify\CodingStandard\TokenAnalyzer\ParamNewliner;
  */
 final class StandaloneLinePromotedPropertyFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Promoted property should be on standalone line';
+    private const string ERROR_MESSAGE = 'Promoted property should be on standalone line';
 
     public function __construct(
         private readonly ParamNewliner $paramNewliner,
@@ -35,6 +33,7 @@ final class StandaloneLinePromotedPropertyFixer extends AbstractSymplifyFixer
      *
      * @see \PhpCsFixer\Fixer\Basic\BracesFixer::getPriority()
      */
+    #[Override]
     public function getPriority(): int
     {
         return 40;

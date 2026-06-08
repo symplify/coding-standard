@@ -21,10 +21,7 @@ use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
  */
 final class BlankLineAfterStrictTypesFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Strict type declaration has to be followed by empty line';
+    private const string ERROR_MESSAGE = 'Strict type declaration has to be followed by empty line';
 
     /**
      * Generates: "declare(strict_types=1);"
