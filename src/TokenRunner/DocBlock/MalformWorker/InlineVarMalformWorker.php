@@ -12,10 +12,9 @@ use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface
 final class InlineVarMalformWorker implements MalformWorkerInterface
 {
     /**
-     * @var string
      * @see https://regex101.com/r/cj95e6/1
      */
-    private const SINGLE_ASTERISK_START_REGEX = '#^/\*(\n?\s+@(?:psalm-|phpstan-)?var)#';
+    private const string SINGLE_ASTERISK_START_REGEX = '#^/\*(\n?\s+@(?:psalm-|phpstan-)?var)#';
 
     /**
      * @param Tokens<Token> $tokens

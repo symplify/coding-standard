@@ -13,26 +13,21 @@ use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface
 final class SuperfluousReturnNameMalformWorker implements MalformWorkerInterface
 {
     /**
-     * @var string
      * @see https://regex101.com/r/4qyd2j/1
      */
-    private const RETURN_VARIABLE_NAME_REGEX = '#(?<tag>@(?:psalm-|phpstan-)?return)(?<type>\s+[|\\\\\w]+)?(\s+)(?<' . self::VARIABLE_NAME_PART . '>\$[\w]+)#';
+    private const string RETURN_VARIABLE_NAME_REGEX = '#(?<tag>@(?:psalm-|phpstan-)?return)(?<type>\s+[|\\\\\w]+)?(\s+)(?<' . self::VARIABLE_NAME_PART . '>\$[\w]+)#';
 
     /**
      * @var string[]
      */
-    private const ALLOWED_VARIABLE_NAMES = ['$this'];
+    private const array ALLOWED_VARIABLE_NAMES = ['$this'];
 
     /**
-     * @var string
      * @see https://regex101.com/r/IE9fA6/1
      */
-    private const VARIABLE_NAME_REGEX = '#\$\w+#';
+    private const string VARIABLE_NAME_REGEX = '#\$\w+#';
 
-    /**
-     * @var string
-     */
-    private const VARIABLE_NAME_PART = 'variableName';
+    private const string VARIABLE_NAME_PART = 'variableName';
 
     /**
      * @param Tokens<Token> $tokens

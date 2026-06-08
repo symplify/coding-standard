@@ -11,5 +11,5 @@ final class TokenKinds
     /**
      * @var int[]
      */
-    public const ARRAY_OPEN_TOKENS = [T_ARRAY, CT::T_ARRAY_SQUARE_BRACE_OPEN];
+    public const array ARRAY_OPEN_TOKENS = [T_ARRAY, CT::T_ARRAY_SQUARE_BRACE_OPEN];
 }

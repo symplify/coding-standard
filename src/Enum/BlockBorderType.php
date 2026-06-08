@@ -6,13 +6,7 @@ namespace Symplify\CodingStandard\Enum;
 
 final class BlockBorderType
 {
-    /**
-     * @var string
-     */
-    public const OPENER = 'opener';
+    public const string OPENER = 'opener';
 
-    /**
-     * @var string
-     */
-    public const CLOSER = 'closer';
+    public const string CLOSER = 'closer';
 }

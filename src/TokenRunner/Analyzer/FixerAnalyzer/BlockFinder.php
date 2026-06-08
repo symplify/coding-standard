@@ -16,7 +16,7 @@ final class BlockFinder
     /**
      * @var array<string, int>
      */
-    private const CONTENT_TO_BLOCK_TYPE = [
+    private const array CONTENT_TO_BLOCK_TYPE = [
         '(' => Tokens::BLOCK_TYPE_PARENTHESIS_BRACE,
         ')' => Tokens::BLOCK_TYPE_PARENTHESIS_BRACE,
         '[' => Tokens::BLOCK_TYPE_ARRAY_SQUARE_BRACE,
@@ -29,7 +29,7 @@ final class BlockFinder
     /**
      * @var string[]
      */
-    private const START_EDGES = ['(', '[', '{'];
+    private const array START_EDGES = ['(', '[', '{'];
 
     /**
      * Accepts position to both start and end token, e.g. (, ), [, ], {, } also to: "array"(, "function" ...(, "use"(,

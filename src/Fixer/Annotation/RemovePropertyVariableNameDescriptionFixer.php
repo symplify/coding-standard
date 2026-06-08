@@ -19,16 +19,12 @@ use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
  */
 final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Remove useless "$variable" from @var tag';
+    private const string ERROR_MESSAGE = 'Remove useless "$variable" from @var tag';
 
     /**
-     * @var string
      * @see https://regex101.com/r/2PxeKF/1
      */
-    private const VAR_REGEX = '#@(?:psalm-|phpstan-)?var#';
+    private const string VAR_REGEX = '#@(?:psalm-|phpstan-)?var#';
 
     private readonly PropertyNameResolver $propertyNameResolver;
 

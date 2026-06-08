@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Spacing;
 
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -20,10 +21,7 @@ use Symplify\CodingStandard\TokenRunner\ValueObject\BlockInfo;
  */
 final class MethodChainingNewlineFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Each chain method call must be on own line';
+    private const string ERROR_MESSAGE = 'Each chain method call must be on own line';
 
     public function __construct(
         private readonly WhitespacesFixerConfig $whitespacesFixerConfig,
@@ -42,6 +40,7 @@ final class MethodChainingNewlineFixer extends AbstractSymplifyFixer
      *
      * @see \PhpCsFixer\Fixer\Whitespace\MethodChainingIndentationFixer::getPriority()
      */
+    #[Override]
     public function getPriority(): int
     {
         return 39;

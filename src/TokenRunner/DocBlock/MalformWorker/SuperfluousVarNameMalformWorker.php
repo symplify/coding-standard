@@ -13,16 +13,14 @@ use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface
 final class SuperfluousVarNameMalformWorker implements MalformWorkerInterface
 {
     /**
-     * @var string
      * @see https://regex101.com/r/euhrn8/1
      */
-    private const THIS_VARIABLE_REGEX = '#\$this$#';
+    private const string THIS_VARIABLE_REGEX = '#\$this$#';
 
     /**
-     * @var string
      * @see https://regex101.com/r/6XuSGV/1
      */
-    private const VAR_VARIABLE_NAME_REGEX = '#(?<tag>@(?:psalm-|phpstan-)?var)(?<type>\s+[|\\\\\w]+)?(\s+)(?<propertyName>\$[\w]+)#';
+    private const string VAR_VARIABLE_NAME_REGEX = '#(?<tag>@(?:psalm-|phpstan-)?var)(?<type>\s+[|\\\\\w]+)?(\s+)(?<propertyName>\$[\w]+)#';
 
     /**
      * @param Tokens<Token> $tokens

@@ -17,10 +17,7 @@ use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
  */
 final class SpaceAfterCommaHereNowDocFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Add space after nowdoc and heredoc keyword, to prevent bugs on PHP 7.2 and lower, see https://laravel-news.com/flexible-heredoc-and-nowdoc-coming-to-php-7-3';
+    private const string ERROR_MESSAGE = 'Add space after nowdoc and heredoc keyword, to prevent bugs on PHP 7.2 and lower, see https://laravel-news.com/flexible-heredoc-and-nowdoc-coming-to-php-7-3';
 
     public function getDefinition(): FixerDefinitionInterface
     {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\ArrayNotation;
 
+use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -22,10 +23,7 @@ use Symplify\CodingStandard\ValueObject\BlockInfoMetadata;
  */
 final class ArrayOpenerAndCloserNewlineFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Indexed PHP array opener [ and closer ] must be on own line';
+    private const string ERROR_MESSAGE = 'Indexed PHP array opener [ and closer ] must be on own line';
 
     public function __construct(
         private readonly ArrayBlockInfoFinder $arrayBlockInfoFinder,
@@ -44,6 +42,7 @@ final class ArrayOpenerAndCloserNewlineFixer extends AbstractSymplifyFixer
      *
      * @see \PhpCsFixer\Fixer\Whitespace\ArrayIndentationFixer::getPriority()
      */
+    #[Override]
     public function getPriority(): int
     {
         return 34;

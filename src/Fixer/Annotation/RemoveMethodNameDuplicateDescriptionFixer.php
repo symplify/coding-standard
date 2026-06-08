@@ -19,10 +19,7 @@ use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
  */
 final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFixer
 {
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Remove docblock descriptions which duplicate their method name';
+    private const string ERROR_MESSAGE = 'Remove docblock descriptions which duplicate their method name';
 
     private readonly MethodNameResolver $methodNameResolver;
 

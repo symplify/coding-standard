@@ -15,10 +15,9 @@ use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface
 final readonly class ParamNameTypoMalformWorker implements MalformWorkerInterface
 {
     /**
-     * @var string
      * @see https://regex101.com/r/5szHlw/1
      */
-    private const PARAM_NAME_REGEX = '#@param(\s+)(?<callable>callable)?(.*?)(?<paramName>\$\w+)#';
+    private const string PARAM_NAME_REGEX = '#@param(\s+)(?<callable>callable)?(.*?)(?<paramName>\$\w+)#';
 
     public function __construct(
         private DocblockRelatedParamNamesResolver $docblockRelatedParamNamesResolver

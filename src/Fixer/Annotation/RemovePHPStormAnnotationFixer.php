@@ -20,14 +20,10 @@ final class RemovePHPStormAnnotationFixer extends AbstractSymplifyFixer
 {
     /**
      * @see https://regex101.com/r/nGZBzj/2
-     * @var string
      */
-    private const CREATED_BY_PHPSTORM_DOC_REGEX = '#\/\*\*\s+\*\s+Created by PHPStorm(.*?)\*\/#msi';
+    private const string CREATED_BY_PHPSTORM_DOC_REGEX = '#\/\*\*\s+\*\s+Created by PHPStorm(.*?)\*\/#msi';
 
-    /**
-     * @var string
-     */
-    private const ERROR_MESSAGE = 'Remove "Created by PhpStorm" annotations';
+    private const string ERROR_MESSAGE = 'Remove "Created by PhpStorm" annotations';
 
     public function __construct(
         private readonly TokenReverser $tokenReverser

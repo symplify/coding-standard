@@ -15,7 +15,7 @@ final readonly class ArrayWrapper
     /**
      * @var int[]
      */
-    private const ARRAY_OPEN_TOKENS = [T_ARRAY, CT::T_ARRAY_SQUARE_BRACE_OPEN];
+    private const array ARRAY_OPEN_TOKENS = [T_ARRAY, CT::T_ARRAY_SQUARE_BRACE_OPEN];
 
     /**
      * @param Tokens<Token> $tokens

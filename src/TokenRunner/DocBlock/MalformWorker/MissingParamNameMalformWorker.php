@@ -15,22 +15,19 @@ use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface
 final readonly class MissingParamNameMalformWorker implements MalformWorkerInterface
 {
     /**
-     * @var string
      * @see https://regex101.com/r/QtWnWv/6
      */
-    private const PARAM_WITHOUT_NAME_REGEX = '#@param ([^${<]*?)( ([^$]*?))?\n#';
+    private const string PARAM_WITHOUT_NAME_REGEX = '#@param ([^${<]*?)( ([^$]*?))?\n#';
 
     /**
-     * @var string
      * @see https://regex101.com/r/58YJNy/1
      */
-    private const PARAM_ANNOTATOIN_START_REGEX = '@param ';
+    private const string PARAM_ANNOTATOIN_START_REGEX = '@param ';
 
     /**
-     * @var string
      * @see https://regex101.com/r/JhugsI/1
      */
-    private const PARAM_WITH_NAME_REGEX = '#@param(.*?)\$[\w]+(.*?)\n#';
+    private const string PARAM_WITH_NAME_REGEX = '#@param(.*?)\$[\w]+(.*?)\n#';
 
     public function __construct(
         private DocblockRelatedParamNamesResolver $docblockRelatedParamNamesResolver
