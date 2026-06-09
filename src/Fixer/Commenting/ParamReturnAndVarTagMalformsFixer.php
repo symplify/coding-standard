@@ -13,6 +13,7 @@ use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
 use Symplify\CodingStandard\Fixer\AbstractSymplifyFixer;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\DeadParamMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\InlineVariableDocBlockMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\InlineVarMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\MissingParamNameMalformWorker;
@@ -51,6 +52,7 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
         SuperfluousReturnNameMalformWorker $superfluousReturnNameMalformWorker,
         SuperfluousVarNameMalformWorker $superfluousVarNameMalformWorker,
         SwitchedTypeAndNameMalformWorker $switchedTypeAndNameMalformWorker,
+        DeadParamMalformWorker $deadParamMalformWorker,
         private readonly TokenReverser $tokenReverser
     ) {
         $this->malformWorkers = [
@@ -63,6 +65,7 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
             $superfluousReturnNameMalformWorker,
             $superfluousVarNameMalformWorker,
             $switchedTypeAndNameMalformWorker,
+            $deadParamMalformWorker,
         ];
     }
 
@@ -123,6 +126,17 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
                 continue;
             }
 
+            // doc block became empty after removing dead lines → remove it completely,
+            // including the whitespace that followed it, to avoid leaving a blank line
+            if ($this->isEmptyDocBlock($docContent)) {
+                $tokens->clearAt($index);
+                if (isset($tokens[$index + 1]) && $tokens[$index + 1]->isWhitespace()) {
+                    $tokens->clearAt($index + 1);
+                }
+
+                continue;
+            }
+
             $tokens[$index] = new Token([T_DOC_COMMENT, $docContent]);
         }
     }
@@ -136,5 +150,10 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
     public function getPriority(): int
     {
         return -37;
+    }
+
+    private function isEmptyDocBlock(string $docContent): bool
+    {
+        return Strings::replace($docContent, '#/\*\*|\*/|\*|\s#', '') === '';
     }
 }

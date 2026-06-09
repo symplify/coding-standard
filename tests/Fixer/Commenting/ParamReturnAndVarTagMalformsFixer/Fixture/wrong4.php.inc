@@ -36,7 +36,6 @@ function someFunction($instanceof)
 }
 
 /**
- * @param $value
  *
  * @return The normalized array value
  */
