@@ -127,9 +127,7 @@ Each chain method call must be on own line
 
 ## Doc block malform rules
 
-The previous all-in-one `ParamReturnAndVarTagMalformsFixer` is now **split into single-task rules**, each fixing one kind of `@param`/`@return`/`@var` malform. They are registered together in the [`docblock` set](../config/sets/docblock.php) and all handle the `@phpstan-` and `@psalm-` prefixed variants of these tags.
-
-`ParamReturnAndVarTagMalformsFixer` is kept as a deprecated, empty rule that points to its successors.
+Single-task rules that each fix one kind of `@param`/`@return`/`@var` malform. They are registered together in the [`docblock` set](../config/sets/docblock.php) and all handle the `@phpstan-` and `@psalm-` prefixed variants of these tags.
 
 <br>
 
