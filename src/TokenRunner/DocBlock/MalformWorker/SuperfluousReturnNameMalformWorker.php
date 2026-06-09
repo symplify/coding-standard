@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\DocBlock\DocBlock;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 final class SuperfluousReturnNameMalformWorker implements MalformWorkerInterface
 {
@@ -38,7 +38,7 @@ final class SuperfluousReturnNameMalformWorker implements MalformWorkerInterface
 
         $lines = $docBlock->getLines();
         foreach ($lines as $line) {
-            $match = Strings::match($line->getContent(), self::RETURN_VARIABLE_NAME_REGEX);
+            $match = Regex::match($line->getContent(), self::RETURN_VARIABLE_NAME_REGEX);
             if ($match === null) {
                 continue;
             }
@@ -47,7 +47,7 @@ final class SuperfluousReturnNameMalformWorker implements MalformWorkerInterface
                 continue;
             }
 
-            $newLineContent = Strings::replace(
+            $newLineContent = Regex::replace(
                 $line->getContent(),
                 self::RETURN_VARIABLE_NAME_REGEX,
                 static function (array $match) {
@@ -76,6 +76,6 @@ final class SuperfluousReturnNameMalformWorker implements MalformWorkerInterface
         }
 
         // has multiple return values? "@return array $one, $two"
-        return count(Strings::matchAll($content, self::VARIABLE_NAME_REGEX)) >= 2;
+        return count(Regex::matchAll($content, self::VARIABLE_NAME_REGEX)) >= 2;
     }
 }

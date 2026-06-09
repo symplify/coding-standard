@@ -127,9 +127,11 @@ Each chain method call must be on own line
 
 ## ParamReturnAndVarTagMalformsFixer
 
-Fixes @param, @return, `@var` and inline `@var` annotations broken formats
+Fixes `@param`, `@return`, `@var` and inline `@var` annotations broken formats. This single rule covers a wide range of docblock malforms:
 
 - class: [`Symplify\CodingStandard\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer`](../src/Fixer/Commenting/ParamReturnAndVarTagMalformsFixer.php)
+
+**Add a missing `@param` variable name**
 
 ```diff
  /**
@@ -140,6 +142,97 @@ Fixes @param, @return, `@var` and inline `@var` annotations broken formats
  {
  }
 ```
+
+**Reorder switched type and variable name**
+
+```diff
+ /**
+- * @param $a string
+- * @param $b string|null
++ * @param string $a
++ * @param string|null $b
+  */
+ function test($a, string $b = null): string
+ {
+ }
+```
+
+**Remove a dead `@param` line that has only a name and no type**
+
+```diff
+ /**
+  * @param string $name
+- * @param $age
+  */
+ function withDeadParam(string $name, $age)
+ {
+ }
+```
+
+**Fix a typo in the `@param` variable name to match the real argument**
+
+```diff
+ /**
+  * @param string $one
+- * @param string $twoTypo
++ * @param string $two
+  */
+ function anotherFunction(string $one, string $two)
+ {
+ }
+```
+
+**Remove the reference `&` from a `@param` name**
+
+```diff
+ /**
+- * @param string &$name
++ * @param string $name
+  */
+ function paramReference($name)
+ {
+ }
+```
+
+**Remove a superfluous variable name from `@return`**
+
+```diff
+ /**
+- * @return int $value
++ * @return int
+  */
+ function function1(): int
+ {
+ }
+```
+
+**Remove a superfluous variable name from a property `@var`**
+
+```diff
+ /**
+- * @var string $property
++ * @var string
+  */
+ private $property;
+```
+
+**Add a missing variable name to an inline `@var`**
+
+```diff
+-/** @var int */
++/** @var int $value */
+ $value = 1000;
+```
+
+**Normalize a malformed inline `@var` (single asterisk, switched name/type)**
+
+```diff
+-/* @var $variable int */
++/** @var int $variable */
+ $variable = 5;
+```
+
+It also handles the `@phpstan-` and `@psalm-` prefixed variants of these tags.
 
 <br>
 

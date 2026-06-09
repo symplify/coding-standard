@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 final class ParamNameReferenceMalformWorker implements MalformWorkerInterface
 {
@@ -21,7 +21,7 @@ final class ParamNameReferenceMalformWorker implements MalformWorkerInterface
      */
     public function work(string $docContent, Tokens $tokens, int $position): string
     {
-        return Strings::replace(
+        return Regex::replace(
             $docContent,
             self::PARAM_NAME_REGEX,
             static fn ($match): string => $match['param'] . $match['paramName']

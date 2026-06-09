@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Commenting;
 
-use Nette\Utils\Strings;
 use Override;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
@@ -24,6 +23,7 @@ use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SuperfluousReturn
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SuperfluousVarNameMalformWorker;
 use Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker\SwitchedTypeAndNameMalformWorker;
 use Symplify\CodingStandard\TokenRunner\Traverser\TokenReverser;
+use Symplify\CodingStandard\Utils\Regex;
 
 /**
  * @see \Symplify\CodingStandard\Tests\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer\ParamReturnAndVarTagMalformsFixerTest
@@ -113,7 +113,7 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
             }
 
             $docContent = $token->getContent();
-            if (! Strings::match($docContent, self::TYPE_ANNOTATION_REGEX)) {
+            if (! Regex::match($docContent, self::TYPE_ANNOTATION_REGEX)) {
                 continue;
             }
 
@@ -154,6 +154,6 @@ final class ParamReturnAndVarTagMalformsFixer extends AbstractSymplifyFixer
 
     private function isEmptyDocBlock(string $docContent): bool
     {
-        return Strings::replace($docContent, '#/\*\*|\*/|\*|\s#', '') === '';
+        return Regex::replace($docContent, '#/\*\*|\*/|\*|\s#', '') === '';
     }
 }

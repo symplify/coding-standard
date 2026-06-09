@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 final class InlineVariableDocBlockMalformWorker implements MalformWorkerInterface
 {
@@ -41,13 +41,13 @@ final class InlineVariableDocBlockMalformWorker implements MalformWorkerInterfac
         }
 
         // asterisk start
-        $docContent = Strings::replace($docContent, self::SINGLE_ASTERISK_START_REGEX, '/**$1');
+        $docContent = Regex::replace($docContent, self::SINGLE_ASTERISK_START_REGEX, '/**$1');
 
         // inline
-        $docContent = Strings::replace($docContent, self::SPACE_REGEX, ' ');
+        $docContent = Regex::replace($docContent, self::SPACE_REGEX, ' ');
 
         // remove asterisk leftover
-        return Strings::replace($docContent, self::ASTERISK_LEFTOVERS_REGEX, '$1');
+        return Regex::replace($docContent, self::ASTERISK_LEFTOVERS_REGEX, '$1');
     }
 
     /**

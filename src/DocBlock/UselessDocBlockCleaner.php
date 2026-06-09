@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\DocBlock;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\Tokenizer\Token;
+use Symplify\CodingStandard\Utils\Regex;
 
 final class UselessDocBlockCleaner
 {
@@ -72,7 +72,7 @@ final class UselessDocBlockCleaner
             }
 
             foreach (self::CLEANING_REGEXES as $cleaningRegex) {
-                $commentLine = Strings::replace($commentLine, $cleaningRegex);
+                $commentLine = Regex::replace($commentLine, $cleaningRegex);
             }
 
             $cleanedCommentLines[$key] = $commentLine;
@@ -90,7 +90,7 @@ final class UselessDocBlockCleaner
         $commentText = implode("\n", $cleanedCommentLines);
 
         // run multilines regex on final result
-        return Strings::replace($commentText, self::DOCTRINE_GENERATED_COMMENT_REGEX);
+        return Regex::replace($commentText, self::DOCTRINE_GENERATED_COMMENT_REGEX);
     }
 
     /**
