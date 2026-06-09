@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\DocBlock\DocBlock;
 use PhpCsFixer\DocBlock\Line;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenAnalyzer\DocblockRelatedParamNamesResolver;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 final readonly class MissingParamNameMalformWorker implements MalformWorkerInterface
 {
@@ -64,7 +64,7 @@ final readonly class MissingParamNameMalformWorker implements MalformWorkerInter
     {
         foreach ($functionArgumentNames as $key => $functionArgumentName) {
             $pattern = '# ' . preg_quote($functionArgumentName, '#') . '\b#';
-            if (Strings::match($docContent, $pattern)) {
+            if (Regex::match($docContent, $pattern)) {
                 unset($functionArgumentNames[$key]);
             }
         }
@@ -116,11 +116,11 @@ final readonly class MissingParamNameMalformWorker implements MalformWorkerInter
         }
 
         // already has a param name
-        if (Strings::match($line->getContent(), self::PARAM_WITH_NAME_REGEX)) {
+        if (Regex::match($line->getContent(), self::PARAM_WITH_NAME_REGEX)) {
             return true;
         }
 
-        $match = Strings::match($line->getContent(), self::PARAM_WITHOUT_NAME_REGEX);
+        $match = Regex::match($line->getContent(), self::PARAM_WITHOUT_NAME_REGEX);
         return $match === null;
     }
 
@@ -130,12 +130,12 @@ final readonly class MissingParamNameMalformWorker implements MalformWorkerInter
         $missingDollarSignPattern = '#(@param\s+([\w\|\[\]\\\\]+\s)?)(' . ltrim($newArgumentName, '$') . ')#';
 
         // missing \$ case - possibly own worker
-        if (Strings::match($line->getContent(), $missingDollarSignPattern)) {
-            return Strings::replace($line->getContent(), $missingDollarSignPattern, '$1$$3');
+        if (Regex::match($line->getContent(), $missingDollarSignPattern)) {
+            return Regex::replace($line->getContent(), $missingDollarSignPattern, '$1$$3');
         }
 
         $replacement = '@param $1 ' . $newArgumentName . '$2' . "\n";
 
-        return Strings::replace($line->getContent(), self::PARAM_WITHOUT_NAME_REGEX, $replacement);
+        return Regex::replace($line->getContent(), self::PARAM_WITHOUT_NAME_REGEX, $replacement);
     }
 }

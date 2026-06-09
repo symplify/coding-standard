@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 final class MissingVarNameMalformWorker implements MalformWorkerInterface
 {
@@ -21,7 +21,7 @@ final class MissingVarNameMalformWorker implements MalformWorkerInterface
      */
     public function work(string $docContent, Tokens $tokens, int $position): string
     {
-        if (! Strings::match($docContent, self::VAR_WITHOUT_NAME_REGEX)) {
+        if (! Regex::match($docContent, self::VAR_WITHOUT_NAME_REGEX)) {
             return $docContent;
         }
 
@@ -30,7 +30,7 @@ final class MissingVarNameMalformWorker implements MalformWorkerInterface
             return $docContent;
         }
 
-        return Strings::replace(
+        return Regex::replace(
             $docContent,
             self::VAR_WITHOUT_NAME_REGEX,
             static fn (array $match): string => $match['open'] . $match['type'] . ' ' . $nextVariableToken->getContent() . $match['close']

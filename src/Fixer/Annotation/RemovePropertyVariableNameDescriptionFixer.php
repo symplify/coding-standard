@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\Fixer\Annotation;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 use PhpCsFixer\Tokenizer\Token;
@@ -90,7 +89,7 @@ final class RemovePropertyVariableNameDescriptionFixer extends AbstractSymplifyF
                 }
 
                 // remove last x characters
-                $docblockLine = Strings::substring($docblockLine, 0, -strlen(' ' . $propertyName));
+                $docblockLine = mb_substr($docblockLine, 0, -strlen(' ' . $propertyName));
 
                 $hasChanged = true;
                 $docblockLines[$key] = rtrim($docblockLine);

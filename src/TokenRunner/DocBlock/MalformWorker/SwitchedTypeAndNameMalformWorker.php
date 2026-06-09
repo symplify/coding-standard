@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\DocBlock\DocBlock;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 final class SwitchedTypeAndNameMalformWorker implements MalformWorkerInterface
 {
@@ -27,7 +27,7 @@ final class SwitchedTypeAndNameMalformWorker implements MalformWorkerInterface
         $lines = $docBlock->getLines();
         foreach ($lines as $line) {
             // $value is first, instead of type is first
-            $match = Strings::match($line->getContent(), self::NAME_THEN_TYPE_REGEX);
+            $match = Regex::match($line->getContent(), self::NAME_THEN_TYPE_REGEX);
             if ($match === null) {
                 continue;
             }
@@ -45,7 +45,7 @@ final class SwitchedTypeAndNameMalformWorker implements MalformWorkerInterface
                 continue;
             }
 
-            $newLine = Strings::replace($line->getContent(), self::NAME_THEN_TYPE_REGEX, '@$1$2$5$4$3');
+            $newLine = Regex::replace($line->getContent(), self::NAME_THEN_TYPE_REGEX, '@$1$2$5$4$3');
             $line->setContent($newLine);
         }
 

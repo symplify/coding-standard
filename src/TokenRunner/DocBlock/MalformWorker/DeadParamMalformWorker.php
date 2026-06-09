@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\DocBlock\DocBlock;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 /**
  * Removes dead param annotation lines that only contain a variable name and no type,
@@ -29,7 +29,7 @@ final class DeadParamMalformWorker implements MalformWorkerInterface
         $docBlock = new DocBlock($docContent);
 
         foreach ($docBlock->getLines() as $line) {
-            if (! Strings::match($line->getContent(), self::PARAM_WITHOUT_TYPE_REGEX)) {
+            if (! Regex::match($line->getContent(), self::PARAM_WITHOUT_TYPE_REGEX)) {
                 continue;
             }
 

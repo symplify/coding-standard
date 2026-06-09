@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Symplify\CodingStandard\TokenRunner\DocBlock\MalformWorker;
 
-use Nette\Utils\Strings;
 use PhpCsFixer\DocBlock\Annotation;
 use PhpCsFixer\DocBlock\DocBlock;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use Symplify\CodingStandard\TokenAnalyzer\DocblockRelatedParamNamesResolver;
 use Symplify\CodingStandard\TokenRunner\Contract\DocBlock\MalformWorkerInterface;
+use Symplify\CodingStandard\Utils\Regex;
 
 final readonly class ParamNameTypoMalformWorker implements MalformWorkerInterface
 {
@@ -68,7 +68,7 @@ final readonly class ParamNameTypoMalformWorker implements MalformWorkerInterfac
 
         $paramNames = [];
         foreach ($paramAnnotations as $paramAnnotation) {
-            $match = Strings::match($paramAnnotation->getContent(), self::PARAM_NAME_REGEX);
+            $match = Regex::match($paramAnnotation->getContent(), self::PARAM_NAME_REGEX);
             if (isset($match['paramName'])) {
                 // skip callables, as they contain nested params
                 if (isset($match['callable']) && $match['callable'] === 'callable') {
@@ -111,7 +111,7 @@ final readonly class ParamNameTypoMalformWorker implements MalformWorkerInterfac
             $typoName = $paramNames[$key];
             $replacePattern = '#@param(.*?)(' . preg_quote($typoName, '#') . '\b)#';
 
-            $docContent = Strings::replace($docContent, $replacePattern, static function (array $matched) use ($argumentName, &$replacedParams) {
+            $docContent = Regex::replace($docContent, $replacePattern, static function (array $matched) use ($argumentName, &$replacedParams) {
                 $paramName = $matched[2];
 
                 // 2. If the PHPDoc $paramName is one of the existing $argumentNames and has not already been replaced, it will be deferred

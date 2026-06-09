@@ -4,7 +4,6 @@
     "license": "MIT",
     "require": {
         "php": ">=8.4",
-        "nette/utils": "^4.1",
         "friendsofphp/php-cs-fixer": "^3.95.4"
     },
     "require-dev": {
