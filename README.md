@@ -38,7 +38,7 @@ vendor/bin/ecs --fix
 
 <br>
 
-# 14 Rules to Keep Your Code Clean
+# 23 Rules to Keep Your Code Clean
 
 ## ArrayListItemNewlineFixer
 
@@ -125,13 +125,19 @@ Each chain method call must be on own line
 
 <br>
 
-## ParamReturnAndVarTagMalformsFixer
+## Doc block malform rules
 
-Fixes `@param`, `@return`, `@var` and inline `@var` annotations broken formats. This single rule covers a wide range of docblock malforms:
+The previous all-in-one `ParamReturnAndVarTagMalformsFixer` is now **split into single-task rules**, each fixing one kind of `@param`/`@return`/`@var` malform. They are registered together in the [`docblock` set](../config/sets/docblock.php) and all handle the `@phpstan-` and `@psalm-` prefixed variants of these tags.
 
-- class: [`Symplify\CodingStandard\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer`](../src/Fixer/Commenting/ParamReturnAndVarTagMalformsFixer.php)
+`ParamReturnAndVarTagMalformsFixer` is kept as a deprecated, empty rule that points to its successors.
 
-**Add a missing `@param` variable name**
+<br>
+
+## AddMissingParamNameFixer
+
+Add a missing variable name to a `@param` annotation
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\AddMissingParamNameFixer`](../src/Fixer/Commenting/AddMissingParamNameFixer.php)
 
 ```diff
  /**
@@ -143,33 +149,41 @@ Fixes `@param`, `@return`, `@var` and inline `@var` annotations broken formats. 
  }
 ```
 
-**Reorder switched type and variable name**
+<br>
+
+## AddMissingVarNameFixer
+
+Add a missing variable name to an inline `@var` annotation
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\AddMissingVarNameFixer`](../src/Fixer/Commenting/AddMissingVarNameFixer.php)
 
 ```diff
- /**
-- * @param $a string
-- * @param $b string|null
-+ * @param string $a
-+ * @param string|null $b
-  */
- function test($a, string $b = null): string
- {
- }
+-/** @var int */
++/** @var int $value */
+ $value = 1000;
 ```
 
-**Remove a dead `@param` line that has only a name and no type**
+<br>
+
+## DoubleAsteriskInlineVarFixer
+
+Use a double asterisk `/**` doc block for an inline `@var` comment
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\DoubleAsteriskInlineVarFixer`](../src/Fixer/Commenting/DoubleAsteriskInlineVarFixer.php)
 
 ```diff
- /**
-  * @param string $name
-- * @param $age
-  */
- function withDeadParam(string $name, $age)
- {
- }
+-/* @var int $variable */
++/** @var int $variable */
+ $variable = 5;
 ```
 
-**Fix a typo in the `@param` variable name to match the real argument**
+<br>
+
+## FixParamNameTypoFixer
+
+Fix a typo in the `@param` variable name to match the real argument
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\FixParamNameTypoFixer`](../src/Fixer/Commenting/FixParamNameTypoFixer.php)
 
 ```diff
  /**
@@ -182,7 +196,31 @@ Fixes `@param`, `@return`, `@var` and inline `@var` annotations broken formats. 
  }
 ```
 
-**Remove the reference `&` from a `@param` name**
+<br>
+
+## RemoveDeadParamFixer
+
+Remove a dead `@param` line that has only a name and no type
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\RemoveDeadParamFixer`](../src/Fixer/Commenting/RemoveDeadParamFixer.php)
+
+```diff
+ /**
+  * @param string $name
+- * @param $age
+  */
+ function withDeadParam(string $name, $age)
+ {
+ }
+```
+
+<br>
+
+## RemoveParamNameReferenceFixer
+
+Remove the reference `&` from a `@param` variable name
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\RemoveParamNameReferenceFixer`](../src/Fixer/Commenting/RemoveParamNameReferenceFixer.php)
 
 ```diff
  /**
@@ -194,7 +232,13 @@ Fixes `@param`, `@return`, `@var` and inline `@var` annotations broken formats. 
  }
 ```
 
-**Remove a superfluous variable name from `@return`**
+<br>
+
+## RemoveSuperfluousReturnNameFixer
+
+Remove a superfluous variable name from a `@return` annotation
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\RemoveSuperfluousReturnNameFixer`](../src/Fixer/Commenting/RemoveSuperfluousReturnNameFixer.php)
 
 ```diff
  /**
@@ -206,7 +250,13 @@ Fixes `@param`, `@return`, `@var` and inline `@var` annotations broken formats. 
  }
 ```
 
-**Remove a superfluous variable name from a property `@var`**
+<br>
+
+## RemoveSuperfluousVarNameFixer
+
+Remove a superfluous variable name from a property `@var` annotation
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\RemoveSuperfluousVarNameFixer`](../src/Fixer/Commenting/RemoveSuperfluousVarNameFixer.php)
 
 ```diff
  /**
@@ -216,23 +266,41 @@ Fixes `@param`, `@return`, `@var` and inline `@var` annotations broken formats. 
  private $property;
 ```
 
-**Add a missing variable name to an inline `@var`**
+<br>
+
+## SingleLineInlineVarDocBlockFixer
+
+Collapse a multi-line inline `@var` doc block into a single line
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\SingleLineInlineVarDocBlockFixer`](../src/Fixer/Commenting/SingleLineInlineVarDocBlockFixer.php)
 
 ```diff
--/** @var int */
+-/**
+- * @var int $value
+- */
 +/** @var int $value */
  $value = 1000;
 ```
 
-**Normalize a malformed inline `@var` (single asterisk, switched name/type)**
+<br>
+
+## SwitchedTypeAndNameFixer
+
+Reorder switched type and variable name in `@param`/`@var` annotation
+
+- class: [`Symplify\CodingStandard\Fixer\Commenting\SwitchedTypeAndNameFixer`](../src/Fixer/Commenting/SwitchedTypeAndNameFixer.php)
 
 ```diff
--/* @var $variable int */
-+/** @var int $variable */
- $variable = 5;
+ /**
+- * @param $a string
+- * @param $b string|null
++ * @param string $a
++ * @param string|null $b
+  */
+ function test($a, string $b = null): string
+ {
+ }
 ```
-
-It also handles the `@phpstan-` and `@psalm-` prefixed variants of these tags.
 
 <br>
 
