@@ -2,6 +2,9 @@
 
 [![Downloads](https://img.shields.io/packagist/dt/symplify/coding-standard.svg?style=flat-square)](https://packagist.org/packages/symplify/coding-standard/stats)
 
+> [!WARNING]
+> **This package is deprecated.** Use [Easy Coding Standard (ECS)](https://github.com/easy-coding-standard/easy-coding-standard) instead, where these rules and coding standard work out of the box—no extra setup needed.
+
 Coding standard rules for clean, consistent, and readable PHP code. No configuration needed—just install and let it handle the rest.
 
 They run best with [ECS](https://github.com/symplify/easy-coding-standard).
