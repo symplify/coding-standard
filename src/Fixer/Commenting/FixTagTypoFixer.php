@@ -22,11 +22,9 @@ final class FixTagTypoFixer extends AbstractDocBlockFixer
      */
     private const string PLURAL_TAG_REGEX = '#@((?:psalm-|phpstan-)?(?:param|return|var))s\b#';
 
-    private const string ERROR_MESSAGE = 'Fix a plural typo in a doc block tag, e.g. "@returns" to "@return"';
-
     public function getDefinition(): FixerDefinitionInterface
     {
-        return new FixerDefinition(self::ERROR_MESSAGE, []);
+        return new FixerDefinition('Fix a plural typo in a doc block tag, e.g. "@returns" to "@return"', []);
     }
 
     /**
