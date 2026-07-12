@@ -70,8 +70,7 @@ final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFi
 
             $docblockLines = explode("\n", $originalDocContent);
             foreach ($docblockLines as $key => $docblockLine) {
-                $spacelessDocblockLine = Regex::replace($docblockLine, '#[\s\n]+#', '');
-                if (strtolower($spacelessDocblockLine) !== strtolower('*' . $methodName)) {
+                if (! $this->isMethodNameDescriptionLine($docblockLine, $methodName)) {
                     continue;
                 }
 
@@ -85,5 +84,21 @@ final class RemoveMethodNameDuplicateDescriptionFixer extends AbstractSymplifyFi
 
             $tokens[$index] = new Token([T_DOC_COMMENT, implode("\n", $docblockLines)]);
         }
+    }
+
+    private function isMethodNameDescriptionLine(string $docblockLine, string $methodName): bool
+    {
+        $normalizedLine = strtolower(ltrim(trim($docblockLine), '*'));
+
+        // drop articles, so "Get the API helper" still matches getApiHelper()
+        $words = array_filter(
+            explode(' ', $normalizedLine),
+            static fn (string $word): bool => ! in_array(trim($word, '.,!:;'), ['a', 'an', 'the'], true)
+        );
+
+        // strip whitespace and trailing punctuation
+        $spacelessLine = Regex::replace(implode(' ', $words), '#[^a-z0-9]+#', '');
+
+        return $spacelessLine === strtolower($methodName);
     }
 }
